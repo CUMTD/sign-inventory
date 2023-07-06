@@ -1,0 +1,10 @@
+.tabContainer {
+	display: flex;
+	flex-direction: row;
+}
+.tabContainer > * {
+	flex-grow: 1;
+	padding: 2em;
+	border: 1px solid var(--text);
+	font-size: 110%;
+}
