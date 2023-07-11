@@ -1,0 +1,63 @@
+.tabpage > * {
+	margin-top: 1em;
+}
+
+.subSection > *:not(h2):not(:first-child) {
+	margin-top: 1em;
+	margin-bottom: 0.4em;
+	font-weight: 600;
+}
+
+.subSection > h2 {
+	font-weight: 700;
+}
+
+.subSection {
+	display: flex;
+	flex-direction: column;
+	padding: 2em;
+	border-radius: 0.5em;
+	border: 1px solid #ccc;
+}
+
+.subSection > input {
+	width: 50%;
+	font-size: inherit;
+	font-family: inherit;
+	padding: 0.5em;
+}
+
+.subSection > Select {
+	width: 50%;
+}
+
+.alertButton {
+	margin-right: 1em;
+	margin-left: 1em;
+	border-radius: 13px;
+}
+
+.saveButton {
+	color: white;
+	background-color: #0a7541;
+	font-weight: bold;
+}
+
+.discardButton {
+	background-color: transparent;
+	text-decoration: underline;
+}
+
+.footInchInput {
+	display: inline-block;
+}
+
+.notes {
+	width: 100%;
+}
+
+.photoFrame {
+	border: 2px dashed gray;
+	border-radius: 2px;
+	padding: 20px;
+}

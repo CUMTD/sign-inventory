@@ -1,16 +1,14 @@
 'use client';
-
 import Suggestion from '@/types/suggestion';
-import styles from './page.module.css';
-import { Space_Grotesk } from 'next/font/google';
-import { Inter } from 'next/font/google';
-
-import { useRouter } from 'next/navigation';
-import { ChangeEvent, KeyboardEvent, useEffect, useState } from 'react';
 import ListSuggestions from './listsuggestions';
 
-const space = Space_Grotesk({ subsets: ['latin'] });
-const inter = Inter({ subsets: ['latin'] });
+import { ChangeEvent, useEffect, useState } from 'react';
+import styles from './page.module.css';
+
+import { useRouter } from 'next/navigation';
+import SearchIcon from '@mui/icons-material/Search';
+
+import { Box, Container, InputAdornment, TextField, Typography } from '@mui/material';
 
 // grab the search suggestions api endpoint from the environment variables
 const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL;
@@ -49,19 +47,43 @@ export default function Home() {
 	}
 
 	return (
-		<main className={inter.className}>
-			<div className={styles.card}>
-				<h1 className={space.className}>Sign Inventory</h1>
-				<input
-					className={`${styles.searchBox} ${inter.className}`}
-					type="text"
-					placeholder="Ex. Green and Orchard"
-					required
-					autoFocus
-					onChange={inputChange}
-				/>
-				<ListSuggestions results={suggestions} />
-			</div>
+		<main>
+			<Container>
+				<Box>
+					<div className={styles.primarySearchInterface}>
+						<img
+							src="/bus_stop_sign.png"
+							alt="logo"
+							style={{ maxHeight: '15vh' }}
+							title="it's a great day to ride MTD!"
+						/>
+						<div className={styles.titleAndSearchBar}>
+							<Typography variant="h3" component="h1" gutterBottom>
+								Sign Inventory
+							</Typography>
+							<TextField
+								id="standard-basic"
+								variant="standard"
+								InputProps={{
+									startAdornment: (
+										<InputAdornment position="start">
+											<SearchIcon />
+										</InputAdornment>
+									),
+								}}
+								type="text"
+								placeholder="Ex. Green and Orchard"
+								required
+								autoFocus
+								onChange={inputChange}
+							/>
+						</div>
+					</div>
+				</Box>
+				<Box>
+					<ListSuggestions results={suggestions} />
+				</Box>
+			</Container>
 		</main>
 	);
 }
