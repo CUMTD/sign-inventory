@@ -1,25 +1,20 @@
 'use client';
+import throwError from '@/helpers/throwError';
+import image from '@/public/bus_stop_sign.png';
 import Suggestion from '@/types/suggestion';
-import ListSuggestions from './listsuggestions';
-
+import SearchIcon from '@mui/icons-material/Search';
+import { Box, Container, InputAdornment, TextField, Typography } from '@mui/material';
+import Image from 'next/image';
 import { ChangeEvent, useEffect, useState } from 'react';
+import ListSuggestions from './listsuggestions';
 import styles from './page.module.css';
 
-import { useRouter } from 'next/navigation';
-import SearchIcon from '@mui/icons-material/Search';
-
-import { Box, Container, InputAdornment, TextField, Typography } from '@mui/material';
-
 // grab the search suggestions api endpoint from the environment variables
-const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL;
-if (!AUTOCOMPLETE_URL) {
-	throw new Error('NEXT_PUBLIC_AUTOCOMPLETE_URL is not defined');
-}
+const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL ?? throwError('NEXT_PUBLIC_AUTOCOMPLETE_URL env variable is not defined');
 
 export default function Home() {
 	const [input, setInput] = useState<string>('');
 	const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
-	const router = useRouter();
 
 	useEffect(() => {
 		const query = input.trim();
@@ -37,10 +32,6 @@ export default function Home() {
 		}
 	}, [input]);
 
-	function handleSubmission() {
-		router.push(`/${input}`);
-	}
-
 	// handle input change by updating state
 	function inputChange(event: ChangeEvent<HTMLInputElement>) {
 		setInput(event.target.value);
@@ -51,11 +42,14 @@ export default function Home() {
 			<Container>
 				<Box>
 					<div className={styles.primarySearchInterface}>
-						<img
-							src="/bus_stop_sign.png"
+						<Image
+							src={image}
 							alt="logo"
-							style={{ maxHeight: '15vh' }}
+							width={139}
+							height={200}
 							title="it's a great day to ride MTD!"
+							placeholder='blur'
+							priority
 						/>
 						<div className={styles.titleAndSearchBar}>
 							<Typography variant="h3" component="h1" gutterBottom>

@@ -1,8 +1,7 @@
 import { createTheme } from '@mui/material/styles';
-import { Inter, Space_Grotesk } from 'next/font/google';
+import { Overpass } from 'next/font/google';
 
-const inter = Inter({ subsets: ['latin'] });
-const space = Space_Grotesk({ subsets: ['latin'] });
+const overpass = Overpass({ subsets: ['latin'] });
 
 const theme = createTheme({
 	spacing: 20,
@@ -15,11 +14,17 @@ const theme = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: inter.style.fontFamily,
+		fontFamily: overpass.style.fontFamily,
+		fontWeightRegular: 500,
 		htmlFontSize: 10,
+		h1: {
+			fontWeight: 800
+		},
+		h2: {
+			fontWeight: 600
+		},
 		h3: {
-			fontWeight: 600,
-			fontFamily: space.style.fontFamily,
+			fontWeight: 600
 		},
 	},
 	components: {
