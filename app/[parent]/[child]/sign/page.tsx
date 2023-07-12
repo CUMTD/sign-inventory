@@ -1,8 +1,16 @@
+'use client';
+
 import { Checkbox, FormControlLabel, MenuItem, Select, Slider, TextField, Typography } from '@mui/material';
+import styles from '../../tabPageStyles.module.css';
 
-import styles from './tabPageStyles.module.css';
+interface Props {
+	params: {
+		parent: string;
+		child: string;
+	};
+}
 
-export default function SignPage() {
+export default function Page({ params: { parent, child } }: Props) {
 	return (
 		<>
 			<div className={styles.tabpage}>

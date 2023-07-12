@@ -1,8 +1,16 @@
-import { Checkbox, FormControlLabel, Slider, Typography } from '@mui/material';
+'use client';
 
-import styles from './tabPageStyles.module.css';
+import { Checkbox, FormControlLabel, Slider, TextField, Typography } from '@mui/material';
+import styles from '../../tabPageStyles.module.css';
 
-export default function AccessibilityPage() {
+interface Props {
+	params: {
+		parent: string;
+		child: string;
+	};
+}
+
+export default function Page({ params: { parent, child } }: Props) {
 	return (
 		<>
 			<div className={styles.tabpage}>
