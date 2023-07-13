@@ -1,7 +1,7 @@
 'use client';
 
 import { Checkbox, FormControlLabel, MenuItem, Select, Slider, TextField, Typography } from '@mui/material';
-import styles from '../../tabPageStyles.module.css';
+import styles from '../tabPageStyles.module.css';
 
 interface Props {
 	params: {

@@ -5,7 +5,7 @@
 	max-width: 8vw;
 	bottom: 0;
 	left: 0;
-	margin: 2em;
+	margin: 0 0 2em 3em;
 }
 
 .page {
@@ -17,14 +17,24 @@
 }
 
 .sidebar {
-	padding: 3em;
+	padding: 3em 0 3em 3em;
 	display: flex;
 	flex-direction: column;
 	width: min-content;
+	border-right: 1px solid lightgray;
+}
+
+.sidebar > Button {
+	margin-bottom: 1.3em;
 }
 
 .tabPanels {
 	width: 100%;
 	overflow-y: auto;
-	padding-right: 2em;
+	padding: 2em;
+}
+
+.childStopButtons > Button {
+	width: 90%;
+	justify-content: left;
 }

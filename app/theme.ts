@@ -18,13 +18,13 @@ const theme = createTheme({
 		fontWeightRegular: 500,
 		htmlFontSize: 10,
 		h1: {
-			fontWeight: 800
+			fontWeight: 800,
 		},
 		h2: {
-			fontWeight: 600
+			fontWeight: 600,
 		},
 		h3: {
-			fontWeight: 600
+			fontWeight: 600,
 		},
 	},
 	components: {
@@ -67,6 +67,8 @@ const theme = createTheme({
 					'paddingLeft': 0,
 					'fontSize': '2.3rem',
 					'alignItems': 'start',
+					'minWidth': '22vw',
+
 					'&.Mui-selected': {
 						fontWeight: 700,
 					},
@@ -77,6 +79,11 @@ const theme = createTheme({
 			styleOverrides: {
 				indicator: {
 					width: '5px',
+				},
+				root: {
+					borderRight: 1,
+					borderColor: 'divider',
+					height: '100%',
 				},
 			},
 		},

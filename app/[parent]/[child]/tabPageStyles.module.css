@@ -2,7 +2,7 @@
 	margin-top: 1em;
 }
 
-.subSection > *:not(h2):not(:first-child) {
+.subSection > *:not(h3) {
 	margin-top: 1em;
 	margin-bottom: 0.4em;
 	font-weight: 600;
@@ -40,7 +40,6 @@
 .saveButton {
 	color: white;
 	background-color: #0a7541;
-	font-weight: bold;
 }
 
 .discardButton {

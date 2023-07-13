@@ -8,14 +8,18 @@ import Typography from '@mui/material/Typography';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useMemo } from 'react';
 import styles from './page.module.css';
+import logo_svg from '@/public/logo.svg';
+import Image from 'next/image';
+import UnsavedChangesAlert from './[child]/unsavedChangesAlert';
 
 interface Props {
 	params: {
 		parent: string;
-	}
+	};
 	children: ReactNode;
 }
 
+// template function for generating aria labels
 function a11yProps(index: number) {
 	return {
 		'id': `vertical-tab-${index}`,
@@ -23,6 +27,7 @@ function a11yProps(index: number) {
 	};
 }
 
+// TODO: change button variant based on selection
 const buttons = [
 	<Button key="one" variant="contained">
 		NW Corner
@@ -32,10 +37,10 @@ const buttons = [
 	<Button key="four">SW Corner</Button>,
 ];
 
+// generate clickable buttons for each child stop
 export function childStopButtons() {
 	return (
 		<Box
-			className={styles.childStopButtons}
 			sx={{
 				'display': 'flex',
 				'& > *': {
@@ -44,66 +49,70 @@ export function childStopButtons() {
 				},
 			}}
 		>
-			<ButtonGroup orientation="vertical">{buttons}</ButtonGroup>
+			<ButtonGroup className={styles.childStopButtons} orientation="vertical">
+				{buttons}
+			</ButtonGroup>
 		</Box>
 	);
 }
 
+// for assembling tabs that are links
 interface LinkTabProps {
 	label: string;
 	href: string;
 }
 
+// return a tab that is a link
 function LinkTab(props: LinkTabProps) {
-	return (
-		<Tab component="a" {...props} />
-	);
+	return <Tab component="a" {...props} />;
 }
 
 export default function Layout({ params: { parent: stopName }, children }: Props) {
 	const router = useRouter();
 
+	// figure out which tab should be selected based on the url
 	const pathname = usePathname();
 	const page = pathname.split('/').slice(-1)[0];
 	const pageValue = useMemo(() => {
 		switch (page) {
-			case 'sign': return 1;
-			case 'accessibility': return 2;
-			case 'amenities': return 3;
-			case 'notes': return 4;
-			case 'photo': return 5;
-			default: return 0;
+			case 'sign':
+				return 1;
+			case 'accessibility':
+				return 2;
+			case 'amenities':
+				return 3;
+			case 'notes':
+				return 4;
+			case 'photo':
+				return 5;
+			default:
+				return 0;
 		}
 	}, [page]);
 
-
 	function goBack() {
-		router.back();
+		router.push('/');
 	}
 
 	return (
 		<>
-			<img src="logo.svg" className={styles.logo} alt="MTD" />
 			{/* <UnsavedChangesAlert /> */}
+
+			<Image src={logo_svg} className={styles.logo} alt="MTD" width={125} height={125} />
 			<Box className={styles.page}>
 				<Box className={styles.sidebar}>
 					<Button sx={{ justifyContent: 'left' }} startIcon={<ArrowBackIcon />} onClick={goBack}>
-						back
+						back to search
 					</Button>
 					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
 						Results
 					</Typography>
-					<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem' }}>
+					<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem', paddingRight: '1em' }}>
 						Stop name & Stop Name Terminal Union Green Blah Blah
 					</Typography>
 					{childStopButtons()}
 
-					<Tabs
-						orientation="vertical"
-						value={pageValue}
-						className={styles.tabs}
-						sx={{ borderRight: 1, borderColor: 'divider', width: '22vw', height: '100%' }}
-					>
+					<Tabs orientation="vertical" value={pageValue}>
 						<LinkTab label="General" href={`/${stopName}/${1}/`} {...a11yProps(0)} />
 						<LinkTab label="Sign" href={`/${stopName}/${1}/sign`} {...a11yProps(1)} />
 						<LinkTab label="Accessibility" href={`/${stopName}/${1}/accessibility`} {...a11yProps(2)} />
@@ -113,11 +122,9 @@ export default function Layout({ params: { parent: stopName }, children }: Props
 					</Tabs>
 				</Box>
 				<Box className={styles.tabPanels}>
-					<div>
-						{children}
-					</div>
+					<div>{children}</div>
 				</Box>
-			</Box >
+			</Box>
 		</>
 	);
 }
