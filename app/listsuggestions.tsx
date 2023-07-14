@@ -1,15 +1,11 @@
-import Suggestion from '@/types/suggestion';
 import { Card, CardContent } from '@mui/material';
+import { resultsToDisplaySelector } from '@state/homepageState';
 import Link from 'next/link';
+import { useRecoilValue } from 'recoil';
 import styles from './listsuggestions.module.css';
 
-interface Props {
-	results: Suggestion[];
-}
-
-export default function ListSuggestions({ results }: Props) {
-	// drill down to the results array
-	const resultsToDisplay = results.map(({ result }) => result);
+export default function ListSuggestions() {
+	const resultsToDisplay = useRecoilValue(resultsToDisplaySelector);
 
 	// format the search suggestions nicely
 	return (

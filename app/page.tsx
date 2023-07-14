@@ -4,8 +4,10 @@ import image from '@/public/bus_stop_sign.png';
 import Suggestion from '@/types/suggestion';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Container, InputAdornment, TextField, Typography } from '@mui/material';
+import { queryState, searchResultsState, trimmedQuerySelector } from '@state/homepageState';
 import Image from 'next/image';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useEffect } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import ListSuggestions from './listsuggestions';
 import styles from './page.module.css';
 
@@ -13,28 +15,27 @@ import styles from './page.module.css';
 const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL ?? throwError('NEXT_PUBLIC_AUTOCOMPLETE_URL env variable is not defined');
 
 export default function Home() {
-	const [input, setInput] = useState<string>('');
-	const [suggestions, setSuggestions] = useState<Suggestion[]>([]);
+	const setQuery = useSetRecoilState(queryState);
+	const query = useRecoilValue(trimmedQuerySelector);
+	const setSearchResults = useSetRecoilState(searchResultsState);
 
 	useEffect(() => {
-		const query = input.trim();
-
 		async function fetchSuggestions() {
 			const response = await fetch(`${AUTOCOMPLETE_URL}${query}`);
-			const data = await response.json();
-			setSuggestions(data);
+			const data = await response.json() as Suggestion[];
+			setSearchResults(data);
 		}
 
 		if (query.length >= 3) {
 			fetchSuggestions();
 		} else {
-			setSuggestions([]);
+			setSearchResults([]);
 		}
-	}, [input]);
+	}, [query]);
 
 	// handle input change by updating state
 	function inputChange(event: ChangeEvent<HTMLInputElement>) {
-		setInput(event.target.value);
+		setQuery(event.target.value);
 	}
 
 	return (
@@ -75,7 +76,7 @@ export default function Home() {
 					</div>
 				</Box>
 				<Box>
-					<ListSuggestions results={suggestions} />
+					<ListSuggestions />
 				</Box>
 			</Container>
 		</main>
