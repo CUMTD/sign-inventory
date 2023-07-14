@@ -1,5 +1,9 @@
+import throwError from '@/helpers/throwError';
 import Suggestion, { Result } from '@/types/suggestion';
 import { atom, selector } from "recoil";
+
+const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL ?? throwError('NEXT_PUBLIC_AUTOCOMPLETE_URL env variable is not defined');
+
 
 export const queryState = atom<string>({
 	key: 'queryState',
@@ -14,23 +18,16 @@ export const trimmedQuerySelector = selector<string>({
 	}
 });
 
-export const searchResultsState = atom<Suggestion[]>({
-	key: 'searchResultsState',
-	default: []
-});
+export const searchResultsSelector = selector<Result[]>({
+	key: 'searchResultsSelector',
+	get: async ({ get }) => {
+		const trimmedQuery = get(trimmedQuerySelector);
+		if (trimmedQuery.length < 3) {
+			return [];
+		}
 
-export const searchResultCountSelector = selector<number>({
-	key: 'searchResultCountSelector',
-	get: ({ get }) => {
-		const results = get(searchResultsState);
-		return results.length;
-	}
-});
-
-export const resultsToDisplaySelector = selector<Result[]>({
-	key: 'resultsToDisplaySelector',
-	get: ({ get }) => {
-		const results = get(searchResultsState);
-		return results.map(({ result }) => result);
+		const response = await fetch(`${AUTOCOMPLETE_URL}${trimmedQuery}`);
+		const data = await response.json() as Suggestion[];
+		return data.map(({ result }) => result);
 	}
 });

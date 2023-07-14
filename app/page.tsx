@@ -1,13 +1,12 @@
 'use client';
 import throwError from '@/helpers/throwError';
 import image from '@/public/bus_stop_sign.png';
-import Suggestion from '@/types/suggestion';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Container, InputAdornment, TextField, Typography } from '@mui/material';
-import { queryState, searchResultsState, trimmedQuerySelector } from '@state/homepageState';
+import { queryState } from '@state/homepageState';
 import Image from 'next/image';
-import { ChangeEvent, useEffect } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { ChangeEvent } from 'react';
+import { useSetRecoilState } from 'recoil';
 import ListSuggestions from './listsuggestions';
 import styles from './page.module.css';
 
@@ -16,22 +15,6 @@ const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL ?? throwError(
 
 export default function Home() {
 	const setQuery = useSetRecoilState(queryState);
-	const query = useRecoilValue(trimmedQuerySelector);
-	const setSearchResults = useSetRecoilState(searchResultsState);
-
-	useEffect(() => {
-		async function fetchSuggestions() {
-			const response = await fetch(`${AUTOCOMPLETE_URL}${query}`);
-			const data = await response.json() as Suggestion[];
-			setSearchResults(data);
-		}
-
-		if (query.length >= 3) {
-			fetchSuggestions();
-		} else {
-			setSearchResults([]);
-		}
-	}, [query]);
 
 	// handle input change by updating state
 	function inputChange(event: ChangeEvent<HTMLInputElement>) {
