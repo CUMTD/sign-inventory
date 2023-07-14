@@ -1,8 +1,9 @@
 'use client';
 
-import './globals.css';
-import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
+import { ThemeProvider } from '@mui/material/styles';
+import { RecoilRoot } from 'recoil';
+import './globals.css';
 import theme from './theme';
 
 export const metadata = {
@@ -13,10 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
 	return (
 		<html lang="en">
-			<ThemeProvider theme={theme}>
+			<RecoilRoot>
 				<CssBaseline />
-				<body>{children}</body>
-			</ThemeProvider>
-		</html>
+				<ThemeProvider theme={theme}>
+					<body>{children}</body>
+				</ThemeProvider>
+			</RecoilRoot>
+		</html >
 	);
 }
