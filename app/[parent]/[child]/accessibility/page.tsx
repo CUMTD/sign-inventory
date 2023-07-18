@@ -1,7 +1,10 @@
 'use client';
 
-import { Checkbox, FormControlLabel, Slider, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import styles from '../tabPageStyles.module.css';
+import { printCheckBox } from '@/helpers/placeholderPrinters';
+import CheckBox from '@/app/components/inputs/checkbox';
+import HorizSlider from '@/app/components/inputs/horizSlider';
 
 interface Props {
 	params: {
@@ -15,18 +18,21 @@ export default function Page({ params: { parent, child } }: Props) {
 		<>
 			<div className={styles.tabpage}>
 				<div className={styles.subSection}>
-					<FormControlLabel control={<Checkbox />} label="Ramp deployable" />
-					<FormControlLabel control={<Checkbox />} label="Curb cutout" />
-					<FormControlLabel control={<Checkbox />} label="Has slab" />
-					<FormControlLabel control={<Checkbox />} label="Accessible from sidewalk" />{' '}
+					<CheckBox label="Ramp deployable" value={true} onChange={printCheckBox} />
+					<CheckBox label="Curb cutout" value={true} onChange={printCheckBox} />
+
+					<CheckBox label="Has slab" value={true} onChange={printCheckBox} />
+
+					<CheckBox label="Accessible from sidewalk" value={true} onChange={printCheckBox} />
+
 					<Typography variant="h6" component="h3">
 						Ease of Access
 					</Typography>
-					<Slider defaultValue={3} min={1} max={5} marks valueLabelDisplay="on" />
+					<HorizSlider min={1} max={5} />
 					<Typography variant="h6" component="h3">
 						Ease of Boarding
 					</Typography>
-					<Slider defaultValue={3} min={1} max={5} marks valueLabelDisplay="on" />
+					<HorizSlider min={1} max={5} />
 				</div>
 			</div>
 		</>

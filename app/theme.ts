@@ -39,6 +39,8 @@ const theme = createTheme({
 		MuiCard: {
 			styleOverrides: {
 				root: {
+					fontFamily: overpass.style.fontFamily,
+
 					padding: 10,
 					marginTop: 10,
 				},

@@ -2,6 +2,8 @@
 
 import { TextField, Typography } from '@mui/material';
 import styles from '../tabPageStyles.module.css';
+import TextInput from '@/app/components/inputs/textInput';
+import { printTextInput } from '@/helpers/placeholderPrinters';
 
 interface Props {
 	params: {
@@ -11,20 +13,5 @@ interface Props {
 }
 
 export default function Page({ params: { parent, child } }: Props) {
-	return (
-		<>
-			<Typography variant="h6" component="h3">
-				Notes
-			</Typography>
-			<TextField
-				className={styles.notes}
-				placeholder="This is certainly a bus stop."
-				multiline
-				rows={4}
-				InputLabelProps={{
-					shrink: true,
-				}}
-			/>
-		</>
-	);
+	return <TextInput label="Notes" placeholder="This is certainly a bus stop." onChange={printTextInput}></TextInput>;
 }

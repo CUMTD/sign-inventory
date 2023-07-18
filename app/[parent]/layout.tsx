@@ -108,7 +108,7 @@ export default function Layout({ params: { parent: stopName }, children }: Props
 						Results
 					</Typography>
 					<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem', paddingRight: '1em' }}>
-						Stop name & Stop Name Terminal Union Green Blah Blah
+						{stopName}
 					</Typography>
 					{childStopButtons()}
 

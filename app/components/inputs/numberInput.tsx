@@ -4,12 +4,12 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 
 interface Props {
 	label: string;
-	placeholder: string;
-	onChange: (value: string) => void;
+	placeholder: number;
+	onChange: (value: number) => void;
 }
 
-export default function TextInput({ label, placeholder, onChange }: Props) {
-	const [value, setValue] = useState<string>('');
+export default function NumberInput({ label, placeholder, onChange }: Props) {
+	const [value, setValue] = useState<number>(0);
 
 	useEffect(() => {
 		onChange(value);
@@ -17,7 +17,7 @@ export default function TextInput({ label, placeholder, onChange }: Props) {
 
 	const onInputChange = useCallback((event: ChangeEvent) => {
 		const value = (event.target as HTMLInputElement).value;
-		setValue(value);
+		setValue(parseInt(value));
 	}, []);
 
 	return (
@@ -26,15 +26,13 @@ export default function TextInput({ label, placeholder, onChange }: Props) {
 				{label}
 			</Typography>
 			<TextField
-				placeholder={placeholder}
-				multiline
-				rows={4}
+				id="outlined-number"
+				defaultValue={2}
+				type="number"
 				InputLabelProps={{
 					shrink: true,
 				}}
 				onChange={onInputChange}
-				value={value}
-				style={{ width: '100%' }}
 			/>
 		</>
 	);

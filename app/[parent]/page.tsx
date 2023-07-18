@@ -1,12 +1,12 @@
 'use client';
 
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 interface Props {
 	params: {
 		parent: string;
-	}
+	};
 }
 
 export default function Page({ params: { parent } }: Props) {

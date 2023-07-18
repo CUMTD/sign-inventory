@@ -2,6 +2,11 @@
 
 import { Checkbox, FormControlLabel, TextField, Typography } from '@mui/material';
 import styles from '../tabPageStyles.module.css';
+import { printCheckBox, printNumberInput, printTextInput } from '@/helpers/placeholderPrinters';
+import CheckBox from '@/app/components/inputs/checkbox';
+import FeetInches from '@/app/components/inputs/feetInches';
+import TextInput from '@/app/components/inputs/textInput';
+import NumberInput from '@/app/components/inputs/numberInput';
 
 interface Props {
 	params: {
@@ -18,86 +23,44 @@ export default function Page({ params: { parent, child } }: Props) {
 					<Typography variant="h5" component="h2">
 						Stop Amenities
 					</Typography>
-					<FormControlLabel control={<Checkbox />} label="Shelter" />
-					<FormControlLabel control={<Checkbox />} label="Light in shelter" />
+					<CheckBox label="Shelter" value={true} onChange={printCheckBox} />
 
-					<FormControlLabel control={<Checkbox />} label="Bench" />
+					<CheckBox label="Light in shelter" value={true} onChange={printCheckBox} />
 
-					<FormControlLabel control={<Checkbox />} label="Trash Can" />
+					<CheckBox label="Bench" value={true} onChange={printCheckBox} />
 
-					<FormControlLabel control={<Checkbox />} label="Bike Rack" />
+					<CheckBox label="Trash Can" value={true} onChange={printCheckBox} />
+
+					<CheckBox label="Bike Rack" value={true} onChange={printCheckBox} />
 				</div>
 				<div className={styles.subSection}>
 					<Typography variant="h5" component="h2">
 						Shelter Boards
 					</Typography>
-					<FormControlLabel control={<Checkbox />} label="Has map" />
-					<FormControlLabel control={<Checkbox />} label="Has schedule" />
+					<CheckBox label="Has map" value={true} onChange={printCheckBox} />
 
-					<FormControlLabel control={<Checkbox />} label="Fits frame" />
+					<CheckBox label="Has schedule" value={true} onChange={printCheckBox} />
+
+					<CheckBox label="Fits frame" value={true} onChange={printCheckBox} />
+					<NumberInput label="No. of Shelter Boards" placeholder={0} onChange={printNumberInput} />
 					<Typography variant="h6" component="h3">
-						Count
-					</Typography>
-					<TextField
-						id="outlined-number"
-						defaultValue={2}
-						type="number"
-						InputLabelProps={{
-							shrink: true,
-						}}
-					/>
-					<Typography variant="h6" component="h3">
-						Width
+						Width of Shelter Board
 					</Typography>
 					<div className={styles.footInchInput}>
-						<TextField
-							id="outlined-number"
-							label="Feet"
-							type="number"
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
-						<TextField
-							id="outlined-number"
-							label="Inches"
-							type="number"
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
+						<FeetInches />
 					</div>
 					<Typography variant="h6" component="h3">
-						Height
+						Height of Shelter Board
 					</Typography>
 					<div className={styles.footInchInput}>
-						<TextField
-							id="outlined-number"
-							label="Feet"
-							type="number"
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
-						<TextField
-							id="outlined-number"
-							label="Inches"
-							type="number"
-							InputLabelProps={{
-								shrink: true,
-							}}
-						/>
+						<FeetInches />
 					</div>
-					<Typography variant="h6" component="h3">
-						Notes
-					</Typography>
-					<TextField
-						multiline
-						rows={4}
-						InputLabelProps={{
-							shrink: true,
-						}}
-					/>
+
+					<TextInput
+						label="Notes"
+						placeholder="Ex. Sign is faded, map/schedule doesn't fit, etc."
+						onChange={printTextInput}
+					></TextInput>
 				</div>
 			</div>
 		</>
