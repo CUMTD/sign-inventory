@@ -5,11 +5,11 @@ import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import Typography from '@mui/material/Typography';
+import logo_svg from '@public/logo.svg';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useMemo } from 'react';
 import styles from './page.module.css';
-import logo_svg from '@/public/logo.svg';
-import Image from 'next/image';
 
 interface Props {
 	params: {

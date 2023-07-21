@@ -1,14 +1,9 @@
 'use client';
-import generateCheckBox from '@/app/components/inputs/checkbox';
-import styles from './tabPageStyles.module.css';
-import DropDown from '@/app/components/inputs/dropdown';
+import CheckBox from '@components/inputs/checkbox';
+import DropDown from '@components/inputs/dropdown';
+import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
-import { generalState } from '@/state/generalState';
-import { SetterOrUpdater, useRecoilState } from 'recoil';
-import { useCallback, useEffect } from 'react';
-import General from '@/types/general';
-import CheckBox from '@/app/components/inputs/checkbox';
-import { printCheckBox, printDropDown } from '@/helpers/placeholderPrinters';
+import styles from './tabPageStyles.module.css';
 
 interface Props {
 	params: {

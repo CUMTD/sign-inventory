@@ -1,12 +1,12 @@
 'use client';
 
-import { Checkbox, FormControlLabel, TextField, Typography } from '@mui/material';
+import CheckBox from '@components/inputs/checkbox';
+import FeetInches from '@components/inputs/feetInches';
+import NumberInput from '@components/inputs/numberInput';
+import TextInput from '@components/inputs/textInput';
+import { printCheckBox, printNumberInput, printTextInput } from '@helpers/placeholderPrinters';
+import { Typography } from '@mui/material';
 import styles from '../tabPageStyles.module.css';
-import { printCheckBox, printNumberInput, printTextInput } from '@/helpers/placeholderPrinters';
-import CheckBox from '@/app/components/inputs/checkbox';
-import FeetInches from '@/app/components/inputs/feetInches';
-import TextInput from '@/app/components/inputs/textInput';
-import NumberInput from '@/app/components/inputs/numberInput';
 
 interface Props {
 	params: {

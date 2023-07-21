@@ -1,13 +1,13 @@
 'use client';
 
-import { Checkbox, FormControlLabel, MenuItem, Select, Slider, Typography } from '@mui/material';
+import CheckBox from '@components/inputs/checkbox';
+import DatePicker from '@components/inputs/datePicker';
+import DropDown from '@components/inputs/dropdown';
+import FeetInches from '@components/inputs/feetInches';
+import HorizSlider from '@components/inputs/horizSlider';
+import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
+import { Typography } from '@mui/material';
 import styles from '../tabPageStyles.module.css';
-import CheckBox from '@/app/components/inputs/checkbox';
-import FeetInches from '@/app/components/inputs/feetInches';
-import HorizSlider from '@/app/components/inputs/horizSlider';
-import DropDown from '@/app/components/inputs/dropdown';
-import DatePicker from '@/app/components/inputs/datePicker';
-import { printCheckBox, printDropDown } from '@/helpers/placeholderPrinters';
 
 interface Props {
 	params: {

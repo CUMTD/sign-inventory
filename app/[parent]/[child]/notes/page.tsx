@@ -1,9 +1,7 @@
 'use client';
 
-import { TextField, Typography } from '@mui/material';
-import styles from '../tabPageStyles.module.css';
-import TextInput from '@/app/components/inputs/textInput';
-import { printTextInput } from '@/helpers/placeholderPrinters';
+import TextInput from '@components/inputs/textInput';
+import { printTextInput } from '@helpers/placeholderPrinters';
 
 interface Props {
 	params: {

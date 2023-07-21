@@ -1,5 +1,5 @@
-import throwError from '@/helpers/throwError';
-import Suggestion, { Result } from '@/types/suggestion';
+import throwError from '@helpers/throwError';
+import Suggestion, { Result } from '@t/suggestion';
 import { atom, selector } from 'recoil';
 
 const AUTOCOMPLETE_URL =

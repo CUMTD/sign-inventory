@@ -1,9 +1,8 @@
 'use client';
 
-import { serverDataState } from '@/state/serverDataState';
-import { ChildStop } from '@/types/apiResponse';
+import { serverDataState } from '@state/serverDataState';
+import { ChildStop } from '@t/apiResponse';
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
 import { useRecoilState } from 'recoil';
 
 interface Props {

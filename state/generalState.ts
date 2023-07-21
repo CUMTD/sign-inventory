@@ -1,4 +1,4 @@
-import General from '@/types/general';
+import General from '@t/general';
 import { atom } from 'recoil';
 
 export const generalState = atom<General>({

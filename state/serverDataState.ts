@@ -1,5 +1,5 @@
-import { ChildStop } from '@/types/apiResponse';
-import { atom, selector } from 'recoil';
+import { ChildStop } from '@t/apiResponse';
+import { atom } from 'recoil';
 
 export const serverDataState = atom<ChildStop[]>({
 	key: 'serverDataState',

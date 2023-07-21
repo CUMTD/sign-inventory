@@ -1,6 +1,5 @@
 'use client';
-import throwError from '@/helpers/throwError';
-import image from '@/public/bus_stop_sign.png';
+import throwError from '@helpers/throwError';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Container, InputAdornment, TextField, Typography } from '@mui/material';
 import { queryState } from '@state/homepageState';
@@ -9,6 +8,7 @@ import { ChangeEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
 import ListSuggestions from './listsuggestions';
 import styles from './page.module.css';
+import image from '/public/bus_stop_sign.png';
 
 // grab the search suggestions api endpoint from the environment variables
 const AUTOCOMPLETE_URL =

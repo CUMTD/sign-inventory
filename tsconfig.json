@@ -24,16 +24,13 @@
 			}
 		],
 		"paths": {
-			"@/*": [
-				"./*"
-			],
 			"@helpers/*": [
 				"./helpers/*"
 			],
 			"@components/*": [
 				"./components/*"
 			],
-			"@types/*": [
+			"@t/*": [
 				"./types/*"
 			],
 			"@data/*": [
@@ -41,6 +38,9 @@
 			],
 			"@state/*": [
 				"./state/*"
+			],
+			"@public/*": [
+				"./public/*"
 			]
 		}
 	},
