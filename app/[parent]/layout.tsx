@@ -10,7 +10,6 @@ import { ReactNode, useMemo } from 'react';
 import styles from './page.module.css';
 import logo_svg from '@/public/logo.svg';
 import Image from 'next/image';
-import UnsavedChangesAlert from './[child]/unsavedChangesAlert';
 
 interface Props {
 	params: {

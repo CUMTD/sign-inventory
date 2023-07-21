@@ -11,7 +11,8 @@ import ListSuggestions from './listsuggestions';
 import styles from './page.module.css';
 
 // grab the search suggestions api endpoint from the environment variables
-const AUTOCOMPLETE_URL = process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL ?? throwError('NEXT_PUBLIC_AUTOCOMPLETE_URL env variable is not defined');
+const AUTOCOMPLETE_URL =
+	process.env.NEXT_PUBLIC_AUTOCOMPLETE_URL ?? throwError('NEXT_PUBLIC_AUTOCOMPLETE_URL env variable is not defined');
 
 export default function Home() {
 	const setQuery = useSetRecoilState(queryState);
@@ -32,7 +33,7 @@ export default function Home() {
 							width={139}
 							height={200}
 							title="it's a great day to ride MTD!"
-							placeholder='blur'
+							placeholder="blur"
 							priority
 						/>
 						<div className={styles.titleAndSearchBar}>

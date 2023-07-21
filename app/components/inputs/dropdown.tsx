@@ -10,9 +10,9 @@ interface Props {
 export default function DropDown({ label, options, onChange }: Props) {
 	const [value, setValue] = useState<number>(0);
 
-	useEffect(() => {
-		onChange(value);
-	}, [value]);
+	// useEffect(() => {
+	// 	onChange(value);
+	// }, [value]);
 
 	const onInputChange = useCallback((event: SelectChangeEvent<number>) => {
 		const value = (event.target as HTMLInputElement).value;

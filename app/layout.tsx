@@ -20,6 +20,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 					<body>{children}</body>
 				</ThemeProvider>
 			</RecoilRoot>
-		</html >
+		</html>
 	);
 }

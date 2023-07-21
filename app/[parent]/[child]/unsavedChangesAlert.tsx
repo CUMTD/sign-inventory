@@ -3,6 +3,8 @@ import styles from './tabPageStyles.module.css';
 
 // WIP!!!
 export default function UnsavedChangesAlert() {
+	console.log('UnsavedChangesAlert');
+
 	return (
 		<Alert
 			severity="warning"

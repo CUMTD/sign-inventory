@@ -1,8 +1,12 @@
+'use client';
+
 import { Card, CardContent } from '@mui/material';
 import { searchResultsSelector } from '@state/homepageState';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import styles from './listsuggestions.module.css';
+import Suggestion, { Result } from '@/types/suggestion';
+import { useEffect, useState } from 'react';
 
 export default function ListSuggestions() {
 	const searchResults = useRecoilValue(searchResultsSelector);
