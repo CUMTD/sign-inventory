@@ -1,13 +1,13 @@
 'use client';
 
 import { Card, CardContent } from '@mui/material';
-import { searchResultsSelector } from '@state/homepageState';
+import { searchResultsState } from '@state/homepageState';
 import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 import styles from './listsuggestions.module.css';
 
 export default function ListSuggestions() {
-	const searchResults = useRecoilValue(searchResultsSelector);
+	const searchResults = useRecoilValue(searchResultsState);
 
 	// format the search suggestions nicely
 	return (

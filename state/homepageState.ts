@@ -1,5 +1,5 @@
 import throwError from '@helpers/throwError';
-import Suggestion, { Result } from '@t/suggestion';
+import { Result } from '@t/suggestion';
 import { atom, selector } from 'recoil';
 
 const AUTOCOMPLETE_URL =
@@ -18,17 +18,7 @@ export const trimmedQuerySelector = selector<string>({
 	},
 });
 
-export const searchResultsSelector = selector<Result[]>({
-	key: 'searchResultsSelector',
-	get: async ({ get }) => {
-		console.log('searchResultsSelector');
-		const trimmedQuery = get(trimmedQuerySelector);
-		if (trimmedQuery.length < 3) {
-			return [];
-		}
-
-		const response = await fetch(`${AUTOCOMPLETE_URL}${trimmedQuery}`);
-		const data = (await response.json()) as Suggestion[];
-		return data.map(({ result }) => result);
-	},
+export const searchResultsState = atom<Result[]>({
+	key: 'searchResultsState',
+	default: []
 });
