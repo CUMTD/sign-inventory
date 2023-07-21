@@ -6,7 +6,7 @@ import NumberInput from '@components/inputs/numberInput';
 import TextInput from '@components/inputs/textInput';
 import { printCheckBox, printNumberInput, printTextInput } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
-import styles from '../tabPageStyles.module.css';
+import styles from '../page.module.css';
 
 interface Props {
 	params: {

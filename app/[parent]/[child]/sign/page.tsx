@@ -7,7 +7,7 @@ import FeetInches from '@components/inputs/feetInches';
 import HorizSlider from '@components/inputs/horizSlider';
 import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
-import styles from '../tabPageStyles.module.css';
+import styles from '../page.module.css';
 
 interface Props {
 	params: {

@@ -1,5 +1,5 @@
 import { Alert, AlertTitle, Button } from '@mui/material';
-import styles from './tabPageStyles.module.css';
+import styles from './page.module.css';
 
 // WIP!!!
 export default function UnsavedChangesAlert() {
@@ -25,7 +25,7 @@ export default function UnsavedChangesAlert() {
 						className={`${styles.alertButton} ${styles.discardButton}`}
 						id="discard"
 						color="inherit"
-						// variant="outlined"
+					// variant="outlined"
 					>
 						Discard
 					</Button>

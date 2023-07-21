@@ -4,7 +4,7 @@ import CheckBox from '@components/inputs/checkbox';
 import HorizSlider from '@components/inputs/horizSlider';
 import { printCheckBox } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
-import styles from '../tabPageStyles.module.css';
+import styles from '../page.module.css';
 
 interface Props {
 	params: {

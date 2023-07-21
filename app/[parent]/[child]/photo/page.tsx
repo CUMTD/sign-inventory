@@ -1,7 +1,7 @@
 'use client';
 
-import { Button, Stack, TextField, Typography } from '@mui/material';
-import styles from '../tabPageStyles.module.css';
+import { Button, Stack } from '@mui/material';
+import styles from '../page.module.css';
 
 interface Props {
 	params: {

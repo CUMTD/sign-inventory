@@ -1,9 +1,3 @@
-.primarySearchInterface {
-	display: flex;
-	align-items: center;
-	gap: 2em;
-}
-
 .titleAndSearchBar {
 	display: flex;
 	flex-direction: column;

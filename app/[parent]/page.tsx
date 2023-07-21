@@ -1,9 +1,7 @@
 'use client';
 
-import { serverDataState } from '@state/serverDataState';
-import { ChildStop } from '@t/apiResponse';
-import { useRouter } from 'next/navigation';
-import { useRecoilState } from 'recoil';
+import RecoilProvider from '@components/recoilProvider';
+import Redirector from './redirector';
 
 interface Props {
 	params: {
@@ -12,25 +10,7 @@ interface Props {
 }
 
 export default function Page({ params: { parent } }: Props) {
-	const [serverData, setServerData] = useRecoilState(serverDataState);
-	let stops: ChildStop[] = [];
-	// const response = await fetch('https://localhost:7135/stop-point/GRNORCH');
-	// stops = (await response.json()) as ChildStop[];
-
-	setServerData(stops);
-
-	console.log(serverData);
-
-	// return stops.map((stop) => stop);
-
-	const router = useRouter();
-
-	// TODO dynamically load the first child stop and redirect
-
-	// useEffect(() => {
-	// 	if (router) {
-	router.push(`/${parent}/${1}/`);
-	// 	}
-	// }, [parent, router]);
-	// return null;
+	return <RecoilProvider>
+		<Redirector parent={parent} />
+	</RecoilProvider>
 }
