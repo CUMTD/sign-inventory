@@ -13,7 +13,7 @@ export default function NumberInput({ label, placeholder, onChange }: Props) {
 
 	useEffect(() => {
 		onChange(value);
-	}, [value]);
+	}, [value, onChange]);
 
 	const onInputChange = useCallback((event: ChangeEvent) => {
 		const value = (event.target as HTMLInputElement).value;

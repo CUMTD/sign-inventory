@@ -26,35 +26,6 @@ function a11yProps(index: number) {
 	};
 }
 
-// TODO: change button variant based on selection
-const buttons = [
-	<Button key="one" variant="contained">
-		NW Corner
-	</Button>,
-	<Button key="two">NE Corner</Button>,
-	<Button key="three">SE Corner</Button>,
-	<Button key="four">SW Corner</Button>,
-];
-
-// generate clickable buttons for each child stop
-export function childStopButtons() {
-	return (
-		<Box
-			sx={{
-				'display': 'flex',
-				'& > *': {
-					width: '100%',
-					margin: `1em 1em 1em 0em`,
-				},
-			}}
-		>
-			<ButtonGroup className={styles.childStopButtons} orientation="vertical">
-				{buttons}
-			</ButtonGroup>
-		</Box>
-	);
-}
-
 // for assembling tabs that are links
 interface LinkTabProps {
 	label: string;
@@ -109,7 +80,23 @@ export default function Layout({ params: { parent: stopName }, children }: Props
 					<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem', paddingRight: '1em' }}>
 						{stopName}
 					</Typography>
-					{childStopButtons()}
+
+					<Box
+						sx={{
+							'display': 'flex',
+							'& > *': {
+								width: '100%',
+								margin: `1em 1em 1em 0em`,
+							},
+						}}
+					>
+						<ButtonGroup className={styles.childStopButtons} orientation="vertical">
+							<Button>NW Corner</Button>
+							<Button >NE Corner</Button>
+							<Button >SE Corner</Button>
+							<Button >SW Corner</Button>
+						</ButtonGroup>
+					</Box>
 
 					<Tabs orientation="vertical" value={pageValue}>
 						<LinkTab label="General" href={`/${stopName}/${1}/`} {...a11yProps(0)} />

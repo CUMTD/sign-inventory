@@ -1,6 +1,5 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
-import { ChangeEvent, useCallback, useEffect } from 'react';
-import { RecoilState, SetterOrUpdater, useRecoilState } from 'recoil';
+import { ChangeEvent, useCallback } from 'react';
 
 interface Props {
 	value: boolean;
@@ -12,7 +11,7 @@ export default function CheckBox({ value, label, onChange }: Props) {
 	const onInputChange = useCallback((event: ChangeEvent) => {
 		const newValue = (event.target as HTMLInputElement).checked;
 		onChange(newValue);
-	}, []);
+	}, [onChange]);
 
 	return (
 		<>
