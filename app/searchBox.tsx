@@ -5,7 +5,7 @@ import { InputAdornment, TextField, Typography } from '@mui/material';
 import { queryState } from '@state/homepageState';
 import { ChangeEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
-import styles from './searchBox.module.css';
+import styles from './search.module.css';
 
 export default function SearchBox() {
 	const setQuery = useSetRecoilState(queryState);
