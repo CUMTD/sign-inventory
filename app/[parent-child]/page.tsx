@@ -7,12 +7,11 @@ import styles from './page.module.css';
 
 interface Props {
 	params: {
-		parent: string;
-		child: string;
+		stopId: string;
 	};
 }
 
-export default function Page({ }: Props) {
+export default function Page({}: Props) {
 	return (
 		<div className={styles.tabpage}>
 			<div className={styles.subSection}>
