@@ -1,18 +1,22 @@
+import fetchNewData from '@helpers/fetchNewData';
 import { ChildStop } from '@t/apiResponse';
-import { atom } from 'recoil';
+import { atom, selector } from 'recoil';
 
 export const serverDataState = atom<ChildStop[]>({
 	key: 'serverDataState',
 	default: [],
 });
 
-// export const serverDataSelector = selector<ChildStop[]>({
-// 	key: 'serverDataSelector',
-// 	// get: async () => {
-// 	// 	let stops: ChildStop[] = [];
-// 	// 	const response = await fetch('https://localhost:7135/stop-point/GRNORCH');
-// 	// 	stops = (await response.json()) as ChildStop[];
-// 	// 	return stops.map((stop) => stop);
-// 	},
-// }
-// );
+export const serverDataSelector = selector<ChildStop[]>({
+	key: 'serverDataSelector',
+	get: ({ get }) => {
+		return get(serverDataState);
+	},
+});
+
+export const firstChildStopId = selector<ChildStop[]>({
+	key: 'firstChildStopId',
+	get: ({ get }) => {
+		return get(serverDataState);
+	},
+});

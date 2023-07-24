@@ -10,6 +10,7 @@ export interface Result {
 	city: string;
 	isParent: boolean;
 	rank: number;
+	boardingPoints: string[];
 }
 
 export default interface Suggestion {
