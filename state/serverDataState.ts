@@ -1,23 +1,28 @@
 import { ChildStop } from '@t/apiResponse';
-import { atom, selector, useRecoilValue } from 'recoil';
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
+import { atom, selector } from 'recoil';
 
-export const currentStop = atom<string>({
-	key: 'currentStop',
+export const currentStopIdState = atom<string>({
+	key: 'currentStopIdState',
 	default: '',
 });
 
-export const serverNeighbors = selector<ChildStop[]>({
-	key: 'serverNeighbors',
-	get: async ({ get }) => {
-		let stops: ChildStop[] = [];
-		const response = await fetch(`${ENDPOINT}/neighbors/${get(currentStop).replace('-', ':')}`, {
-			method: 'GET',
-			headers: { 'Access-Control-Allow-Origin': '*' },
-			mode: 'cors',
-		});
-		stops = (await response.json()) as ChildStop[];
+export const selectedChildStopState = atom<number>({
+	key: 'selectedChildStopState',
+	default: 0,
+});
 
-		return stops.map((stop) => stop);
-	},
+
+export const childStopsState = atom<ChildStop[]>({
+	key: 'childStopsState',
+	default: []
+});
+
+export const selectedStopIdSelector = selector<string>({
+	key: 'selectedStopIdSelector',
+	get: ({ get }) => {
+		const currentStopId = get(currentStopIdState);
+		const selectedChildStop = get(selectedChildStopState);
+
+		return `${currentStopId}:${selectedChildStop}`;
+	}
 });

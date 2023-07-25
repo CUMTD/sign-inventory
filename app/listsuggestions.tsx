@@ -12,10 +12,10 @@ export default function ListSuggestions() {
 	// format the search suggestions nicely
 	return (
 		<div style={{ marginTop: '2em' }}>
-			{searchResults.map(({ id, name, city, boardingPoints }) => (
+			{searchResults.map(({ id, name, city }) => (
 				<Card key={id} elevation={2}>
 					<CardContent>
-						<Link key={id} className={styles.Link} href={`/${boardingPoints[0].replace(':', '-')}`}>
+						<Link key={id} className={styles.Link} href={`/${id}`}>
 							<div className={styles.suggestionlower}>{city}</div>
 							{name}
 						</Link>

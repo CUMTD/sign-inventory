@@ -4,7 +4,6 @@ import theme from '@components/theme';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
 import './globals.css';
-import RecoilProvider from '@components/recoilProvider';
 
 export const metadata = {
 	title: 'Sign Inventory',
@@ -15,11 +14,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 	return (
 		<html lang="en">
 			<CssBaseline />
-			<RecoilProvider>
-				<ThemeProvider theme={theme}>
-					<body>{children}</body>
-				</ThemeProvider>
-			</RecoilProvider>
+			<ThemeProvider theme={theme}>
+				<body>{children}</body>
+			</ThemeProvider>
 		</html>
 	);
 }
