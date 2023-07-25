@@ -18,7 +18,7 @@ const theme = createTheme({
 		fontWeightRegular: 500,
 		htmlFontSize: 10,
 		h1: {
-			fontWeight: 800,
+			fontWeight: 900,
 		},
 		h2: {
 			fontWeight: 600,
