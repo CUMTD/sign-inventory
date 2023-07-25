@@ -5,13 +5,7 @@ import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
 import styles from './page.module.css';
 
-interface Props {
-	params: {
-		stopId: string;
-	};
-}
-
-export default function Page({ params }: Props) {
+export default function Page() {
 	return (
 		<div className={styles.tabpage}>
 			<div className={styles.subSection}>

@@ -8,9 +8,7 @@ interface Props {
 }
 export default function GenerateButtons({ current }: Props) {
 	const neighbor_stops: ChildStop[] = useRecoilValue(serverNeighbors);
-	console.log('current: ', current);
-	console.log('neighbor_stops: ', neighbor_stops);
-	//return button for each neighbor stop
+
 	return (
 		<div>
 			{neighbor_stops.map(({ id, name }) => (

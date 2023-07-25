@@ -10,10 +10,8 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useMemo } from 'react';
 import styles from './page.module.css';
-import RecoilProvider from '@components/recoilProvider';
-import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { currentStop, serverNeighbors } from '@state/serverDataState';
-import { Server } from 'http';
+import { useSetRecoilState } from 'recoil';
+import { currentStop } from '@state/serverDataState';
 import GenerateButtons from './generateButtons';
 interface Props {
 	children: ReactNode;
@@ -65,8 +63,6 @@ export default function Layout({ children }: Props) {
 	}
 	const setStopId = useSetRecoilState(currentStop);
 	setStopId(stopId);
-	console.log(stopId);
-	// console.log('set to ', useRecoilValue(currentStop));
 
 	return (
 		<>
