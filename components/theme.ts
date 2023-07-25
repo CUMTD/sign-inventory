@@ -51,6 +51,14 @@ const theme = createTheme({
 				disableRipple: true, // no more ripple on the whole application
 			},
 		},
+		MuiButtonGroup: {
+			styleOverrides: {
+				grouped: {
+					width: '90%',
+					justifyContent: 'left',
+				},
+			},
+		},
 
 		MuiButton: {
 			styleOverrides: {

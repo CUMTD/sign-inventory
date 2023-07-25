@@ -11,7 +11,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ReactNode, useMemo } from 'react';
 import styles from './page.module.css';
 import RecoilProvider from '@components/recoilProvider';
-
+import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { currentStop, serverNeighbors } from '@state/serverDataState';
+import { Server } from 'http';
+import GenerateButtons from './generateButtons';
 interface Props {
 	children: ReactNode;
 }
@@ -27,11 +30,18 @@ function LinkTab(props: LinkTabProps) {
 	return <Tab component="a" {...props} />;
 }
 
+// function CurrentData() {
+// 	const data = useRecoilValue(serverNeighbors);
+// 	return <div>{data.length}</div>;
+// }
+
 export default function Layout({ children }: Props) {
 	const router = useRouter();
 
 	// figure out which tab should be selected based on the url
 	const pathname = usePathname();
+	const stopId = pathname.split('/')[1];
+
 	const page = pathname.split('/').slice(-1)[0];
 	const pageValue = useMemo(() => {
 		switch (page) {
@@ -53,57 +63,53 @@ export default function Layout({ children }: Props) {
 	function goBack() {
 		router.push('/');
 	}
-
-	const stopId = pathname.split('/')[1];
+	const setStopId = useSetRecoilState(currentStop);
+	setStopId(stopId);
+	console.log(stopId);
+	// console.log('set to ', useRecoilValue(currentStop));
 
 	return (
 		<>
-			{/* <UnsavedChangesAlert /> */}
-			<RecoilProvider>
-				<Image src={logo_svg} className={styles.logo} alt="MTD" width={125} height={125} />
-				<Box className={styles.page}>
-					<Box className={styles.sidebar}>
-						<Button sx={{ justifyContent: 'left' }} startIcon={<ArrowBackIcon />} onClick={goBack}>
-							back to search
-						</Button>
-						<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
-							Results
-						</Typography>
-						<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem', paddingRight: '1em' }}>
-							{stopId}
-						</Typography>
+			<Image src={logo_svg} className={styles.logo} alt="MTD" width={125} height={125} />
+			<Box className={styles.page}>
+				<Box className={styles.sidebar}>
+					<Button sx={{ justifyContent: 'left' }} startIcon={<ArrowBackIcon />} onClick={goBack}>
+						back to search
+					</Button>
+					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
+						Results
+					</Typography>
+					<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem', paddingRight: '1em' }}>
+						{stopId}
+					</Typography>
 
-						<Box
-							sx={{
-								'display': 'flex',
-								'& > *': {
-									width: '100%',
-									margin: `1em 1em 1em 0em`,
-								},
-							}}
-						>
-							<ButtonGroup className={styles.childStopButtons} orientation="vertical">
-								<Button>NW Corner</Button>
-								<Button>NE Corner</Button>
-								<Button>SE Corner</Button>
-								<Button>SW Corner</Button>
-							</ButtonGroup>
-						</Box>
+					<Box
+						sx={{
+							'display': 'flex',
+							'& > *': {
+								width: '100%',
+								margin: `1em 1em 1em 0em`,
+							},
+						}}
+					>
+						<ButtonGroup className={styles.childStopButtons} orientation="vertical">
+							<GenerateButtons current={stopId} />
+						</ButtonGroup>
+					</Box>
 
-						<Tabs orientation="vertical" value={pageValue}>
-							<LinkTab label="General" href={`/${stopId}/`} />
-							<LinkTab label="Sign" href={`/${stopId}/sign`} />
-							<LinkTab label="Accessibility" href={`/${stopId}/accessibility`} />
-							<LinkTab label="Amenities" href={`/${stopId}/amenities`} />
-							<LinkTab label="Notes" href={`/${stopId}/notes`} />
-							<LinkTab label="Photo" href={`/${stopId}/photo`} />
-						</Tabs>
-					</Box>
-					<Box className={styles.tabPanels}>
-						<div>{children}</div>
-					</Box>
+					<Tabs orientation="vertical" value={pageValue}>
+						<LinkTab label="General" href={`/${stopId}/`} />
+						<LinkTab label="Sign" href={`/${stopId}/sign`} />
+						<LinkTab label="Accessibility" href={`/${stopId}/accessibility`} />
+						<LinkTab label="Amenities" href={`/${stopId}/amenities`} />
+						<LinkTab label="Notes" href={`/${stopId}/notes`} />
+						<LinkTab label="Photo" href={`/${stopId}/photo`} />
+					</Tabs>
 				</Box>
-			</RecoilProvider>
+				<Box className={styles.tabPanels}>
+					<div>{children}</div>
+				</Box>
+			</Box>
 		</>
 	);
 }

@@ -11,7 +11,7 @@ interface Props {
 	};
 }
 
-export default function Page({}: Props) {
+export default function Page({ params }: Props) {
 	return (
 		<div className={styles.tabpage}>
 			<div className={styles.subSection}>
