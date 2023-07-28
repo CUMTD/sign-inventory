@@ -1,15 +1,14 @@
 .suggestion {
 	font-weight: 600;
 	list-style-type: none;
-	padding: 1em;
 	border: 0 solid var(--text);
 	border-width: 1px 1px 0 0;
 }
 
 .suggestionlower {
-	font-weight: 600;
+	opacity: 80%;
+	font-size: 85%;
 	letter-spacing: 0.1ch;
-	line-height: 2em;
 	color: var(--text);
 	text-decoration: none !important;
 	text-transform: uppercase;
@@ -17,6 +16,7 @@
 
 .Link {
 	display: block;
+	font-weight: 600;
 	font-size: 160%;
 	text-decoration: none;
 }

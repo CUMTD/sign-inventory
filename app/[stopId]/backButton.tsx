@@ -12,9 +12,8 @@ export default function BackButton() {
 	}
 
 	return (
-		<Button sx={{ justifyContent: 'left' }} startIcon={<ArrowBackIcon />} onClick={goBack}>
+		<Button sx={{ justifyContent: 'left' }} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
 			back to search
 		</Button>
 	);
-
 }

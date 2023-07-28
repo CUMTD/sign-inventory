@@ -5,6 +5,7 @@ const overpass = Overpass({ subsets: ['latin'] });
 
 const theme = createTheme({
 	spacing: 20,
+
 	palette: {
 		primary: {
 			main: '#002f87',
@@ -48,7 +49,7 @@ const theme = createTheme({
 		},
 		MuiButtonBase: {
 			defaultProps: {
-				disableRipple: true, // no more ripple on the whole application
+				// disableRipple: true, // no more ripple on the whole application
 			},
 		},
 		MuiButtonGroup: {
@@ -60,20 +61,12 @@ const theme = createTheme({
 			},
 		},
 
-		MuiButton: {
-			styleOverrides: {
-				root: {
-					fontSize: '1.8rem',
-				},
-			},
-		},
-
 		MuiTab: {
 			styleOverrides: {
 				root: {
 					'letterSpacing': '0.1ch',
 					'fontWeight': 400,
-					'padding': '2rem',
+					'padding': '1.6rem',
 					'paddingLeft': 0,
 					'fontSize': '2.3rem',
 					'alignItems': 'start',

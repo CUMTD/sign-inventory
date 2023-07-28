@@ -58,7 +58,7 @@ export default function Page({ params: { parent, child } }: Props) {
 
 					<TextInput
 						label="Notes"
-						placeholder="Ex. Sign is faded, map/schedule doesn't fit, etc."
+						placeholder="Ex. Frame is empty, map/schedule doesn't fit, etc."
 						onChange={printTextInput}
 					></TextInput>
 				</div>

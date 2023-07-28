@@ -4,6 +4,7 @@ import DropDown from '@components/inputs/dropdown';
 import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
 import styles from './page.module.css';
+import Layout from './layout';
 
 export default function Page() {
 	return (
