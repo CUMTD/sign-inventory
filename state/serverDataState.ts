@@ -1,12 +1,19 @@
 import { ChildStop } from '@t/apiResponse';
 import { atom, selector, useRecoilSnapshot } from 'recoil';
 import Tab from './tabTypes';
+import { get } from 'http';
 
 const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
 
 export const selectedTabState = atom<number>({
 	key: 'selectedTabState',
 	default: 0,
+});
+
+//just the string in front
+export const selectedStopFriendlyNameState = atom<string>({
+	key: 'selectedStopFriendlyNameState',
+	default: 'Parent Stop Name',
 });
 
 //just the string in front
@@ -18,7 +25,7 @@ export const selectedParentStopState = atom<string>({
 // this is a number
 export const selectedChildStopState = atom<number>({
 	key: 'selectedChildStopState',
-	default: -1,
+	default: 0,
 });
 
 // return STRING:NUM

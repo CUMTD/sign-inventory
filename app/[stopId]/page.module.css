@@ -23,6 +23,7 @@
 	padding: 2em;
 	border-radius: 0.5em;
 	border: 1px solid #ccc;
+	padding-right: 25%;
 }
 
 .subSection > input {
@@ -105,17 +106,21 @@
 	margin-bottom: 1.3em;
 }
 
-.tabPanels {
+.busyBox {
 	width: 100%;
 	overflow-y: auto;
 	padding: 2em;
 }
 
-.subSection:last-of-type {
-	margin-bottom: 10em;
-}
-
 .childStopButtons > Button {
 	width: 90%;
 	justify-content: left;
+}
+
+.stopId {
+	text-transform: uppercase;
+	font-weight: 600;
+	font-family: monospace;
+	letter-spacing: 0.1ch;
+	color: rgba(0, 0, 0, 0.6);
 }

@@ -3,7 +3,7 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import logo_svg from '@public/logo.svg';
-import { selectedParentStopState } from '@state/serverDataState';
+import { selectedChildStopState, selectedParentStopState, selectedStopFriendlyNameState } from '@state/serverDataState';
 import Image from 'next/image';
 import { ReactNode, useEffect } from 'react';
 import { useRecoilSnapshot, useRecoilValue } from 'recoil';
@@ -30,7 +30,8 @@ interface Props {
 
 export default function SideMenu({ children }: Props) {
 	const stopId = useRecoilValue(selectedParentStopState);
-
+	const friendly_name = useRecoilValue(selectedStopFriendlyNameState);
+	const currentChildStop = useRecoilValue(selectedChildStopState);
 	return (
 		<>
 			{/* <DebugObserver /> */}
@@ -39,17 +40,20 @@ export default function SideMenu({ children }: Props) {
 				<Box className={styles.sidebar}>
 					<BackButton />
 					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
-						Results
+						{friendly_name}
 					</Typography>
-					<Typography variant="h5" component={'h2'} sx={{ marginBottom: '1rem', paddingRight: '1em' }}>
-						{stopId}
+					<Typography
+						variant="h5"
+						component={'h2'}
+						sx={{ marginBottom: '1rem', paddingRight: '1em' }}
+						className={styles.stopId}
+					>
+						{stopId}:{currentChildStop}
 					</Typography>
-
 					<BoardingPointSelector />
-
 					<Tabs />
 				</Box>
-				<Box className={styles.tabPanels}>
+				<Box className={styles.busyBox}>
 					<BusyBox />
 					<div>{children}</div>
 				</Box>

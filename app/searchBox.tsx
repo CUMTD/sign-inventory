@@ -14,26 +14,27 @@ export default function SearchBox() {
 		setQuery(event.target.value);
 	}
 
-	return (<div className={styles.titleAndSearchBar}>
-		<Typography variant="h3" component="h1" gutterBottom>
-			Sign Inventory
-		</Typography>
-		<TextField
-			id="standard-basic"
-			variant="standard"
-			InputProps={{
-				startAdornment: (
-					<InputAdornment position="start">
-						<SearchIcon />
-					</InputAdornment>
-				),
-			}}
-			type="text"
-			placeholder="Ex. Green and Orchard"
-			required
-			autoFocus
-			onChange={inputChange}
-		/>
-	</div>
-	)
+	return (
+		<div className={styles.titleAndSearchBar}>
+			<Typography variant="h4" component="h1">
+				Sign Inventory
+			</Typography>
+			<TextField
+				id="standard-basic"
+				variant="outlined"
+				InputProps={{
+					startAdornment: (
+						<InputAdornment position="start">
+							<SearchIcon />
+						</InputAdornment>
+					),
+				}}
+				type="text"
+				placeholder="Ex. Green and Orchard"
+				required
+				autoFocus
+				onChange={inputChange}
+			/>
+		</div>
+	);
 }
