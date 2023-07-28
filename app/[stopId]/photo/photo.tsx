@@ -4,14 +4,7 @@ import { Button, Stack } from '@mui/material';
 import styles from '../page.module.css';
 import Image from 'next/image';
 
-interface Props {
-	params: {
-		parent: string;
-		child: string;
-	};
-}
-
-export default function Page({ params: { parent, child } }: Props) {
+export default function PhotoPage() {
 	return (
 		<>
 			<Stack spacing={3}>

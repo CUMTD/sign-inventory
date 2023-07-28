@@ -1,52 +1,59 @@
-
 'use client';
+import { Box, Typography } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import { usePathname } from 'next/navigation';
+import React from 'react';
 import { useMemo } from 'react';
+import Page from './accessibility/accessibility';
+import { useRecoilState } from 'recoil';
+import { selectedTabState } from '@state/serverDataState';
 
 // for assembling tabs that are links
-interface LinkTabProps {
+interface TabProps {
 	label: string;
 	href: string;
 }
 
-// return a tab that is a link
-function LinkTab(props: LinkTabProps) {
-	return <Tab component="a" {...props} />;
+interface TabPanelProps {
+	children?: React.ReactNode;
+	index: number;
+	value: number;
+}
+
+function CustomTabPanel(props: TabPanelProps) {
+	const { children, value, index, ...other } = props;
+
+	return (
+		<div role="tabpanel" hidden={value !== index} id={`simple-tabpanel-${index}`} {...other}>
+			{value === index && (
+				<Box sx={{ p: 3 }}>
+					<Typography>{children}</Typography>
+				</Box>
+			)}
+		</div>
+	);
 }
 
 export default function NavTabs() {
-	// figure out which tab should be selected based on the url
-	const pathname = usePathname();
-	const stopId = pathname.split('/')[1];
+	const [value, setValue] = useRecoilState(selectedTabState);
 
-	const page = pathname.split('/').slice(-1)[0];
-	const pageValue = useMemo(() => {
-		switch (page) {
-			case 'sign':
-				return 1;
-			case 'accessibility':
-				return 2;
-			case 'amenities':
-				return 3;
-			case 'notes':
-				return 4;
-			case 'photo':
-				return 5;
-			default:
-				return 0;
-		}
-	}, [page]);
+	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+		setValue(newValue);
+	};
 
 	return (
-		<Tabs orientation="vertical" value={pageValue}>
-			<LinkTab label="General" href={`/${stopId}/`} />
-			<LinkTab label="Sign" href={`/${stopId}/sign`} />
-			<LinkTab label="Accessibility" href={`/${stopId}/accessibility`} />
-			<LinkTab label="Amenities" href={`/${stopId}/amenities`} />
-			<LinkTab label="Notes" href={`/${stopId}/notes`} />
-			<LinkTab label="Photo" href={`/${stopId}/photo`} />
-		</Tabs>
+		<Box sx={{ width: '100%' }}>
+			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+				<Tabs orientation="vertical" value={value} onChange={handleChange} aria-label="basic tabs example">
+					<Tab label="General" />
+					<Tab label="Sign" />
+					<Tab label="Accessibility" />
+					<Tab label="Amenities" />
+					<Tab label="Notes" />
+					<Tab label="Photo" />
+				</Tabs>
+			</Box>
+		</Box>
 	);
 }

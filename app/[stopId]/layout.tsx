@@ -35,7 +35,7 @@ export default async function Layout({ params: { stopId }, children }: Props) {
 	return (
 		<>
 			<RecoilRoot initializeState={initializeState}>
-				<ChildStopUpdater />
+				{/* <ChildStopUpdater /> */}
 				{/* <UnsavedChangesAlert /> */}
 				<SideMenu>{children}</SideMenu>
 			</RecoilRoot>

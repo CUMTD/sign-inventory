@@ -11,6 +11,7 @@ import BackButton from './backButton';
 import BoardingPointSelector from './boardingPointSelector';
 import styles from './page.module.css';
 import Tabs from './tabs';
+import BusyBox from './busyBox';
 
 interface Props {
 	children: ReactNode;
@@ -49,6 +50,7 @@ export default function SideMenu({ children }: Props) {
 					<Tabs />
 				</Box>
 				<Box className={styles.tabPanels}>
+					<BusyBox />
 					<div>{children}</div>
 				</Box>
 			</Box>
