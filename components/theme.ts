@@ -7,6 +7,7 @@ const theme = createTheme({
 	spacing: 20,
 
 	palette: {
+		// mode: 'dark',
 		primary: {
 			main: '#002f87',
 		},

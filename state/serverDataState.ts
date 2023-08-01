@@ -1,7 +1,5 @@
 import { ChildStop } from '@t/apiResponse';
 import { atom, selector, useRecoilSnapshot } from 'recoil';
-import Tab from './tabTypes';
-import { get } from 'http';
 
 const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
 
@@ -43,6 +41,15 @@ export const selectedStopIdSelector = selector<string>({
 export const childStopsState = atom<ChildStop[]>({
 	key: 'childStopsState',
 	default: [],
+});
+
+export const selectedChildStopSelector = selector<ChildStop | undefined>({
+	key: 'selectedChildStopSelector',
+	get: ({ get }) => {
+		const childStops = get(childStopsState);
+		const selectedChildStop = get(selectedChildStopState);
+		return childStops.find((stop) => parseInt(stop.id.split(':')[1]) === selectedChildStop);
+	},
 });
 
 export async function fetchChildStops(stopId: string) {

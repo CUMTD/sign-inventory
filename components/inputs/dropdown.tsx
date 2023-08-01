@@ -1,31 +1,36 @@
 import { Select, MenuItem, Typography, SelectChangeEvent } from '@mui/material';
+import { DevelopmentType } from '@t/apiResponse';
+import { set } from 'husky';
 import { useCallback, useEffect, useState } from 'react';
 
 interface Props {
+	selection: string;
 	label: string;
 	options: 'development_types' | 'pole_types';
 	onChange: (value: number) => void;
 }
+const dev_types = ['Unknown', 'Campus', 'Commercial', 'Residential', 'Other'];
+const pole_types = ['Unknown', 'MTD Pole', 'Stop Sign', 'Street Light', 'Traffic Light', 'Utility Pole', 'Other Pole'];
 
-export default function DropDown({ label, options, onChange }: Props) {
+export default function DropDown({ selection, label, options, onChange }: Props) {
 	const [value, setValue] = useState<number>(0);
-
-	// useEffect(() => {
-	// 	onChange(value);
-	// }, [value]);
+	console.log('selection', selection);
 
 	const onInputChange = useCallback((event: SelectChangeEvent<number>) => {
 		const value = (event.target as HTMLInputElement).value;
+		console.log('value', value);
+
 		setValue(parseInt(value));
 	}, []);
 
 	var selectionOptions: string[] = [];
+
 	if (options === 'development_types') {
-		selectionOptions = process.env.NEXT_PUBLIC_DEVELOPMENT_TYPES?.split(',') ?? [];
+		selectionOptions = dev_types;
 	} else if (options === 'pole_types') {
-		selectionOptions = process.env.NEXT_PUBLIC_POLE_TYPES?.split(',') ?? [];
+		selectionOptions = pole_types;
 	} else {
-		selectionOptions = options;
+		selectionOptions = [];
 	}
 
 	const menuItems = selectionOptions.map((option, index) => {
@@ -41,7 +46,7 @@ export default function DropDown({ label, options, onChange }: Props) {
 			<Typography variant="h6" component="h3">
 				{label}
 			</Typography>
-			<Select defaultValue={0} onChange={onInputChange}>
+			<Select defaultValue={selectionOptions.indexOf(selection)} onChange={onInputChange}>
 				{menuItems}
 			</Select>
 		</>

@@ -32,6 +32,7 @@ export default function SideMenu({ children }: Props) {
 	const stopId = useRecoilValue(selectedParentStopState);
 	const friendly_name = useRecoilValue(selectedStopFriendlyNameState);
 	const currentChildStop = useRecoilValue(selectedChildStopState);
+	console.log('friendly_name', friendly_name);
 	return (
 		<>
 			{/* <DebugObserver /> */}
@@ -45,7 +46,7 @@ export default function SideMenu({ children }: Props) {
 					<Typography
 						variant="h5"
 						component={'h2'}
-						sx={{ marginBottom: '1rem', paddingRight: '1em' }}
+						sx={{ marginBottom: '1rem', paddingRight: '1em', color: 'text.secondary' }}
 						className={styles.stopId}
 					>
 						{stopId}:{currentChildStop}

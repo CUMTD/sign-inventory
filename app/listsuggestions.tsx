@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent } from '@mui/material';
+import { Card, CardContent, colors } from '@mui/material';
 import { searchResultsState } from '@state/homepageState';
 import Link from 'next/link';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';

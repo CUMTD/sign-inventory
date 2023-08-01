@@ -8,14 +8,17 @@ interface Props {
 }
 
 export default function CheckBox({ value, label, onChange }: Props) {
-	const onInputChange = useCallback((event: ChangeEvent) => {
-		const newValue = (event.target as HTMLInputElement).checked;
-		onChange(newValue);
-	}, [onChange]);
+	const onInputChange = useCallback(
+		(event: ChangeEvent) => {
+			const newValue = (event.target as HTMLInputElement).checked;
+			onChange(newValue);
+		},
+		[onChange],
+	);
 
 	return (
 		<>
-			<FormControlLabel value={value} label={label} control={<Checkbox onChange={onInputChange} />} />
+			<FormControlLabel label={label} control={<Checkbox checked={value} onChange={onInputChange} />} />
 		</>
 	);
 }

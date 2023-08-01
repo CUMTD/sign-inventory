@@ -1,15 +1,16 @@
 'use client';
-import CheckBox from '@components/inputs/checkbox';
-import DropDown from '@components/inputs/dropdown';
-import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
+
 import { Typography } from '@mui/material';
-import styles from './page.module.css';
-import Layout from './layout';
+import { selectedChildStopSelector } from '@state/serverDataState';
+import { useRecoilValue } from 'recoil';
 
 export default function GeneralPage() {
+	var dateTime: string = useRecoilValue(selectedChildStopSelector)?.lastUpdated ?? 'Unknown';
+	const date = new Date(dateTime);
+
 	return (
 		<Typography variant="subtitle1" component="h3">
-			Last updated MM-DD-YYYY
+			Last updated {date.toLocaleString()}
 		</Typography>
 	);
 }

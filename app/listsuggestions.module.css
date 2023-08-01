@@ -19,6 +19,7 @@
 	font-weight: 600;
 	font-size: 160%;
 	text-decoration: none;
+	color: var(--palette-text-primary);
 }
 
 .suggestionList {
