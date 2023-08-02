@@ -8,8 +8,8 @@ export interface ChildStop {
 	dateCreated: string;
 	lastUpdated: string;
 	developmentType: DevelopmentType | null;
-	accessibility: Accessibility | null;
-	sign: Sign | null;
+	accessibility: Accessibility;
+	sign: Sign;
 	amenities: Amenity | null;
 }
 

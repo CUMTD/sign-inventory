@@ -66,3 +66,8 @@ export async function fetchChildStops(stopId: string) {
 	const stops = (await response.json()) as ChildStop[];
 	return stops;
 }
+
+export const isDataModifiedState = atom<boolean>({
+	key: 'isDataModifiedState',
+	default: false,
+});

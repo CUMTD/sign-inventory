@@ -39,15 +39,11 @@ export default function AmenitiesPage() {
 					<Typography variant="h6" component="h3">
 						Width of Shelter Board
 					</Typography>
-					<div className={styles.footInchInput}>
-						<FeetInches />
-					</div>
+					<div className={styles.footInchInput}>{/* <FeetInches /> */}</div>
 					<Typography variant="h6" component="h3">
 						Height of Shelter Board
 					</Typography>
-					<div className={styles.footInchInput}>
-						<FeetInches />
-					</div>
+					<div className={styles.footInchInput}>{/* <FeetInches /> */}</div>
 
 					<TextInput
 						label="Notes"

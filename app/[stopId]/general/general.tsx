@@ -10,8 +10,6 @@ import { selectedChildStopSelector } from '@state/serverDataState';
 export default function GeneralPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 
-	console.log('light?', stop.hasStreetLight);
-
 	return (
 		<div className={styles.tabpage}>
 			<div className={styles.subSection}>

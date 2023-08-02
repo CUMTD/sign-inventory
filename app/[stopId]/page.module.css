@@ -119,7 +119,5 @@
 
 .stopId {
 	text-transform: uppercase;
-	font-weight: 600;
-	font-family: monospace;
 	letter-spacing: 0.1ch;
 }

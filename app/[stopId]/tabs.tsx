@@ -39,7 +39,9 @@ export default function NavTabs() {
 	const [value, setValue] = useRecoilState(selectedTabState);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
+		if (newValue) {
+			setValue(newValue);
+		}
 	};
 
 	return (

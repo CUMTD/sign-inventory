@@ -10,7 +10,7 @@ export default function GeneralPage() {
 
 	return (
 		<Typography variant="subtitle1" component="h3">
-			Last updated {date.toLocaleString()}
+			Last updated {date.toLocaleString() === 'Invalid Date' ? 'N/A' : date.toLocaleString()}
 		</Typography>
 	);
 }

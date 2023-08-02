@@ -46,7 +46,13 @@ export default function SideMenu({ children }: Props) {
 					<Typography
 						variant="h5"
 						component={'h2'}
-						sx={{ marginBottom: '1rem', paddingRight: '1em', color: 'text.secondary' }}
+						sx={{
+							marginBottom: '1rem',
+							paddingRight: '1em',
+							color: 'text.secondary',
+							fontFamily: 'monospace',
+							fontWeight: 600,
+						}}
 						className={styles.stopId}
 					>
 						{stopId}:{currentChildStop}

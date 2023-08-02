@@ -5,37 +5,32 @@ import HorizSlider from '@components/inputs/horizSlider';
 import { printCheckBox } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
-import { Accessibility, ChildStop } from '@t/apiResponse';
-import { selectedChildStopSelector } from '@state/serverDataState';
+import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
-
-// interface Props {
-// 	params: {
-// 		parent: string;
-// 		child: string;
-// 	};
-// }
+import { selectedChildStopSelector } from '@state/serverDataState';
 
 export default function AccessibilityPage() {
+	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
+
 	return (
 		<>
 			<div className={styles.tabpage}>
 				<div className={styles.subSection}>
-					<CheckBox label="Ramp deployable" value={true} onChange={printCheckBox} />
-					<CheckBox label="Curb cutout" value={true} onChange={printCheckBox} />
+					<CheckBox label="Ramp deployable" value={stop.accessibility.rampDeployable} onChange={printCheckBox} />
+					<CheckBox label="Curb cutout" value={stop.accessibility.curbCutout} onChange={printCheckBox} />
 
-					<CheckBox label="Has slab" value={true} onChange={printCheckBox} />
+					<CheckBox label="Has slab" value={stop.accessibility.slab} onChange={printCheckBox} />
 
-					<CheckBox label="Accessible from sidewalk" value={true} onChange={printCheckBox} />
+					<CheckBox label="Accessible from sidewalk" value={stop.accessibility.sidewalk} onChange={printCheckBox} />
 
 					<Typography variant="h6" component="h3">
 						Ease of Access
 					</Typography>
-					<HorizSlider min={1} max={5} />
+					<HorizSlider min={1} max={5} defaultValue={stop.accessibility.easeOfAccess} />
 					<Typography variant="h6" component="h3">
 						Ease of Boarding
 					</Typography>
-					<HorizSlider min={1} max={5} />
+					<HorizSlider min={1} max={5} defaultValue={stop.accessibility.easeOfAccess} />
 				</div>
 			</div>
 		</>

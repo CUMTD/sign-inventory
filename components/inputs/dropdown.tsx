@@ -15,6 +15,9 @@ const pole_types = ['Unknown', 'MTD Pole', 'Stop Sign', 'Street Light', 'Traffic
 export default function DropDown({ selection, label, options, onChange }: Props) {
 	const [value, setValue] = useState<number>(0);
 	console.log('selection', selection);
+	if (selection === 'Comercial') {
+		selection = 'Commercial';
+	}
 
 	const onInputChange = useCallback((event: SelectChangeEvent<number>) => {
 		const value = (event.target as HTMLInputElement).value;
@@ -46,7 +49,7 @@ export default function DropDown({ selection, label, options, onChange }: Props)
 			<Typography variant="h6" component="h3">
 				{label}
 			</Typography>
-			<Select defaultValue={selectionOptions.indexOf(selection)} onChange={onInputChange}>
+			<Select value={selectionOptions.indexOf(selection)} onChange={onInputChange}>
 				{menuItems}
 			</Select>
 		</>
