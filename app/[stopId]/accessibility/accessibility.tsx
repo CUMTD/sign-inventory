@@ -26,11 +26,21 @@ export default function AccessibilityPage() {
 					<Typography variant="h6" component="h3">
 						Ease of Access
 					</Typography>
-					<HorizSlider min={1} max={5} defaultValue={stop.accessibility.easeOfAccess} />
+					<HorizSlider
+						min={1}
+						max={5}
+						defaultValue={stop.accessibility.easeOfAccess}
+						description_set="ease_of_access"
+					/>
 					<Typography variant="h6" component="h3">
 						Ease of Boarding
 					</Typography>
-					<HorizSlider min={1} max={5} defaultValue={stop.accessibility.easeOfAccess} />
+					<HorizSlider
+						min={1}
+						max={5}
+						defaultValue={stop.accessibility.easeOfAccess}
+						description_set="ease_of_boarding"
+					/>
 				</div>
 			</div>
 		</>

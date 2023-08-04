@@ -5,14 +5,12 @@ import { useCallback } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 
 export default function GenerateButtons() {
-	console.log('generating buttons');
 	const childStops: ChildStop[] = useRecoilValue(childStopsState);
 	const [selectedChildStop, setSelectedChildStop] = useRecoilState(selectedChildStopState);
 
 	const click = useCallback(
 		(id: string) => {
 			const boardingPoint = parseInt(id.split(':')[1]);
-			console.log('clicked ', boardingPoint);
 
 			setSelectedChildStop(boardingPoint);
 		},

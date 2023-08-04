@@ -4,13 +4,14 @@ export interface ChildStop {
 	smsCode: string;
 	developmentTypeId: string;
 	hasStreetLight: boolean;
-	notes: string | null;
+	notes: string;
 	dateCreated: string;
 	lastUpdated: string;
 	developmentType: DevelopmentType | null;
 	accessibility: Accessibility;
 	sign: Sign;
-	amenities: Amenity | null;
+	amenities: Amenity;
+	content: string;
 }
 
 export interface DevelopmentType {

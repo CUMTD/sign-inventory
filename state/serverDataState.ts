@@ -1,5 +1,5 @@
 import { ChildStop } from '@t/apiResponse';
-import { atom, selector, useRecoilSnapshot } from 'recoil';
+import { atom, selector } from 'recoil';
 
 const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
 

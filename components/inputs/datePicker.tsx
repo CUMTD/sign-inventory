@@ -6,7 +6,6 @@ interface Props {
 
 export default function DatePicker({ initDate }: Props) {
 	const [date, setDate] = useState<Date>(new Date(initDate));
-	console.log(`${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`);
 	const onDateChange = useCallback((event: ChangeEvent) => {
 		const date = (event.target as HTMLInputElement).value;
 		setDate(new Date(date));

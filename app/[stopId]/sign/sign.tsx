@@ -43,7 +43,7 @@ export default function SignPage() {
 					<Typography variant="h6" component="h3">
 						Tilt Angle
 					</Typography>
-					<HorizSlider min={0} max={5} defaultValue={stop.sign.tilt} />
+					<HorizSlider min={0} max={5} defaultValue={stop.sign.tilt} description_set="tilt_angle" />
 					<DropDown
 						selection={stop.sign.poleType?.name ?? 'Unknown'}
 						label="Pole Type"

@@ -6,10 +6,11 @@ interface Props {
 	label: string;
 	placeholder: string;
 	onChange: (value: string) => void;
+	defaultValue: string;
 }
 
-export default function TextInput({ label, placeholder, onChange }: Props) {
-	const [value, setValue] = useState<string>('');
+export default function TextInput({ label, placeholder, onChange, defaultValue }: Props) {
+	const [value, setValue] = useState<string>(defaultValue);
 
 	useEffect(() => {
 		onChange(value);
@@ -29,11 +30,11 @@ export default function TextInput({ label, placeholder, onChange }: Props) {
 				placeholder={placeholder}
 				multiline
 				rows={4}
+				value={defaultValue}
 				InputLabelProps={{
 					shrink: true,
 				}}
 				onChange={onInputChange}
-				value={value}
 				style={{ width: '100%' }}
 			/>
 		</>

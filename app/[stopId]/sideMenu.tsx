@@ -32,7 +32,6 @@ export default function SideMenu({ children }: Props) {
 	const stopId = useRecoilValue(selectedParentStopState);
 	const friendly_name = useRecoilValue(selectedStopFriendlyNameState);
 	const currentChildStop = useRecoilValue(selectedChildStopState);
-	console.log('friendly_name', friendly_name);
 	return (
 		<>
 			{/* <DebugObserver /> */}

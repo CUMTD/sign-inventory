@@ -27,7 +27,7 @@ export default function NumberInput({ label, placeholder, onChange }: Props) {
 			</Typography>
 			<TextField
 				id="outlined-number"
-				defaultValue={2}
+				defaultValue={placeholder}
 				type="number"
 				InputLabelProps={{
 					shrink: true,

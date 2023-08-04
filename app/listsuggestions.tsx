@@ -1,6 +1,6 @@
 'use client';
 
-import { Card, CardContent, colors } from '@mui/material';
+import { Card, CardContent } from '@mui/material';
 import { searchResultsState } from '@state/homepageState';
 import Link from 'next/link';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -13,8 +13,6 @@ export default function ListSuggestions() {
 	const [name, setNewName] = useRecoilState(selectedStopFriendlyNameState);
 
 	function setName(new_name: string) {
-		console.log('hello', new_name);
-
 		setNewName(new_name);
 	}
 	// format the search suggestions nicely

@@ -14,15 +14,12 @@ const pole_types = ['Unknown', 'MTD Pole', 'Stop Sign', 'Street Light', 'Traffic
 
 export default function DropDown({ selection, label, options, onChange }: Props) {
 	const [value, setValue] = useState<number>(0);
-	console.log('selection', selection);
 	if (selection === 'Comercial') {
 		selection = 'Commercial';
 	}
 
 	const onInputChange = useCallback((event: SelectChangeEvent<number>) => {
 		const value = (event.target as HTMLInputElement).value;
-		console.log('value', value);
-
 		setValue(parseInt(value));
 	}, []);
 
