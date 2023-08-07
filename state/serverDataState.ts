@@ -43,13 +43,36 @@ export const childStopsState = atom<ChildStop[]>({
 	default: [],
 });
 
-export const selectedChildStopSelector = selector<ChildStop | undefined>({
+export const selectedChildStopSelector = selector<ChildStop>({
 	key: 'selectedChildStopSelector',
 	get: ({ get }) => {
 		const childStops = get(childStopsState);
 		const selectedChildStop = get(selectedChildStopState);
-		return childStops.find((stop) => parseInt(stop.id.split(':')[1]) === selectedChildStop);
+		const filtered = childStops.find((stop) => parseInt(stop.id.split(':')[1]) === selectedChildStop);
+		if (filtered === undefined) {
+			throw new Error('selectedChildStopSelector: filtered is undefined');
+		}
+		return filtered;
 	},
+});
+
+export const initialDataState = atom<ChildStop | null>({
+	key: 'initialDataState',
+	default: null
+});
+
+export const modifiedDataState = atom<ChildStop | null>({
+	key: 'modifiedDataState',
+	default: null
+});
+
+export const isDataModifiedSelector = selector<boolean>({
+	key: 'isDataModifiedSelector',
+	get: ({ get }) => {
+		const initialData = get(initialDataState);
+		const modifiedData = get(modifiedDataState);
+		return JSON.stringify(initialData) !== JSON.stringify(modifiedData);
+	}
 });
 
 export async function fetchChildStops(stopId: string) {
