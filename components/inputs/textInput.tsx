@@ -10,16 +10,19 @@ interface Props {
 }
 
 export default function TextInput({ label, placeholder, onChange, defaultValue }: Props) {
-	const [value, setValue] = useState<string>(defaultValue);
+	const [value, setValue] = useState<string>('');
 
-	useEffect(() => {
-		onChange(value);
-	}, [value, onChange]);
+	// useEffect(() => {
+	// 	onChange(value);
+	// }, [value, onChange]);
 
-	const onInputChange = useCallback((event: ChangeEvent) => {
-		const value = (event.target as HTMLInputElement).value;
-		setValue(value);
-	}, []);
+	// const onInputChange = useCallback((event: ChangeEvent) => {
+	// 	const value = (event.target as HTMLInputElement).value;
+	// 	setValue(value);
+	// }, []);
+	if (defaultValue === null) {
+		defaultValue = '';
+	}
 
 	return (
 		<>
@@ -34,7 +37,7 @@ export default function TextInput({ label, placeholder, onChange, defaultValue }
 				InputLabelProps={{
 					shrink: true,
 				}}
-				onChange={onInputChange}
+				// onChange={onInputChange}
 				style={{ width: '100%' }}
 			/>
 		</>

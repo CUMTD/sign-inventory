@@ -10,7 +10,9 @@ function displayPhoto(byteStream: string) {
 	if (byteStream == null) {
 		return <div className={styles.photoFrame}>No photo yet.</div>;
 	} else {
-		return <img src={'data:image/jpeg;base64,' + byteStream} />;
+		return (
+			<img style={{ maxHeight: 'fit-content', maxWidth: 'fit-content' }} src={'data:image/jpeg;base64,' + byteStream} />
+		);
 	}
 }
 
@@ -20,10 +22,11 @@ export default function PhotoPage() {
 		<>
 			<Stack spacing={3}>
 				<div className={styles.subSection}>
+					<label>Upload a new photo:</label>
+
+					<input type="file" accept="image/jpeg" />
+
 					{displayPhoto(stop.content)}
-					<Button variant="contained" color="secondary">
-						Upload
-					</Button>
 				</div>
 			</Stack>
 		</>

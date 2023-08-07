@@ -18,8 +18,8 @@
 	display: block;
 	font-weight: 600;
 	font-size: 160%;
-	text-decoration: none;
-	color: var(--palette-text-primary);
+	/* text-decoration: none; */
+	color: var(--palette-text-disabled) !important;
 }
 
 .suggestionList {

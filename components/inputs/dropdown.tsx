@@ -1,6 +1,4 @@
 import { Select, MenuItem, Typography, SelectChangeEvent } from '@mui/material';
-import { DevelopmentType } from '@t/apiResponse';
-import { set } from 'husky';
 import { useCallback, useEffect, useState } from 'react';
 
 interface Props {

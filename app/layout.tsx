@@ -13,8 +13,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+	// dark mode configuration
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-
 	const theme = React.useMemo(
 		() =>
 			createTheme({

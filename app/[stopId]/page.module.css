@@ -14,8 +14,10 @@
 	font-weight: 700;
 }
 
-.subSection {
+.subSection:not(:first-child) {
 	margin-top: 2em;
+}
+.subSection {
 	margin-bottom: 2em;
 	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.1);
 	display: flex;
@@ -104,6 +106,10 @@
 
 .sidebar > Button {
 	margin-bottom: 1.3em;
+}
+
+.backButton {
+	justify-content: left;
 }
 
 .busyBox {

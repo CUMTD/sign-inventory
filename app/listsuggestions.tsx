@@ -8,13 +8,13 @@ import styles from './listsuggestions.module.css';
 import { selectedStopFriendlyNameState } from '@state/serverDataState';
 
 export default function ListSuggestions() {
+	// broken (should set the parent stop name on the sidebar, not optimal way)
 	const searchResults = useRecoilValue(searchResultsState);
-
 	const [name, setNewName] = useRecoilState(selectedStopFriendlyNameState);
-
 	function setName(new_name: string) {
 		setNewName(new_name);
 	}
+
 	// format the search suggestions nicely
 	return (
 		<div style={{ marginTop: '3em' }}>

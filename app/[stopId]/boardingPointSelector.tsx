@@ -6,7 +6,6 @@ import GenerateButtons from './generateButtons';
 import styles from './page.module.css';
 
 export default function BoardingPointSelector() {
-
 	return (
 		<Box
 			sx={{

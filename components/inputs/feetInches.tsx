@@ -1,5 +1,4 @@
 import { TextField } from '@mui/material';
-import { ChangeEvent, useCallback, useState } from 'react';
 
 interface Props {
 	initFeet: number;
@@ -12,7 +11,7 @@ export default function FeetInches({ initFeet, initInches }: Props) {
 			<TextField
 				label="Feet"
 				type="number"
-				defaultValue={0}
+				// defaultValue={0}
 				value={initFeet}
 				// onChange={onFeetChange}
 				InputLabelProps={{
@@ -22,7 +21,7 @@ export default function FeetInches({ initFeet, initInches }: Props) {
 			<TextField
 				label="Inches"
 				type="number"
-				defaultValue={0}
+				// defaultValue={0}
 				value={initInches}
 				// onChange={oninchesChange}
 				InputLabelProps={{

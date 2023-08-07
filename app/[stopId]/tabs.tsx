@@ -18,8 +18,8 @@ interface TabPanelProps {
 }
 
 export default function NavTabs() {
+	// handle the currently selected tab
 	const [value, setValue] = useRecoilState(selectedTabState);
-
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		setValue(newValue);
 	};

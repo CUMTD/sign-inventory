@@ -7,6 +7,7 @@ import AmenitiesPage from './amenities/amenities';
 import NotesPage from './notes/notes';
 import PhotoPage from './photo/photo';
 
+// returns the page corresponding to the selected tab
 export default function BusyBox() {
 	const currentPage = useRecoilValue(selectedTabState);
 

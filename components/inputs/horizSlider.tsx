@@ -20,9 +20,9 @@ export default function HorizSlider({ min, max, defaultValue, description_set }:
 	return (
 		<>
 			<Typography variant="subtitle2">
-				{value} : <SliderDescription value={value} description_set={description_set} />
+				{value} : <SliderDescription value={defaultValue} description_set={description_set} />
 			</Typography>
-			<Slider value={value} min={min} max={max} marks valueLabelDisplay="off" onChange={onInputChange} />
+			<Slider value={defaultValue} min={min} max={max} marks valueLabelDisplay="off" onChange={onInputChange} />
 		</>
 	);
 }

@@ -6,7 +6,7 @@ import {
 	selectedChildStopState,
 	selectedParentStopState,
 } from '@state/serverDataState';
-import { ReactNode, useEffect } from 'react';
+import { ReactNode } from 'react';
 import { RecoilRoot, SetRecoilState } from 'recoil';
 import SideMenu from './sideMenu';
 import UnsavedChangesAlert from './unsavedChangesAlert';
@@ -22,7 +22,9 @@ export default async function Layout({ params: { stopId }, children }: Props) {
 	const childStops = await fetchChildStops(stopId);
 
 	function initializeState({ set }: { set: SetRecoilState }) {
-		set(selectedParentStopState, stopId);
+		if (stopId !== undefined) {
+			set(selectedParentStopState, stopId);
+		}
 		set(childStopsState, childStops);
 		set(selectedChildStopState, parseInt(childStops[0].id.split(':')[1]));
 	}
@@ -30,7 +32,7 @@ export default async function Layout({ params: { stopId }, children }: Props) {
 	return (
 		<>
 			<RecoilRoot initializeState={initializeState}>
-				<UnsavedChangesAlert />
+				{/* <UnsavedChangesAlert /> */}
 				<SideMenu>{children}</SideMenu>
 			</RecoilRoot>
 		</>

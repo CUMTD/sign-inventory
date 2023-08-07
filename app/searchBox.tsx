@@ -16,7 +16,7 @@ export default function SearchBox() {
 
 	return (
 		<div className={styles.titleAndSearchBar}>
-			<Typography variant="h4" component="h1">
+			<Typography variant="h3" component="h1">
 				Sign Inventory
 			</Typography>
 			<TextField
