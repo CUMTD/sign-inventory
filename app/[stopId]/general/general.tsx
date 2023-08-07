@@ -1,23 +1,15 @@
 'use client';
-import CheckBox from '@components/inputs/checkbox';
+import { createCheckbox } from '@components/inputs/checkbox';
 import DropDown from '@components/inputs/dropdown';
 import { printDropDown } from '@helpers/placeholderPrinters';
 import { modifiedDataState } from '@state/serverDataState';
-import { useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 import styles from '../page.module.css';
 
-export default function GeneralPage() {
-	const [currentData, setCurrentData] = useRecoilState(modifiedDataState);
+const CustomCheckbox = createCheckbox(({ hasStreetLight }) => hasStreetLight, (value) => ({ hasStreetLight: value }));
 
-	const hasStreetLightChange = useCallback((value: boolean) => {
-		if (currentData !== null) {
-			setCurrentData({
-				...currentData,
-				hasStreetLight: value
-			});
-		}
-	}, [currentData, setCurrentData]);
+export default function GeneralPage() {
+	const [currentData, _] = useRecoilState(modifiedDataState);
 
 	if (currentData === null) {
 		return null;
@@ -32,7 +24,7 @@ export default function GeneralPage() {
 					options="development_types"
 					onChange={printDropDown}
 				/>
-				<CheckBox label="Has street light" value={currentData.hasStreetLight} onChange={hasStreetLightChange} />
+				<CustomCheckbox label="Has street light" />
 			</div>
 		</div>
 	);
