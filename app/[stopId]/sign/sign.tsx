@@ -1,6 +1,6 @@
 'use client';
 
-import CheckBox from '@components/inputs/checkbox';
+import CheckBox, { createCheckbox } from '@components/inputs/checkbox';
 import DatePicker from '@components/inputs/datePicker';
 import DropDown from '@components/inputs/dropdown';
 import FeetInches from '@components/inputs/feetInches';
@@ -14,6 +14,15 @@ import { selectedChildStopSelector } from '@state/serverDataState';
 
 export default function SignPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
+
+	// const CustomCheckbox = createCheckbox(
+	// 	({ sign: { hasSign } }) => hasSign,
+	// 	(value) => ({
+	// 		sign: {
+	// 			hasSign: value,
+	// 		},
+	// 	}),
+	// );
 
 	return (
 		<>

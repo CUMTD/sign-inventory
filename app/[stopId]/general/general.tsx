@@ -6,7 +6,10 @@ import { modifiedDataState } from '@state/serverDataState';
 import { useRecoilState } from 'recoil';
 import styles from '../page.module.css';
 
-const CustomCheckbox = createCheckbox(({ hasStreetLight }) => hasStreetLight, (value) => ({ hasStreetLight: value }));
+const CustomCheckbox = createCheckbox(
+	({ hasStreetLight }) => hasStreetLight,
+	(value) => ({ hasStreetLight: value }),
+);
 
 export default function GeneralPage() {
 	const [currentData, _] = useRecoilState(modifiedDataState);

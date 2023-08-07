@@ -26,19 +26,24 @@ interface CustomCheckboxProps {
 	label: string;
 }
 
-export function createCheckbox(valueSelector: (data: ChildStop) => boolean, updateFunction: (value: boolean) => Partial<ChildStop>) {
+export function createCheckbox(
+	valueSelector: (data: ChildStop) => boolean,
+	updateFunction: (value: boolean) => Partial<ChildStop>,
+) {
 	return function CustomCheckbox({ label }: CustomCheckboxProps) {
 		const [data, setData] = useRecoilState(modifiedDataState);
-		const onChange = useCallback((event: ChangeEvent<HTMLInputElement>) => {
-			if (data) {
-				const newValue = event.target.checked;
-				setData({
-					...data,
-					...updateFunction(newValue)
-				});
-			}
-		}, [data, setData]);
-
+		const onChange = useCallback(
+			(event: ChangeEvent<HTMLInputElement>) => {
+				if (data) {
+					const newValue = event.target.checked;
+					setData({
+						...data,
+						...updateFunction(newValue),
+					});
+				}
+			},
+			[data, setData],
+		);
 
 		if (data === null) {
 			return null;
@@ -46,5 +51,5 @@ export function createCheckbox(valueSelector: (data: ChildStop) => boolean, upda
 
 		const value = valueSelector(data);
 		return <FormControlLabel label={label} control={<Checkbox checked={value} onChange={onChange} />} />;
-	}
+	};
 }

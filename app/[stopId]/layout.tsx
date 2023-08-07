@@ -1,11 +1,7 @@
 'use client';
 
-import {
-	childStopsState,
-	fetchChildStops,
-	selectedChildStopState,
-	selectedParentStopState,
-} from '@state/serverDataState';
+import { fetchChildStops } from '@helpers/fetchDataHelpers';
+import { childStopsState, selectedChildStopState, selectedParentStopState } from '@state/serverDataState';
 import { ReactNode } from 'react';
 import { RecoilRoot, SetRecoilState } from 'recoil';
 import ServerDataStateSubscriber from './serverDataStateSubscriber';

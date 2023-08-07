@@ -1,8 +1,6 @@
 import { ChildStop } from '@t/apiResponse';
 import { atom, selector } from 'recoil';
 
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
-
 export const selectedTabState = atom<number>({
 	key: 'selectedTabState',
 	default: 0,
@@ -58,12 +56,12 @@ export const selectedChildStopSelector = selector<ChildStop>({
 
 export const initialDataState = atom<ChildStop | null>({
 	key: 'initialDataState',
-	default: null
+	default: null,
 });
 
 export const modifiedDataState = atom<ChildStop | null>({
 	key: 'modifiedDataState',
-	default: null
+	default: null,
 });
 
 export const isDataModifiedSelector = selector<boolean>({
@@ -72,23 +70,8 @@ export const isDataModifiedSelector = selector<boolean>({
 		const initialData = get(initialDataState);
 		const modifiedData = get(modifiedDataState);
 		return JSON.stringify(initialData) !== JSON.stringify(modifiedData);
-	}
+	},
 });
-
-export async function fetchChildStops(stopId: string) {
-	const response = await fetch(`${ENDPOINT}/child-stops/${stopId}`, {
-		method: 'GET',
-		headers: { 'Access-Control-Allow-Origin': '*' },
-		mode: 'cors',
-	});
-
-	if (!response.ok) {
-		throw new Error(`HTTP error! status: ${response.status}`);
-	}
-
-	const stops = (await response.json()) as ChildStop[];
-	return stops;
-}
 
 export const isDataModifiedState = atom<boolean>({
 	key: 'isDataModifiedState',
