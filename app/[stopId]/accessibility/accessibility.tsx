@@ -38,7 +38,7 @@ export default function AccessibilityPage() {
 					<HorizSlider
 						min={1}
 						max={5}
-						defaultValue={stop.accessibility.easeOfAccess}
+						defaultValue={stop.accessibility.easeOfBoarding}
 						description_set="ease_of_boarding"
 					/>
 				</div>
