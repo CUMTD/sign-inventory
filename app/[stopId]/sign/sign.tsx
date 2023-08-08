@@ -41,18 +41,21 @@ export default function SignPage() {
 					</Typography>
 
 					<div className={styles.footInchInput}>
-						<FeetInches initFeet={stop.sign.heightFeet} initInches={stop.sign.heightInches} />
+						<FeetInches initFeet={stop.sign.heightFeet ?? 0} initInches={stop.sign.heightInches ?? 0} />
 					</div>
 					<Typography variant="h6" component="h3">
 						Distance from Curb at Base
 					</Typography>
 					<div className={styles.footInchInput}>
-						<FeetInches initFeet={stop.sign.distanceFromCurbFeet} initInches={stop.sign.distanceFromCurbInches} />
+						<FeetInches
+							initFeet={stop.sign.distanceFromCurbFeet ?? 0}
+							initInches={stop.sign.distanceFromCurbInches ?? 0}
+						/>
 					</div>
 					<Typography variant="h6" component="h3">
 						Tilt Angle
 					</Typography>
-					<HorizSlider min={0} max={5} defaultValue={stop.sign.tilt} description_set="tilt_angle" />
+					<HorizSlider min={0} max={5} defaultValue={stop.sign.tilt ?? 0} description_set="tilt_angle" />
 					<DropDown
 						selection={stop.sign.poleType?.name ?? 'Unknown'}
 						label="Pole Type"

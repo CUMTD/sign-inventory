@@ -16,8 +16,6 @@ export default function PhotoPage() {
 		<>
 			<Stack spacing={3}>
 				<div className={styles.subSection}>
-					<label>Upload a new photo:</label>
-					<input type="file" accept="image/jpeg" />
 					<div
 						style={{ position: 'relative', minHeight: '30em', minWidth: '50em', display: hideImage ? 'none' : 'block' }}
 					>
@@ -27,8 +25,11 @@ export default function PhotoPage() {
 							alt={`Image for ${fullStopId}`}
 							className={styles.image}
 							onError={() => setHideImage(true)}
+							onLoadingComplete={() => setHideImage(false)}
 						/>
 					</div>
+					<label>Upload a new photo:</label>
+					<input type="file" accept="image/jpeg" />
 				</div>
 			</Stack>
 		</>

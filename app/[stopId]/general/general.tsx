@@ -5,7 +5,6 @@ import { printDropDown } from '@helpers/placeholderPrinters';
 import { modifiedDataState } from '@state/serverDataState';
 import { useRecoilState } from 'recoil';
 import styles from '../page.module.css';
-import { Skeleton } from '@mui/material';
 
 const CustomCheckbox = createCheckbox(
 	({ hasStreetLight }) => hasStreetLight,

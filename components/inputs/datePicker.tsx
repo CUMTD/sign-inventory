@@ -15,7 +15,7 @@ export default function DatePicker({ initDate }: Props) {
 		<input
 			type="date"
 			// defaultValue={`${date.getFullYear()}-${date.getMonth()}-${date.getDay()}`}
-			defaultValue={date.toISOString().split('T')[0]}
+			defaultValue={date.toISOString().split('T')[0] ?? ''}
 			onChange={onDateChange}
 		/>
 	);

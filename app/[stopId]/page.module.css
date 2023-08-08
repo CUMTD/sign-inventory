@@ -133,6 +133,7 @@
 .blinkIt {
 	animation: blink 0.5s;
 	animation-iteration-count: 2;
+	animation-timing-function: step-end;
 }
 
 @keyframes blink {

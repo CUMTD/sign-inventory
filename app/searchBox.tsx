@@ -29,7 +29,7 @@ export default function SearchBox() {
 						</InputAdornment>
 					),
 				}}
-				type="text"
+				type="search"
 				placeholder="Ex. Green and Orchard"
 				required
 				autoFocus
