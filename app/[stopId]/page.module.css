@@ -108,10 +108,6 @@
 	margin-bottom: 1.3em;
 }
 
-.backButton {
-	justify-content: left;
-}
-
 .busyBox {
 	width: 100%;
 	overflow-y: auto;
@@ -132,4 +128,20 @@
 	height: 100% !important;
 	width: unset !important;
 	object-fit: contain;
+}
+
+.blinkIt {
+	animation: blink 0.5s;
+	animation-iteration-count: 2;
+}
+
+@keyframes blink {
+	0% {
+	}
+
+	50% {
+		outline: 6px solid #ed6c02;
+	}
+	100% {
+	}
 }

@@ -3,8 +3,9 @@ import { Box, Typography } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import React from 'react';
-import { useRecoilState } from 'recoil';
-import { selectedTabState } from '@state/serverDataState';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { isDataModifiedSelector, selectedTabState } from '@state/serverDataState';
+import { blinkIt } from './unsavedChangesAlert';
 
 interface TabProps {
 	label: string;
@@ -20,8 +21,15 @@ interface TabPanelProps {
 export default function NavTabs() {
 	// handle the currently selected tab
 	const [value, setValue] = useRecoilState(selectedTabState);
+
+	const isDataModified = useRecoilValue(isDataModifiedSelector);
+
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
-		setValue(newValue);
+		if (isDataModified) {
+			blinkIt();
+		} else {
+			setValue(newValue);
+		}
 	};
 
 	return (

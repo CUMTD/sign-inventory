@@ -30,7 +30,7 @@ interface Props {
 
 export default function SideMenu({ children }: Props) {
 	const stopId = useRecoilValue(selectedParentStopState);
-	const friendly_name = useRecoilValue(selectedStopFriendlyNameState);
+	// const friendly_name = useRecoilValue(selectedStopFriendlyNameState);
 	const currentChildStop = useRecoilValue(selectedChildStopState);
 	return (
 		<>

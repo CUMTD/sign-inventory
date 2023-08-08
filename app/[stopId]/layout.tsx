@@ -1,11 +1,17 @@
 'use client';
 
 import { fetchChildStops } from '@helpers/fetchDataHelpers';
-import { childStopsState, selectedChildStopState, selectedParentStopState } from '@state/serverDataState';
+import {
+	childStopsState,
+	isDataModifiedSelector,
+	selectedChildStopState,
+	selectedParentStopState,
+} from '@state/serverDataState';
 import { ReactNode } from 'react';
-import { RecoilRoot, SetRecoilState } from 'recoil';
+import { RecoilRoot, SetRecoilState, useRecoilValue } from 'recoil';
 import ServerDataStateSubscriber from './serverDataStateSubscriber';
 import SideMenu from './sideMenu';
+import UnsavedChangesAlert from './unsavedChangesAlert';
 
 interface Props {
 	params: {
@@ -28,6 +34,7 @@ export default async function Layout({ params: { stopId }, children }: Props) {
 	return (
 		<>
 			<RecoilRoot initializeState={initializeState}>
+				<UnsavedChangesAlert />
 				<ServerDataStateSubscriber />
 				<SideMenu>{children}</SideMenu>
 			</RecoilRoot>

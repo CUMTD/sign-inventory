@@ -13,7 +13,7 @@ export default function BackButton() {
 	}
 
 	return (
-		<Button className={styles.backButton} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
+		<Button style={{ justifyContent: 'left' }} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
 			back to search
 		</Button>
 	);
