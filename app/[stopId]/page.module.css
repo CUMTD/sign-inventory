@@ -127,3 +127,9 @@
 	text-transform: uppercase;
 	letter-spacing: 0.1ch;
 }
+
+.image {
+	height: 100% !important;
+	width: unset !important;
+	object-fit: contain;
+}
