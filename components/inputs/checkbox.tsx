@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, ReactNode, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 
 interface Props {
@@ -22,28 +22,24 @@ export default function CheckBox({ value, label, onChange }: Props) {
 	return <FormControlLabel label={label} control={<Checkbox checked={value} onChange={onInputChange} />} />;
 }
 
-interface CustomCheckboxProps {
+interface CustomDropDownProps {
 	label: string;
 }
 
-export function createCheckbox(
-	valueSelector: (data: ChildStop) => boolean,
-	updateFunction: (value: boolean) => Partial<ChildStop>,
-) {
-	return function CustomCheckbox({ label }: CustomCheckboxProps) {
+type ValueSelectorFunction = (data: ChildStop) => boolean;
+type UpdateFunction = (currentData: ChildStop, newValue: boolean) => ChildStop;
+
+export function createCheckbox(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
+	return function CustomCheckbox({ label }: CustomDropDownProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
-		const onChange = useCallback(
-			(event: ChangeEvent<HTMLInputElement>) => {
-				if (data) {
-					const newValue = event.target.checked;
-					setData({
-						...data,
-						...updateFunction(newValue),
-					});
-				}
-			},
-			[data, setData],
-		);
+
+		function onChange(event: ChangeEvent<HTMLInputElement>): void {
+			if (data !== null) {
+				const newValue = event.target.checked;
+				const newChildStopData = updateFunction(data, newValue);
+				setData(newChildStopData);
+			}
+		}
 
 		if (data === null) {
 			return null;

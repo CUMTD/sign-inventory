@@ -5,10 +5,14 @@ import { printDropDown } from '@helpers/placeholderPrinters';
 import { modifiedDataState } from '@state/serverDataState';
 import { useRecoilState } from 'recoil';
 import styles from '../page.module.css';
+import { ChildStop } from '@t/apiResponse';
 
-const CustomCheckbox = createCheckbox(
+const StreetLightCheckbox = createCheckbox(
 	({ hasStreetLight }) => hasStreetLight,
-	(value) => ({ hasStreetLight: value }),
+	(data, newValue) => ({
+		...data,
+		hasStreetLight: newValue,
+	}),
 );
 
 export default function GeneralPage() {
@@ -27,7 +31,7 @@ export default function GeneralPage() {
 					options="development_types"
 					onChange={printDropDown}
 				/>
-				<CustomCheckbox label="Has street light" />
+				<StreetLightCheckbox label="Has street light" />
 			</div>
 		</div>
 	);

@@ -1,6 +1,6 @@
 'use client';
 
-import CheckBox from '@components/inputs/checkbox';
+import CheckBox, { createCheckbox } from '@components/inputs/checkbox';
 import FeetInches from '@components/inputs/feetInches';
 import NumberInput from '@components/inputs/numberInput';
 import TextInput from '@components/inputs/textInput';
@@ -11,6 +11,23 @@ import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
 
+function valueSelector({ amenities: { hasShelter } }: ChildStop) {
+	return hasShelter;
+}
+
+function updateFunction({ amenities, ...childStop }: ChildStop, newValue: boolean) {
+	const newChildStop: ChildStop = {
+		...childStop,
+		amenities: {
+			...amenities,
+			hasShelter: newValue,
+		},
+	};
+	return newChildStop;
+}
+
+const ShelterCheckBox = createCheckbox(valueSelector, updateFunction);
+
 export default function AmenitiesPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 	return (
@@ -20,7 +37,7 @@ export default function AmenitiesPage() {
 					<Typography variant="h5" component="h2">
 						Stop Amenities
 					</Typography>
-					<CheckBox label="Shelter" value={stop.amenities.hasShelter} onChange={printCheckBox} />
+					<ShelterCheckBox label="Shelter" />
 
 					<CheckBox label="Light in shelter" value={stop.amenities.hasShelterLight} onChange={printCheckBox} />
 
