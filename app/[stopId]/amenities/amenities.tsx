@@ -11,22 +11,16 @@ import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
 
-function valueSelector({ amenities: { hasShelter } }: ChildStop) {
-	return hasShelter;
-}
-
-function updateFunction({ amenities, ...childStop }: ChildStop, newValue: boolean) {
-	const newChildStop: ChildStop = {
-		...childStop,
+const ShelterCheckBox = createCheckbox(
+	({ amenities: { hasShelter } }) => hasShelter,
+	({ amenities, ...childStop }, newValue) => ({
 		amenities: {
 			...amenities,
 			hasShelter: newValue,
 		},
-	};
-	return newChildStop;
-}
-
-const ShelterCheckBox = createCheckbox(valueSelector, updateFunction);
+		...childStop,
+	}),
+);
 
 export default function AmenitiesPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
