@@ -40,7 +40,7 @@ export default function SideMenu({ children }: Props) {
 				<Box className={styles.sidebar}>
 					<BackButton />
 					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
-						{friendly_name}
+						{/* {friendly_name} */}
 					</Typography>
 					<Typography
 						variant="h5"

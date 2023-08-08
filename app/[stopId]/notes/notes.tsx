@@ -10,11 +10,13 @@ export default function NotesPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 
 	return (
-		<TextInput
-			defaultValue={stop.notes}
-			label="Notes"
-			placeholder="This is certainly a bus stop."
-			onChange={printTextInput}
-		></TextInput>
+		<div style={{ marginBottom: '2em' }}>
+			<TextInput
+				defaultValue={stop.notes}
+				label="Notes"
+				placeholder="This is certainly a bus stop."
+				onChange={printTextInput}
+			></TextInput>{' '}
+		</div>
 	);
 }
