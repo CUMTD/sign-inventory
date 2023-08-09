@@ -7,7 +7,7 @@ export interface ChildStop {
 	notes: string;
 	dateCreated: string;
 	lastUpdated: string;
-	developmentType: DevelopmentType | null;
+	developmentType: DevelopmentType;
 	accessibility: Accessibility;
 	sign: Sign;
 	amenities: Amenity;

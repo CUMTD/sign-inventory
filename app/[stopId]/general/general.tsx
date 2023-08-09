@@ -1,6 +1,6 @@
 'use client';
 import { createCheckbox } from '@components/inputs/checkbox';
-import DropDown from '@components/inputs/dropdown';
+import DropDown, { createDropDown } from '@components/inputs/dropdown';
 import { printDropDown } from '@helpers/placeholderPrinters';
 import { modifiedDataState } from '@state/serverDataState';
 import { useRecoilState } from 'recoil';
@@ -15,6 +15,17 @@ const StreetLightCheckbox = createCheckbox(
 	}),
 );
 
+const DevelopmentTypeDropDown = createDropDown(
+	({ developmentType: { name } }) => name,
+	({ developmentType, ...childStop }, newValue) => ({
+		developmentType: {
+			...developmentType,
+			name: newValue,
+		},
+		...childStop,
+	}),
+);
+
 export default function GeneralPage() {
 	const [currentData, _] = useRecoilState(modifiedDataState);
 
@@ -25,12 +36,7 @@ export default function GeneralPage() {
 	return (
 		<div className={styles.tabpage}>
 			<div className={styles.subSection}>
-				<DropDown
-					selection={currentData.developmentType?.name ?? 'Unknown'}
-					label="Development Type"
-					options="development_types"
-					onChange={printDropDown}
-				/>
+				<DevelopmentTypeDropDown label="Development Type" options="development_types" />
 				<StreetLightCheckbox label="Has street light" />
 			</div>
 		</div>

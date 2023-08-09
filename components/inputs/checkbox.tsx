@@ -10,19 +10,19 @@ interface Props {
 	onChange: (value: boolean) => void;
 }
 
-export default function CheckBox({ value, label, onChange }: Props) {
-	const onInputChange = useCallback(
-		(event: ChangeEvent<HTMLInputElement>) => {
-			const newValue = event.target.checked;
-			onChange(newValue);
-		},
-		[onChange],
-	);
+// export default function CheckBox({ value, label, onChange }: Props) {
+// 	const onInputChange = useCallback(
+// 		(event: ChangeEvent<HTMLInputElement>) => {
+// 			const newValue = event.target.checked;
+// 			onChange(newValue);
+// 		},
+// 		[onChange],
+// 	);
 
-	return <FormControlLabel label={label} control={<Checkbox checked={value} onChange={onInputChange} />} />;
-}
+// 	return <FormControlLabel label={label} control={<Checkbox checked={value} onChange={onInputChange} />} />;
+// }
 
-interface CustomDropDownProps {
+interface CustomCheckBoxProps {
 	label: string;
 }
 
@@ -30,7 +30,7 @@ type ValueSelectorFunction = (data: ChildStop) => boolean;
 type UpdateFunction = (currentData: ChildStop, newValue: boolean) => ChildStop;
 
 export function createCheckbox(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
-	return function CustomCheckbox({ label }: CustomDropDownProps): ReactNode {
+	return function CustomCheckbox({ label }: CustomCheckBoxProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
 
 		function onChange(event: ChangeEvent<HTMLInputElement>): void {

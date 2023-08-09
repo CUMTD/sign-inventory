@@ -1,6 +1,6 @@
 'use client';
 
-import CheckBox, { createCheckbox } from '@components/inputs/checkbox';
+import { createCheckbox } from '@components/inputs/checkbox';
 import FeetInches from '@components/inputs/feetInches';
 import NumberInput from '@components/inputs/numberInput';
 import TextInput from '@components/inputs/textInput';
@@ -11,12 +11,89 @@ import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
 
-const ShelterCheckBox = createCheckbox(
+const HasShelterCheckbox = createCheckbox(
 	({ amenities: { hasShelter } }) => hasShelter,
 	({ amenities, ...childStop }, newValue) => ({
 		amenities: {
 			...amenities,
 			hasShelter: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HasLightCheckBox = createCheckbox(
+	({ amenities: { hasShelterLight } }) => hasShelterLight,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			hasShelterLight: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HasBenchCheckbox = createCheckbox(
+	({ amenities: { hasBench } }) => hasBench,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			hasBench: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HasTrashCanCheckbox = createCheckbox(
+	({ amenities: { hasTrashCan } }) => hasTrashCan,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			hasTrashCan: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HasBikeRackCheckbox = createCheckbox(
+	({ amenities: { hasBikeRack } }) => hasBikeRack,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			hasBikeRack: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HasMapCheckbox = createCheckbox(
+	({ amenities: { hasShelterBoardMap } }) => hasShelterBoardMap,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			hasShelterBoardMap: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HasScheduleCheckbox = createCheckbox(
+	({ amenities: { hasShelterBoardSchedule } }) => hasShelterBoardSchedule,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			hasShelterBoardSchedule: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const FitsFrameCheckbox = createCheckbox(
+	({ amenities: { shelterBoardsFitInFrame } }) => shelterBoardsFitInFrame,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardsFitInFrame: newValue,
 		},
 		...childStop,
 	}),
@@ -31,25 +108,22 @@ export default function AmenitiesPage() {
 					<Typography variant="h5" component="h2">
 						Stop Amenities
 					</Typography>
-					<ShelterCheckBox label="Shelter" />
+					<HasShelterCheckbox label="Shelter" />
+					<HasLightCheckBox label="Light in shelter" />
+					<HasBenchCheckbox label="Bench" />
 
-					<CheckBox label="Light in shelter" value={stop.amenities.hasShelterLight} onChange={printCheckBox} />
-
-					<CheckBox label="Bench" value={stop.amenities.hasBench} onChange={printCheckBox} />
-
-					<CheckBox label="Trash Can" value={stop.amenities.hasTrashCan} onChange={printCheckBox} />
-
-					<CheckBox label="Bike Rack" value={stop.amenities.hasBikeRack} onChange={printCheckBox} />
+					<HasTrashCanCheckbox label="Trash Can" />
+					<HasBikeRackCheckbox label="Bike Rack" />
 				</div>
 				<div className={styles.subSection}>
 					<Typography variant="h5" component="h2">
 						Shelter Boards
 					</Typography>
-					<CheckBox label="Has map" value={stop.amenities.hasShelterBoardMap} onChange={printCheckBox} />
 
-					<CheckBox label="Has schedule" value={stop.amenities.hasShelterBoardSchedule} onChange={printCheckBox} />
+					<HasMapCheckbox label="Has map" />
+					<HasScheduleCheckbox label="Has schedule" />
 
-					<CheckBox label="Fits frame" value={stop.amenities.shelterBoardsFitInFrame} onChange={printCheckBox} />
+					<FitsFrameCheckbox label="Fits frame" />
 					<NumberInput
 						label="No. of Shelter Boards"
 						placeholder={stop.amenities.shelterBoardCount}
