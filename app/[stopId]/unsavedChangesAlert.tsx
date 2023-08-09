@@ -94,5 +94,5 @@ export function blinkIt() {
 	// remove after 3 sec
 	setTimeout(() => {
 		alert?.classList.remove(styles.blinkIt);
-	}, 1000);
+	}, 400);
 }

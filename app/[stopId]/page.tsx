@@ -10,7 +10,7 @@ export default function GeneralPage() {
 	const date = new Date(dateTime);
 
 	return (
-		<Typography variant="subtitle1" component="h3">
+		<Typography variant="subtitle1" component="h3" sx={{ marginBottom: '10vh' }}>
 			Last updated {date.toLocaleString() === 'Invalid Date' ? 'N/A' : date.toLocaleString()}
 		</Typography>
 	);

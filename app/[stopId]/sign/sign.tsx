@@ -2,14 +2,15 @@
 
 import { createCheckbox } from '@components/inputs/checkbox';
 import DatePicker from '@components/inputs/datePicker';
-import DropDown, { createDropDown } from '@components/inputs/dropdown';
-import FeetInches from '@components/inputs/feetInches';
-import HorizSlider from '@components/inputs/horizSlider';
+import { createDropDown } from '@components/inputs/dropdown';
+import { createHorizSlider } from '@components/inputs/horizSlider';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
+import { createFeetInches } from '@components/inputs/feetInches';
+import { create } from 'domain';
 
 const HasSignCheckbox = createCheckbox(
 	({ sign: { hasSign } }) => hasSign,
@@ -79,7 +80,55 @@ const PoleTypeDropDown = createDropDown(
 				...sign.poleType,
 				name: newValue,
 			},
-			// name: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const HeightToBottomOfSignFeetInches = createFeetInches(
+	({ sign: { heightFeet } }) => heightFeet,
+	({ sign: { heightInches } }) => heightInches,
+	({ sign, ...childStop }, newValue) => ({
+		sign: {
+			...sign,
+			heightFeet: newValue,
+		},
+		...childStop,
+	}),
+	({ sign, ...childStop }, newValue) => ({
+		sign: {
+			...sign,
+			heightInches: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const DistanceFromCurbAtBase = createFeetInches(
+	({ sign: { distanceFromCurbFeet } }) => distanceFromCurbFeet,
+	({ sign: { distanceFromCurbInches } }) => distanceFromCurbInches,
+	({ sign, ...childStop }, newValue) => ({
+		sign: {
+			...sign,
+			distanceFromCurbFeet: newValue,
+		},
+		...childStop,
+	}),
+	({ sign, ...childStop }, newValue) => ({
+		sign: {
+			...sign,
+			distanceFromCurbInches: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const TiltAngleSlider = createHorizSlider(
+	({ sign: { tilt } }) => tilt,
+	({ sign, ...childStop }, newValue) => ({
+		sign: {
+			...sign,
+			tilt: newValue,
 		},
 		...childStop,
 	}),
@@ -99,26 +148,9 @@ export default function SignPage() {
 						Pole
 					</Typography>
 
-					<Typography variant="h6" component="h3">
-						Height to Bottom of Sign
-					</Typography>
+					<HeightToBottomOfSignFeetInches label="Height to Bottom of Sign" />
+					<DistanceFromCurbAtBase label="Distance from Curb at Base" />
 
-					<div className={styles.footInchInput}>
-						<FeetInches initFeet={stop.sign.heightFeet ?? 0} initInches={stop.sign.heightInches ?? 0} />
-					</div>
-					<Typography variant="h6" component="h3">
-						Distance from Curb at Base
-					</Typography>
-					<div className={styles.footInchInput}>
-						<FeetInches
-							initFeet={stop.sign.distanceFromCurbFeet ?? 0}
-							initInches={stop.sign.distanceFromCurbInches ?? 0}
-						/>
-					</div>
-					<Typography variant="h6" component="h3">
-						Tilt Angle
-					</Typography>
-					<HorizSlider min={0} max={5} defaultValue={stop.sign.tilt ?? 0} description_set="tilt_angle" />
 					<PoleTypeDropDown label="Pole Type" options="pole_types" />
 				</div>
 				<div className={styles.subSection}>

@@ -1,7 +1,6 @@
 'use client';
 
 import { createCheckbox } from '@components/inputs/checkbox';
-import FeetInches from '@components/inputs/feetInches';
 import NumberInput from '@components/inputs/numberInput';
 import TextInput from '@components/inputs/textInput';
 import { printNumberInput, printTextInput } from '@helpers/placeholderPrinters';
@@ -10,6 +9,8 @@ import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
+import { createHorizSlider } from '@components/inputs/horizSlider';
+import { createFeetInches } from '@components/inputs/feetInches';
 
 const HasShelterCheckbox = createCheckbox(
 	({ amenities: { hasShelter } }) => hasShelter,
@@ -99,6 +100,44 @@ const FitsFrameCheckbox = createCheckbox(
 	}),
 );
 
+const ShelterBoardWidthFeetInches = createFeetInches(
+	({ amenities: { shelterBoardWidthFeet } }) => shelterBoardWidthFeet,
+	({ amenities: { shelterBoardWidthInches } }) => shelterBoardWidthInches,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardWidthFeet: newValue,
+		},
+		...childStop,
+	}),
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardWidthInches: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const ShelterBoardHeightFeetInches = createFeetInches(
+	({ amenities: { shelterBoardHeightFeet } }) => shelterBoardHeightFeet,
+	({ amenities: { shelterBoardHeightInches } }) => shelterBoardHeightInches,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardHeightFeet: newValue,
+		},
+		...childStop,
+	}),
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardHeightInches: newValue,
+		},
+		...childStop,
+	}),
+);
+
 export default function AmenitiesPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 	return (
@@ -129,25 +168,8 @@ export default function AmenitiesPage() {
 						placeholder={stop.amenities.shelterBoardCount}
 						onChange={printNumberInput}
 					/>
-					<Typography variant="h6" component="h3">
-						Width of Shelter Board
-					</Typography>
-					<div className={styles.footInchInput}>
-						<FeetInches
-							initFeet={stop.amenities.shelterBoardWidthFeet}
-							initInches={stop.amenities.shelterBoardWidthInches}
-						/>
-					</div>
-
-					<Typography variant="h6" component="h3">
-						Height of Shelter Board
-					</Typography>
-					<div className={styles.footInchInput}>
-						<FeetInches
-							initFeet={stop.amenities.shelterBoardHeightFeet}
-							initInches={stop.amenities.shelterBoardHeightInches}
-						/>
-					</div>
+					<ShelterBoardWidthFeetInches label="Width of Shelter Board" />
+					<ShelterBoardHeightFeetInches label="Height of Shelter Board" />
 
 					<TextInput
 						label="Notes"

@@ -1,12 +1,12 @@
 'use client';
 
 import { createCheckbox } from '@components/inputs/checkbox';
-import HorizSlider from '@components/inputs/horizSlider';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
+import { createHorizSlider } from '@components/inputs/horizSlider';
 
 const RampDeployableCheckbox = createCheckbox(
 	({ accessibility: { rampDeployable } }) => rampDeployable,
@@ -52,6 +52,28 @@ const SidewalkCheckbox = createCheckbox(
 	}),
 );
 
+const EaseOfAccessSlider = createHorizSlider(
+	({ accessibility: { easeOfAccess } }) => easeOfAccess,
+	({ accessibility, ...childStop }, newValue) => ({
+		accessibility: {
+			...accessibility,
+			easeOfAccess: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const EaseOfBoardingSlider = createHorizSlider(
+	({ accessibility: { easeOfBoarding } }) => easeOfBoarding,
+	({ accessibility, ...childStop }, newValue) => ({
+		accessibility: {
+			...accessibility,
+			easeOfBoarding: newValue,
+		},
+		...childStop,
+	}),
+);
+
 export default function AccessibilityPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 
@@ -63,25 +85,12 @@ export default function AccessibilityPage() {
 					<CurbCutoutCheckbox label="Curb cutout" />
 					<HasSlabCheckbox label="Has slab" />
 					<SidewalkCheckbox label="Accessible from sidewalk" />
-
-					<Typography variant="h6" component="h3">
-						Ease of Access
-					</Typography>
-					<HorizSlider
-						min={1}
-						max={5}
-						defaultValue={stop.accessibility.easeOfAccess}
-						description_set="ease_of_access"
-					/>
-					<Typography variant="h6" component="h3">
-						Ease of Boarding
-					</Typography>
-					<HorizSlider
-						min={1}
-						max={5}
-						defaultValue={stop.accessibility.easeOfBoarding}
-						description_set="ease_of_boarding"
-					/>
+				</div>
+				<div className={styles.subSection}>
+					<EaseOfAccessSlider min={1} max={5} description_set="ease_of_access" label={'Ease of Access'} />
+				</div>
+				<div className={styles.subSection}>
+					<EaseOfBoardingSlider min={1} max={5} description_set="ease_of_boarding" label={'Ease of Boarding'} />
 				</div>
 			</div>
 		</>

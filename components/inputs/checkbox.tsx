@@ -4,24 +4,6 @@ import { ChildStop } from '@t/apiResponse';
 import { ChangeEvent, ReactNode, useCallback } from 'react';
 import { useRecoilState } from 'recoil';
 
-interface Props {
-	value: boolean;
-	label: string;
-	onChange: (value: boolean) => void;
-}
-
-// export default function CheckBox({ value, label, onChange }: Props) {
-// 	const onInputChange = useCallback(
-// 		(event: ChangeEvent<HTMLInputElement>) => {
-// 			const newValue = event.target.checked;
-// 			onChange(newValue);
-// 		},
-// 		[onChange],
-// 	);
-
-// 	return <FormControlLabel label={label} control={<Checkbox checked={value} onChange={onInputChange} />} />;
-// }
-
 interface CustomCheckBoxProps {
 	label: string;
 }
