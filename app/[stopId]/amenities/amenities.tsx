@@ -4,7 +4,7 @@ import { createCheckbox } from '@components/inputs/checkbox';
 import FeetInches from '@components/inputs/feetInches';
 import NumberInput from '@components/inputs/numberInput';
 import TextInput from '@components/inputs/textInput';
-import { printCheckBox, printNumberInput, printTextInput } from '@helpers/placeholderPrinters';
+import { printNumberInput, printTextInput } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';

@@ -44,6 +44,7 @@ interface CustomDropDownProps {
 type ValueSelectorFunction = (data: ChildStop) => string;
 type UpdateFunction = (currentData: ChildStop, newValue: string) => ChildStop;
 
+// TODO: also need to update the "order" and "id" fields
 export function createDropDown(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
 	return function CustomCheckbox({ label, options }: CustomDropDownProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
@@ -59,7 +60,6 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 		function onChange(event: SelectChangeEvent<number>): void {
 			if (data !== null) {
 				const newValue: string = selectionOptions[event.target.value as number];
-				console.log('newValue', event.target.value);
 
 				const newChildStopData = updateFunction(data, newValue);
 				setData(newChildStopData);
@@ -70,14 +70,11 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 			return null;
 		}
 
-		console.log('data', data);
-		const value: string = valueSelector(data) ?? 'Unknown';
+		let value: string = valueSelector(data) ?? 'Unknown';
 
-		console.log('value', value);
-
-		// if (value === 'Comercial') {
-		// 	value = 2;
-		// }
+		if (value === 'Comercial') {
+			value = 'Commercial';
+		}
 
 		// console.log('value', type(value));
 		return (

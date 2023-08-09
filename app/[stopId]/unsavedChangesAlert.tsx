@@ -1,15 +1,28 @@
 import { Alert, AlertTitle, Button, Grow, Zoom } from '@mui/material';
 import styles from './page.module.css';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { initialDataState, isDataModifiedSelector, modifiedDataState } from '@state/serverDataState';
-
-// WIP!!!
+import { useEffect } from 'react';
 
 export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
 
 	const [intialData, setInitialData] = useRecoilState(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
+
+	// add unloadlistener to isDataModified to prevent accidental navigation
+	useEffect(() => {
+		function unloadListener(e: BeforeUnloadEvent) {
+			if (isDataModified) {
+				e.preventDefault();
+				e.returnValue = '';
+			}
+		}
+		window.addEventListener('beforeunload', unloadListener);
+		return () => {
+			window.removeEventListener('beforeunload', unloadListener);
+		};
+	}, [isDataModified]);
 
 	function saveChanges() {
 		try {
@@ -34,9 +47,12 @@ export default function UnsavedChangesAlert() {
 						position: 'absolute',
 						bottom: 0,
 						right: 0,
+						left: 0,
 						zIndex: 3,
+						maxWidth: '59%',
 						padding: '1em',
-						margin: '2em',
+						margin: 'auto',
+						marginBottom: '2em',
 					}}
 					className="unsavedChangesAlert"
 					action={

@@ -1,7 +1,6 @@
 'use client';
 import { createCheckbox } from '@components/inputs/checkbox';
 import DropDown, { createDropDown } from '@components/inputs/dropdown';
-import { printDropDown } from '@helpers/placeholderPrinters';
 import { modifiedDataState } from '@state/serverDataState';
 import { useRecoilState } from 'recoil';
 import styles from '../page.module.css';

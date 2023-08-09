@@ -12,29 +12,17 @@ import BoardingPointSelector from './boardingPointSelector';
 import styles from './page.module.css';
 import Tabs from './tabs';
 import BusyBox from './busyBox';
+import UnsavedChangesAlert from './unsavedChangesAlert';
 
 interface Props {
 	children: ReactNode;
 }
-// function DebugObserver(): ReactNode {
-// 	const snapshot = useRecoilSnapshot();
-// 	useEffect(() => {
-// 		console.debug('The following atoms were modified:');
-// 		for (const node of snapshot.getNodes_UNSTABLE({ isModified: true })) {
-// 			console.debug(node.key, snapshot.getLoadable(node));
-// 		}
-// 	}, [snapshot]);
-
-// 	return null;
-// }
 
 export default function SideMenu({ children }: Props) {
 	const stopId = useRecoilValue(selectedParentStopState);
-	// const friendly_name = useRecoilValue(selectedStopFriendlyNameState);
 	const currentChildStop = useRecoilValue(selectedChildStopState);
 	return (
 		<>
-			{/* <DebugObserver /> */}
 			<Image src={logo_svg} className={styles.logo} alt="MTD" width={125} height={125} />
 			<Box className={styles.page}>
 				<Box className={styles.sidebar}>
@@ -58,6 +46,7 @@ export default function SideMenu({ children }: Props) {
 					</Typography>
 					<BoardingPointSelector />
 					<Tabs />
+					<UnsavedChangesAlert />
 				</Box>
 				<Box className={styles.busyBox}>
 					<BusyBox />

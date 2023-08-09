@@ -5,7 +5,6 @@ import DatePicker from '@components/inputs/datePicker';
 import DropDown, { createDropDown } from '@components/inputs/dropdown';
 import FeetInches from '@components/inputs/feetInches';
 import HorizSlider from '@components/inputs/horizSlider';
-import { printCheckBox, printDropDown } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';

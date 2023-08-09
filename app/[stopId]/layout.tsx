@@ -11,7 +11,6 @@ import { ReactNode } from 'react';
 import { RecoilRoot, SetRecoilState, useRecoilValue } from 'recoil';
 import ServerDataStateSubscriber from './serverDataStateSubscriber';
 import SideMenu from './sideMenu';
-import UnsavedChangesAlert from './unsavedChangesAlert';
 
 interface Props {
 	params: {
@@ -34,7 +33,6 @@ export default async function Layout({ params: { stopId }, children }: Props) {
 	return (
 		<>
 			<RecoilRoot initializeState={initializeState}>
-				<UnsavedChangesAlert />
 				<ServerDataStateSubscriber />
 				<SideMenu>{children}</SideMenu>
 			</RecoilRoot>

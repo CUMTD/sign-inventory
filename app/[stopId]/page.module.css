@@ -131,18 +131,24 @@
 }
 
 .blinkIt {
-	animation: blink 0.5s;
-	animation-iteration-count: 2;
-	animation-timing-function: step-end;
+	animation: blink 0.3s;
+	animation-iteration-count: 1;
+	/* animation-timing-function:  */
 }
 
 @keyframes blink {
 	0% {
 	}
 
-	50% {
-		outline: 6px solid #ed6c02;
+	25% {
+		transform: translateX(-10px);
+		outline: 5px solid #ed6c02;
 	}
+	75% {
+		transform: translateX(10px);
+		outline: 5px solid #ed6c02;
+	}
+
 	100% {
 	}
 }
