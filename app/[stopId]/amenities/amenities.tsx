@@ -2,8 +2,7 @@
 
 import { createCheckbox } from '@components/inputs/checkbox';
 import { createNumberInput } from '@components/inputs/numberInput';
-import TextInput, { createTextInput } from '@components/inputs/textInput';
-import { printTextInput } from '@helpers/placeholderPrinters';
+import { createTextInput } from '@components/inputs/textInput';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';
@@ -160,7 +159,6 @@ const ShelterBoardNotesTextInput = createTextInput(
 );
 
 export default function AmenitiesPage() {
-	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 	return (
 		<>
 			<div className={styles.tabpage}>

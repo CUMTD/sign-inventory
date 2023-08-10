@@ -10,7 +10,6 @@ import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
 import { createFeetInches } from '@components/inputs/feetInches';
-import { create } from 'domain';
 
 const HasSignCheckbox = createCheckbox(
 	({ sign: { hasSign } }) => hasSign,
@@ -146,7 +145,6 @@ const SignReplacementDatePicker = createDatePicker(
 );
 
 export default function SignPage() {
-	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 	return (
 		<>
 			<div className={styles.tabpage}>

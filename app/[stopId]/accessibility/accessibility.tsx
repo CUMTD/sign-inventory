@@ -1,7 +1,6 @@
 'use client';
 
 import { createCheckbox } from '@components/inputs/checkbox';
-import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
@@ -75,8 +74,6 @@ const EaseOfBoardingSlider = createHorizSlider(
 );
 
 export default function AccessibilityPage() {
-	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
-
 	return (
 		<>
 			<div className={styles.tabpage}>
