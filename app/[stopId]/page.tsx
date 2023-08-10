@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 
 // display the last updated dateTime at the bottom of every page
 export default function GeneralPage() {
-	var dateTime: string = useRecoilValue(selectedChildStopSelector)?.lastUpdated ?? 'Unknown';
+	var dateTime: Date = useRecoilValue(selectedChildStopSelector)?.lastUpdated ?? 'Unknown';
 	const date = new Date(dateTime);
 
 	return (

@@ -6,7 +6,7 @@ export interface ChildStop {
 	hasStreetLight: boolean;
 	notes: string;
 	dateCreated: string;
-	lastUpdated: string;
+	lastUpdated: Date;
 	developmentType: DevelopmentType;
 	accessibility: Accessibility;
 	sign: Sign;
@@ -61,7 +61,7 @@ export interface Sign {
 	hasCrimeStoppers: boolean;
 	isFaded: boolean;
 	isBroken: boolean;
-	signReplacementDate: string;
+	signReplacementDate: Date;
 	poleType: PoleType;
 }
 

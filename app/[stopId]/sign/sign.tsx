@@ -1,7 +1,7 @@
 'use client';
 
 import { createCheckbox } from '@components/inputs/checkbox';
-import DatePicker from '@components/inputs/datePicker';
+import { createDatePicker } from '@components/inputs/datePicker';
 import { createDropDown } from '@components/inputs/dropdown';
 import { createHorizSlider } from '@components/inputs/horizSlider';
 import { Typography } from '@mui/material';
@@ -134,6 +134,17 @@ const TiltAngleSlider = createHorizSlider(
 	}),
 );
 
+const SignReplacementDatePicker = createDatePicker(
+	({ sign: { signReplacementDate } }) => signReplacementDate,
+	({ sign, ...childStop }, newValue) => ({
+		sign: {
+			...sign,
+			signReplacementDate: newValue,
+		},
+		...childStop,
+	}),
+);
+
 export default function SignPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 	return (
@@ -150,7 +161,7 @@ export default function SignPage() {
 
 					<HeightToBottomOfSignFeetInches label="Height to Bottom of Sign" />
 					<DistanceFromCurbAtBase label="Distance from Curb at Base" />
-
+					<TiltAngleSlider label="Tilt Angle" min={1} max={5} description_set="tilt_angle" />
 					<PoleTypeDropDown label="Pole Type" options="pole_types" />
 				</div>
 				<div className={styles.subSection}>
@@ -171,8 +182,7 @@ export default function SignPage() {
 					<Typography variant="h5" component="h2">
 						Last Replacement Date
 					</Typography>
-
-					<DatePicker initDate={stop.sign.signReplacementDate} />
+					<SignReplacementDatePicker label="Sign Replacement Date" />
 				</div>
 			</div>
 		</>

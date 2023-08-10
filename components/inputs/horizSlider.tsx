@@ -37,7 +37,7 @@ interface CustomHorizSliderProps {
 	description_set: string;
 }
 
-const marks = [
+const ease_of_access_marks = [
 	{
 		value: 1,
 		label: 'Not Accessible',
@@ -51,6 +51,48 @@ const marks = [
 		label: 'Easily Accessible',
 	},
 ];
+
+const ease_of_boarding_marks = [
+	{
+		value: 1,
+		label: 'Difficult',
+	},
+	{
+		value: 3,
+		label: 'Reasonable',
+	},
+	{
+		value: 5,
+		label: 'Easy',
+	},
+];
+
+const tilt_angle_marks = [
+	{
+		value: 1,
+		label: 'Extremely tilted',
+	},
+	{
+		value: 3,
+		label: 'Moderately tilted',
+	},
+	{
+		value: 5,
+		label: 'Plumb (not tilted)',
+	},
+];
+
+function marks(description_set: string) {
+	if (description_set === 'ease_of_access') {
+		return ease_of_access_marks;
+	}
+	if (description_set === 'ease_of_boarding') {
+		return ease_of_boarding_marks;
+	}
+	if (description_set === 'tilt_angle') {
+		return tilt_angle_marks;
+	}
+}
 
 type ValueSelectorFunction = (data: ChildStop) => number;
 type UpdateFunction = (currentData: ChildStop, newValue: number) => ChildStop;
@@ -77,16 +119,15 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 				<Typography variant="h6" component="h3">
 					{label}
 				</Typography>
-
 				<Slider
 					value={value}
 					min={min}
 					max={max}
-					marks={marks}
+					marks={marks(description_set)}
 					valueLabelDisplay="off"
 					onChange={onChange}
-					sx={{ marginLeft: '3em' }}
-				/>
+					sx={{ marginLeft: '3em', marginBottom: '2em' }}
+				/>{' '}
 				<Typography variant="subtitle2" sx={{ minHeight: '5em', marginBottom: '0px !important' }}>
 					{value} : <SliderDescription value={value} description_set={description_set} />
 				</Typography>

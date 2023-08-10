@@ -1,15 +1,14 @@
 'use client';
 
 import { createCheckbox } from '@components/inputs/checkbox';
-import NumberInput from '@components/inputs/numberInput';
-import TextInput from '@components/inputs/textInput';
-import { printNumberInput, printTextInput } from '@helpers/placeholderPrinters';
+import { createNumberInput } from '@components/inputs/numberInput';
+import TextInput, { createTextInput } from '@components/inputs/textInput';
+import { printTextInput } from '@helpers/placeholderPrinters';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
 import { ChildStop } from '@t/apiResponse';
 import { useRecoilValue } from 'recoil';
 import { selectedChildStopSelector } from '@state/serverDataState';
-import { createHorizSlider } from '@components/inputs/horizSlider';
 import { createFeetInches } from '@components/inputs/feetInches';
 
 const HasShelterCheckbox = createCheckbox(
@@ -138,6 +137,28 @@ const ShelterBoardHeightFeetInches = createFeetInches(
 	}),
 );
 
+const ShelterBoardCountNumberInput = createNumberInput(
+	({ amenities: { shelterBoardCount } }) => shelterBoardCount,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardCount: newValue,
+		},
+		...childStop,
+	}),
+);
+
+const ShelterBoardNotesTextInput = createTextInput(
+	({ amenities: { shelterBoardNotes } }) => shelterBoardNotes,
+	({ amenities, ...childStop }, newValue) => ({
+		amenities: {
+			...amenities,
+			shelterBoardNotes: newValue,
+		},
+		...childStop,
+	}),
+);
+
 export default function AmenitiesPage() {
 	var stop: ChildStop = useRecoilValue(selectedChildStopSelector) ?? ({} as ChildStop);
 	return (
@@ -163,20 +184,12 @@ export default function AmenitiesPage() {
 					<HasScheduleCheckbox label="Has schedule" />
 
 					<FitsFrameCheckbox label="Fits frame" />
-					<NumberInput
-						label="No. of Shelter Boards"
-						placeholder={stop.amenities.shelterBoardCount}
-						onChange={printNumberInput}
-					/>
+
+					<ShelterBoardCountNumberInput label="No. of Shelter Boards" />
 					<ShelterBoardWidthFeetInches label="Width of Shelter Board" />
 					<ShelterBoardHeightFeetInches label="Height of Shelter Board" />
 
-					<TextInput
-						label="Notes"
-						placeholder="Ex. Frame is empty, map/schedule doesn't fit, etc."
-						defaultValue={stop.amenities.shelterBoardNotes}
-						onChange={printTextInput}
-					></TextInput>
+					<ShelterBoardNotesTextInput label="Notes" placeholder="Ex. Frame is empty, map/schedule doesn't fit, etc." />
 				</div>
 			</div>
 		</>
