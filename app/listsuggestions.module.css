@@ -12,17 +12,31 @@
 	color: var(--text);
 	text-decoration: none !important;
 	text-transform: uppercase;
+	margin-left: auto;
+	float: right;
 }
 
 .Link {
 	display: block;
 	font-weight: 600;
 	font-size: 160%;
-	/* text-decoration: none; */
-	/* color: var(--palette-text-disabled) !important; */
+	text-decoration: none;
+	color: var(--palette-text-primary) !important;
 }
 
-.suggestionList {
-	border: 0 solid var(--text);
-	border-width: 0 0 1px 1px;
+.Link:visited {
+	opacity: 50% !important;
+}
+
+.suggestionList > * {
+	border-bottom: 1px dashed;
+	border-radius: 0px !important;
+}
+
+.suggestionList > *:first-child {
+	border-top: 0;
+}
+
+.suggestionList > *:last-child {
+	border-bottom: 0 !important;
 }

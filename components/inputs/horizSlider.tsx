@@ -126,9 +126,9 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 					marks={marks(description_set)}
 					valueLabelDisplay="off"
 					onChange={onChange}
-					sx={{ marginLeft: '3em', marginBottom: '2em' }}
-				/>{' '}
-				<Typography variant="subtitle2" sx={{ minHeight: '5em', marginBottom: '0px !important' }}>
+					sx={{ marginLeft: '3em' }}
+				/>
+				<Typography variant="subtitle2">
 					{value} : <SliderDescription value={value} description_set={description_set} />
 				</Typography>
 			</>

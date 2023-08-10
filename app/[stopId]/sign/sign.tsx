@@ -6,9 +6,6 @@ import { createDropDown } from '@components/inputs/dropdown';
 import { createHorizSlider } from '@components/inputs/horizSlider';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
-import { ChildStop } from '@t/apiResponse';
-import { useRecoilValue } from 'recoil';
-import { selectedChildStopSelector } from '@state/serverDataState';
 import { createFeetInches } from '@components/inputs/feetInches';
 
 const HasSignCheckbox = createCheckbox(
@@ -153,31 +150,31 @@ export default function SignPage() {
 				</div>
 
 				<div className={styles.subSection}>
-					<Typography variant="h5" component="h2">
+					{' '}
+					<Typography variant="h4" component="h2">
 						Pole
 					</Typography>
-
 					<HeightToBottomOfSignFeetInches label="Height to Bottom of Sign" />
 					<DistanceFromCurbAtBase label="Distance from Curb at Base" />
-					<TiltAngleSlider label="Tilt Angle" min={1} max={5} description_set="tilt_angle" />
 					<PoleTypeDropDown label="Pole Type" options="pole_types" />
+					<TiltAngleSlider label="Tilt Angle" min={1} max={5} description_set="tilt_angle" />
 				</div>
 				<div className={styles.subSection}>
-					<Typography variant="h5" component="h2">
+					<Typography variant="h4" component="h2">
 						Accuracy
 					</Typography>
 					<CorrectStopCodeCheckbox label="Correct Stop Code" />
 					<HasCrimeStoppersCheckbox label="Has Crime Stoppers logo" />
 				</div>
 				<div className={styles.subSection}>
-					<Typography variant="h5" component="h2">
+					<Typography variant="h4" component="h2">
 						Condition
 					</Typography>
 					<IsFadedCheckbox label="Faded" />
 					<IsBrokenCheckbox label="Broken" />
 				</div>
 				<div className={styles.subSection}>
-					<Typography variant="h5" component="h2">
+					<Typography variant="h4" component="h2">
 						Last Replacement Date
 					</Typography>
 					<SignReplacementDatePicker label="Sign Replacement Date" />

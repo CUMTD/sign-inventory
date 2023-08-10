@@ -17,13 +17,18 @@ export default function ListSuggestions() {
 
 	// format the search suggestions nicely
 	return (
-		<div style={{ marginTop: '3em' }}>
+		<div style={{ marginTop: '3em' }} className={styles.suggestionList}>
 			{searchResults.map(({ id, name, city }) => (
-				<Card key={id} elevation={2}>
+				<Card key={id}>
 					<CardContent>
-						<Link key={id} className={styles.Link} href={`/${id}`} onClick={() => setName(name)}>
-							{name}
-							<div className={styles.suggestionlower}>{city}</div>
+						<Link
+							key={id}
+							className={styles.Link}
+							href={`/${id}`}
+							onClick={() => setName(name)}
+							style={{ display: 'flex', flexDirection: 'row' }}
+						>
+							{name} <span className={styles.suggestionlower}>{city}</span>
 						</Link>
 					</CardContent>
 				</Card>
