@@ -64,11 +64,13 @@ const IsBrokenCheckbox = createCheckbox(
 );
 
 const PoleTypeDropDown = createDropDown(
-	({
-		sign: {
-			poleType: { name },
-		},
-	}) => name,
+	({ sign: { poleType } }) => {
+		if (poleType) {
+			return poleType.name;
+		} else {
+			return 'Unknown';
+		}
+	},
 	({ sign, ...childStop }, newValue) => ({
 		sign: {
 			...sign,
@@ -82,8 +84,20 @@ const PoleTypeDropDown = createDropDown(
 );
 
 const HeightToBottomOfSignFeetInches = createFeetInches(
-	({ sign: { heightFeet } }) => heightFeet,
-	({ sign: { heightInches } }) => heightInches,
+	({ sign: { heightFeet } }) => {
+		if (heightFeet) {
+			return heightFeet;
+		} else {
+			return 0;
+		}
+	},
+	({ sign: { heightInches } }) => {
+		if (heightInches) {
+			return heightInches;
+		} else {
+			return 0;
+		}
+	},
 	({ sign, ...childStop }, newValue) => ({
 		sign: {
 			...sign,
@@ -101,8 +115,21 @@ const HeightToBottomOfSignFeetInches = createFeetInches(
 );
 
 const DistanceFromCurbAtBase = createFeetInches(
-	({ sign: { distanceFromCurbFeet } }) => distanceFromCurbFeet,
-	({ sign: { distanceFromCurbInches } }) => distanceFromCurbInches,
+	({ sign: { distanceFromCurbFeet } }) => {
+		if (distanceFromCurbFeet) {
+			return distanceFromCurbFeet;
+		} else {
+			return 0;
+		}
+	},
+
+	({ sign: { distanceFromCurbInches } }) => {
+		if (distanceFromCurbInches) {
+			return distanceFromCurbInches;
+		} else {
+			return 0;
+		}
+	},
 	({ sign, ...childStop }, newValue) => ({
 		sign: {
 			...sign,

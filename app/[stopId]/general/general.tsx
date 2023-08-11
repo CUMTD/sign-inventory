@@ -14,7 +14,7 @@ const StreetLightCheckbox = createCheckbox(
 );
 
 const DevelopmentTypeDropDown = createDropDown(
-	({ developmentType: { name } }) => name,
+	({ developmentType }) => developmentType?.name ?? 'Unknown',
 	({ developmentType, ...childStop }, newValue) => ({
 		developmentType: {
 			...developmentType,

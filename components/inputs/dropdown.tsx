@@ -79,7 +79,7 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 		// console.log('value', type(value));
 		return (
 			<DropDown
-				selection={selectionOptions.indexOf(value)}
+				selection={selectionOptions?.indexOf(value)}
 				label={label}
 				options={selectionOptions}
 				onChange={onChange}

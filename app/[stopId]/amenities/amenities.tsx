@@ -99,8 +99,20 @@ const FitsFrameCheckbox = createCheckbox(
 );
 
 const ShelterBoardWidthFeetInches = createFeetInches(
-	({ amenities: { shelterBoardWidthFeet } }) => shelterBoardWidthFeet,
-	({ amenities: { shelterBoardWidthInches } }) => shelterBoardWidthInches,
+	({ amenities: { shelterBoardWidthFeet } }) => {
+		if (shelterBoardWidthFeet) {
+			return shelterBoardWidthFeet;
+		} else {
+			return 0;
+		}
+	},
+	({ amenities: { shelterBoardWidthInches } }) => {
+		if (shelterBoardWidthInches) {
+			return shelterBoardWidthInches;
+		} else {
+			return 0;
+		}
+	},
 	({ amenities, ...childStop }, newValue) => ({
 		amenities: {
 			...amenities,
@@ -118,8 +130,20 @@ const ShelterBoardWidthFeetInches = createFeetInches(
 );
 
 const ShelterBoardHeightFeetInches = createFeetInches(
-	({ amenities: { shelterBoardHeightFeet } }) => shelterBoardHeightFeet,
-	({ amenities: { shelterBoardHeightInches } }) => shelterBoardHeightInches,
+	({ amenities: { shelterBoardHeightFeet } }) => {
+		if (shelterBoardHeightFeet) {
+			return shelterBoardHeightFeet;
+		} else {
+			return 0;
+		}
+	},
+	({ amenities: { shelterBoardHeightInches } }) => {
+		if (shelterBoardHeightInches) {
+			return shelterBoardHeightInches;
+		} else {
+			return 0;
+		}
+	},
 	({ amenities, ...childStop }, newValue) => ({
 		amenities: {
 			...amenities,
@@ -137,7 +161,13 @@ const ShelterBoardHeightFeetInches = createFeetInches(
 );
 
 const ShelterBoardCountNumberInput = createNumberInput(
-	({ amenities: { shelterBoardCount } }) => shelterBoardCount,
+	({ amenities: { shelterBoardCount } }) => {
+		if (shelterBoardCount) {
+			return shelterBoardCount;
+		} else {
+			return 0;
+		}
+	},
 	({ amenities, ...childStop }, newValue) => ({
 		amenities: {
 			...amenities,
@@ -148,7 +178,13 @@ const ShelterBoardCountNumberInput = createNumberInput(
 );
 
 const ShelterBoardNotesTextInput = createTextInput(
-	({ amenities: { shelterBoardNotes } }) => shelterBoardNotes,
+	({ amenities: { shelterBoardNotes } }) => {
+		if (shelterBoardNotes) {
+			return shelterBoardNotes;
+		} else {
+			return '';
+		}
+	},
 	({ amenities, ...childStop }, newValue) => ({
 		amenities: {
 			...amenities,

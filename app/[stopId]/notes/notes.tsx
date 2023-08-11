@@ -3,7 +3,13 @@
 import { createTextInput } from '@components/inputs/textInput';
 
 const StopNotesTextInput = createTextInput(
-	({ notes }) => notes,
+	({ notes }) => {
+		if (notes) {
+			return notes;
+		} else {
+			return '';
+		}
+	},
 	(data, newValue) => ({
 		...data,
 		notes: newValue,
