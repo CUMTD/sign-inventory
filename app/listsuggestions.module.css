@@ -21,11 +21,11 @@
 	font-weight: 600;
 	font-size: 160%;
 	text-decoration: none;
-	color: var(--palette-text-primary) !important;
+	color: var(--palette-text-primary);
 }
 
 .Link:visited {
-	opacity: 50% !important;
+	color: gray !important;
 }
 
 .suggestionList > * {
