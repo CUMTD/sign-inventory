@@ -150,3 +150,7 @@
 		outline: 5px solid #ed6c02;
 	}
 }
+
+.showDialog {
+	display: flex;
+}

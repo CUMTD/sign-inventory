@@ -3,7 +3,7 @@ import { childStopsState, isDataModifiedSelector, selectedChildStopState } from 
 import { ChildStop } from '@t/apiResponse';
 import { useCallback } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { blinkIt } from './unsavedChangesAlert';
+import { blinkWarnSaveDialog } from './unsavedChangesAlert';
 
 // generate the child stop buttons on the sidebar
 export default function GenerateButtons() {
@@ -17,7 +17,7 @@ export default function GenerateButtons() {
 	const click = useCallback(
 		(id: string) => {
 			if (isDataModified) {
-				blinkIt();
+				blinkWarnSaveDialog();
 			} else {
 				const boardingPoint = parseInt(id.split(':')[1]);
 				setSelectedChildStop(boardingPoint);

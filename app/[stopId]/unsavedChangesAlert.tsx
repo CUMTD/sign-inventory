@@ -5,9 +5,9 @@ import { initialDataState, isDataModifiedSelector, modifiedDataState } from '@st
 import { useEffect } from 'react';
 import { putParentStop } from '@helpers/fetchDataHelpers';
 
+// handles the dialog that comes up when user has unsaved changes
 export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
-
 	const [intialData, setInitialData] = useRecoilState(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
 
@@ -25,23 +25,33 @@ export default function UnsavedChangesAlert() {
 		};
 	}, [isDataModified]);
 
+	// make a PUT request with putParentStop() and handle response
 	function saveChanges() {
 		if (modifiedData) {
 			try {
-				putParentStop(modifiedData);
-				setInitialData(modifiedData);
+				putParentStop(modifiedData).then((res) => {
+					if (res) {
+						showSuccessfulSaveDialog();
+						console.log('saved changes');
+						setInitialData(modifiedData);
+					} else {
+						showErrorSaveDialog();
+						console.log('error saving changes');
+					}
+				});
 			} catch (error) {
 				console.error(error);
-			} finally {
-				setModifiedData(intialData);
+				showErrorSaveDialog();
 			}
 		}
 	}
 
+	// throw away changes and revert to initial data
 	function discardChanges() {
 		setModifiedData(intialData);
 	}
 
+	// display the save dialog if there are unsaved changes
 	if (isDataModified) {
 		return (
 			<Grow in={true}>
@@ -90,13 +100,86 @@ export default function UnsavedChangesAlert() {
 	return null;
 }
 
-export function blinkIt() {
-	// trigger the animation
-	const alert = document.querySelector(`.unsavedChangesAlert`);
+// save successful dialog
+export function SaveSuccessfulAlert() {
+	return (
+		<Grow in={true}>
+			<Alert
+				severity="success"
+				sx={{
+					position: 'absolute',
+					bottom: 0,
+					right: 0,
+					left: 0,
+					zIndex: 3,
+					maxWidth: ' 50%',
+					padding: '1em',
+					margin: 'auto',
+					marginBottom: '2em',
+					display: 'none',
+				}}
+				className="saveSuccessfulAlert"
+			>
+				<AlertTitle>
+					<strong>Save successful.</strong>
+				</AlertTitle>
+			</Alert>
+		</Grow>
+	);
+}
 
+// save error dialog
+export function SaveErrorAlert() {
+	return (
+		<Grow in={true}>
+			<Alert
+				severity="error"
+				sx={{
+					position: 'absolute',
+					bottom: 0,
+					right: 0,
+					left: 0,
+					zIndex: 3,
+					maxWidth: ' 50%',
+					padding: '1em',
+					margin: 'auto',
+					marginBottom: '2em',
+					display: 'none',
+				}}
+				className="saveErrorAlert"
+			>
+				<AlertTitle>
+					<strong>Error saving changes</strong>
+				</AlertTitle>
+				Ensure you are connected to the internet and try again.
+			</Alert>
+		</Grow>
+	);
+}
+
+// blinks the save dialog when user tries to navigate away
+export function blinkWarnSaveDialog() {
+	const alert = document.querySelector(`.unsavedChangesAlert`);
 	alert?.classList.add(styles.blinkIt);
-	// remove after 3 sec
 	setTimeout(() => {
 		alert?.classList.remove(styles.blinkIt);
 	}, 400);
+}
+
+// shows the save successful dialog
+function showSuccessfulSaveDialog() {
+	const alert = document.querySelector(`.saveSuccessfulAlert`);
+	alert?.classList.add(styles.showDialog);
+	setTimeout(() => {
+		alert?.classList.remove(styles.showDialog);
+	}, 3000);
+}
+
+// shows the save error dialog
+function showErrorSaveDialog() {
+	const alert = document.querySelector(`.saveErrorAlert`);
+	alert?.classList.add(styles.showDialog);
+	setTimeout(() => {
+		alert?.classList.remove(styles.showDialog);
+	}, 5000);
 }

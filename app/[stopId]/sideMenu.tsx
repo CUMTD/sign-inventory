@@ -12,7 +12,7 @@ import BoardingPointSelector from './boardingPointSelector';
 import styles from './page.module.css';
 import Tabs from './tabs';
 import BusyBox from './busyBox';
-import UnsavedChangesAlert from './unsavedChangesAlert';
+import UnsavedChangesAlert, { SaveErrorAlert, SaveSuccessfulAlert } from './unsavedChangesAlert';
 
 interface Props {
 	children: ReactNode;
@@ -47,6 +47,8 @@ export default function SideMenu({ children }: Props) {
 					<BoardingPointSelector />
 					<Tabs />
 					<UnsavedChangesAlert />
+					<SaveSuccessfulAlert />
+					<SaveErrorAlert />
 				</Box>
 				<Box className={styles.busyBox}>
 					<BusyBox />

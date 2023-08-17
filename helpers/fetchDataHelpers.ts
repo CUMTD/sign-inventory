@@ -29,9 +29,11 @@ export async function putParentStop(child_stop: ChildStop) {
 		mode: 'cors',
 		body: JSON.stringify(child_stop),
 	});
-	if (!response.ok) {
-		throw new Error(`HTTP error! status: ${response.status}`);
-	}
+	// if (!response.ok) {
+	// 	return response.status;
+	// 	throw new Error(`HTTP error! status: ${response.status}`);
+	// }
+	return response.ok;
 }
 
 export async function fetchStopPhoto(stopId: string) {
