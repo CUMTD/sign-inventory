@@ -11,22 +11,22 @@ import { createFeetInches } from '@components/inputs/feetInches';
 const HasSignCheckbox = createCheckbox(
 	({ sign: { hasSign } }) => hasSign,
 	({ sign, ...childStop }, newValue) => ({
+		...childStop,
 		sign: {
 			...sign,
 			hasSign: newValue,
 		},
-		...childStop,
 	}),
 );
 
 const CorrectStopCodeCheckbox = createCheckbox(
 	({ sign: { correctStopCode } }) => correctStopCode,
 	({ sign, ...childStop }, newValue) => ({
+		...childStop,
 		sign: {
 			...sign,
 			correctStopCode: newValue,
 		},
-		...childStop,
 	}),
 );
 

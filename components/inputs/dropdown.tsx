@@ -76,7 +76,6 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 			value = 'Commercial';
 		}
 
-		// console.log('value', type(value));
 		return (
 			<DropDown
 				selection={selectionOptions?.indexOf(value)}

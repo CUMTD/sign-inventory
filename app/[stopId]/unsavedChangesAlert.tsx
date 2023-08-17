@@ -3,6 +3,7 @@ import styles from './page.module.css';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { initialDataState, isDataModifiedSelector, modifiedDataState } from '@state/serverDataState';
 import { useEffect } from 'react';
+import { putParentStop } from '@helpers/fetchDataHelpers';
 
 export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
@@ -25,12 +26,15 @@ export default function UnsavedChangesAlert() {
 	}, [isDataModified]);
 
 	function saveChanges() {
-		try {
-			// TODO: attempt to save changes
-
-			setInitialData(modifiedData);
-		} catch (error) {
-			// TODO: display error on failure
+		if (modifiedData) {
+			try {
+				putParentStop(modifiedData);
+				setInitialData(modifiedData);
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setModifiedData(intialData);
+			}
 		}
 	}
 

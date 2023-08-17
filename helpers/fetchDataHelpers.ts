@@ -17,6 +17,23 @@ export async function fetchChildStops(stopId: string) {
 	return stops;
 }
 
+export async function putParentStop(child_stop: ChildStop) {
+	// TODO: wire up to param after testing
+
+	const body = JSON.stringify(child_stop);
+	console.log('body', body);
+
+	const response = await fetch(`${ENDPOINT}/child-stops/TEST/1`, {
+		method: 'PUT',
+		headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
+		mode: 'cors',
+		body: JSON.stringify(child_stop),
+	});
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+}
+
 export async function fetchStopPhoto(stopId: string) {
 	const response = await fetch(`${ENDPOINT}/child-stop/${stopId}`, {
 		method: 'GET',

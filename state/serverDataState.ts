@@ -1,4 +1,5 @@
 import { ChildStop } from '@t/apiResponse';
+import { assert } from 'console';
 import { atom, selector } from 'recoil';
 
 export const selectedTabState = atom<number>({
@@ -69,6 +70,8 @@ export const isDataModifiedSelector = selector<boolean>({
 	get: ({ get }) => {
 		const initialData = get(initialDataState);
 		const modifiedData = get(modifiedDataState);
+
+		console.log('equal?: ', JSON.stringify(initialData) === JSON.stringify(modifiedData));
 		return JSON.stringify(initialData) !== JSON.stringify(modifiedData);
 	},
 });

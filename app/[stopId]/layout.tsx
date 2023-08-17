@@ -20,6 +20,7 @@ interface Props {
 }
 
 export default async function Layout({ params: { stopId }, children }: Props) {
+	console.log('layout');
 	const childStops = await fetchChildStops(stopId);
 
 	function initializeState({ set }: { set: SetRecoilState }) {

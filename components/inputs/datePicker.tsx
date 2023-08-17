@@ -37,7 +37,6 @@ export function createDatePicker(valueSelector: ValueSelectorFunction, updateFun
 		}
 
 		let value = new Date(valueSelector(data)).toISOString().split('T')[0];
-		console.log(value);
 
 		return <input type="date" value={value === '0001-01-01' ? '' : value} onChange={onChange} />;
 	};
