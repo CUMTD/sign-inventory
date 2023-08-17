@@ -1,15 +1,19 @@
-import { Alert, AlertTitle, Box, Button, Grow, LinearProgress, Zoom } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, CircularProgress, Grow, LinearProgress, Zoom } from '@mui/material';
 import styles from './page.module.css';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { initialDataState, isDataModifiedSelector, modifiedDataState } from '@state/serverDataState';
 import { useEffect } from 'react';
 import { putParentStop } from '@helpers/fetchDataHelpers';
+import React from 'react';
+import { green } from '@mui/material/colors';
 
 // handles the dialog that comes up when user has unsaved changes
 export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
 	const [intialData, setInitialData] = useRecoilState(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
+
+	const [loading, setLoading] = React.useState(false);
 
 	// add unloadlistener to isDataModified to prevent accidental navigation
 	useEffect(() => {
@@ -29,7 +33,10 @@ export default function UnsavedChangesAlert() {
 	function saveChanges() {
 		if (modifiedData) {
 			try {
+				setLoading(true);
 				putParentStop(modifiedData).then((res) => {
+					setLoading(false);
+
 					if (res) {
 						showSuccessfulSaveDialog();
 						console.log('saved changes');
@@ -42,12 +49,15 @@ export default function UnsavedChangesAlert() {
 			} catch (error) {
 				console.error(error);
 				showErrorSaveDialog();
+				console.log('error saving changes');
 			}
 		}
 	}
 
 	// throw away changes and revert to initial data
 	function discardChanges() {
+		setLoading(false);
+
 		setModifiedData(intialData);
 	}
 
@@ -79,6 +89,7 @@ export default function UnsavedChangesAlert() {
 							>
 								Discard
 							</Button>
+
 							<Button
 								className={`${styles.alertButton} ${styles.saveButton}`}
 								color="inherit"
@@ -93,7 +104,9 @@ export default function UnsavedChangesAlert() {
 					<AlertTitle>
 						<strong>Careful!</strong> — you have unsaved changes.
 					</AlertTitle>
-					{/* <LinearProgress /> */}
+					{loading && (
+						<LinearProgress sx={{ position: 'absolute', bottom: 0, left: 0, width: '100%' }} color="inherit" />
+					)}
 				</Alert>
 			</Grow>
 		);
@@ -118,6 +131,7 @@ export function SaveSuccessfulAlert() {
 					margin: 'auto',
 					marginBottom: '2em',
 					display: 'none',
+					border: '3px solid',
 				}}
 				className="saveSuccessfulAlert"
 			>
@@ -146,6 +160,7 @@ export function SaveErrorAlert() {
 					margin: 'auto',
 					marginBottom: '2em',
 					display: 'none',
+					border: '3px solid',
 				}}
 				className="saveErrorAlert"
 			>
