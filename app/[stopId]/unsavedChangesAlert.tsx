@@ -1,4 +1,4 @@
-import { Alert, AlertTitle, Button, Grow, Zoom } from '@mui/material';
+import { Alert, AlertTitle, Box, Button, Grow, LinearProgress, Zoom } from '@mui/material';
 import styles from './page.module.css';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { initialDataState, isDataModifiedSelector, modifiedDataState } from '@state/serverDataState';
@@ -93,6 +93,7 @@ export default function UnsavedChangesAlert() {
 					<AlertTitle>
 						<strong>Careful!</strong> — you have unsaved changes.
 					</AlertTitle>
+					{/* <LinearProgress /> */}
 				</Alert>
 			</Grow>
 		);

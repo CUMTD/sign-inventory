@@ -7,10 +7,15 @@ export async function fetchChildStops(stopId: string) {
 		method: 'GET',
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		mode: 'cors',
+		next: {
+			tags: ['child-stops'],
+		},
+		cache: 'no-cache',
 	});
 
 	if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
+		// return notFound();
 	}
 
 	const stops = (await response.json()) as ChildStop[];
