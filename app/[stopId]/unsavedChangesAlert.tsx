@@ -117,59 +117,55 @@ export default function UnsavedChangesAlert() {
 // save successful dialog
 export function SaveSuccessfulAlert() {
 	return (
-		<Grow in={true}>
-			<Alert
-				severity="success"
-				sx={{
-					position: 'absolute',
-					bottom: 0,
-					right: 0,
-					left: 0,
-					zIndex: 3,
-					maxWidth: ' 50%',
-					padding: '1em',
-					margin: 'auto',
-					marginBottom: '2em',
-					display: 'none',
-					border: '3px solid',
-				}}
-				className="saveSuccessfulAlert"
-			>
-				<AlertTitle>
-					<strong>Save successful.</strong>
-				</AlertTitle>
-			</Alert>
-		</Grow>
+		<Alert
+			severity="success"
+			sx={{
+				position: 'absolute',
+				bottom: 0,
+				right: 0,
+				left: 0,
+				zIndex: 3,
+				maxWidth: ' 50%',
+				padding: '1em',
+				margin: 'auto',
+				marginBottom: '2em',
+				display: 'none',
+				border: '3px solid',
+			}}
+			className="saveSuccessfulAlert"
+		>
+			<AlertTitle>
+				<strong>Save successful.</strong>
+			</AlertTitle>
+		</Alert>
 	);
 }
 
 // save error dialog
 export function SaveErrorAlert() {
 	return (
-		<Grow in={true}>
-			<Alert
-				severity="error"
-				sx={{
-					position: 'absolute',
-					bottom: 0,
-					right: 0,
-					left: 0,
-					zIndex: 3,
-					maxWidth: ' 50%',
-					padding: '1em',
-					margin: 'auto',
-					marginBottom: '2em',
-					display: 'none',
-					border: '3px solid',
-				}}
-				className="saveErrorAlert"
-			>
-				<AlertTitle>
-					<strong>Error saving changes</strong>
-				</AlertTitle>
-				Ensure you are connected to the internet and try again.
-			</Alert>
-		</Grow>
+		<Alert
+			severity="error"
+			sx={{
+				position: 'absolute',
+				bottom: 0,
+				right: 0,
+				left: 0,
+				zIndex: 3,
+				maxWidth: ' 50%',
+				padding: '1em',
+				margin: 'auto',
+				marginBottom: '2em',
+				display: 'none',
+				border: '3px solid',
+			}}
+			className="saveErrorAlert"
+		>
+			<AlertTitle>
+				<strong>Error saving changes</strong>
+			</AlertTitle>
+			Ensure you are connected to the internet and try again.
+		</Alert>
 	);
 }
 
