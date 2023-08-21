@@ -177,7 +177,6 @@ export default function SignPage() {
 				</div>
 
 				<div className={styles.subSection}>
-					{' '}
 					<Typography variant="h4" component="h2">
 						Pole
 					</Typography>

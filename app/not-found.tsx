@@ -8,12 +8,13 @@ export default function NotFoundPage() {
 			<div style={{ padding: '3em 0 0 3em' }}>
 				<BackButton />
 			</div>
+
+			{/* TODO: inline css is bad */}
 			<div
 				style={{
 					display: 'flex',
 					flexDirection: 'column',
-					// width: '80vw',
-					// height: '60vw',
+
 					margin: 'auto',
 					padding: '1vh 0',
 					textAlign: 'center',

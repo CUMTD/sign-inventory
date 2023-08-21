@@ -5,8 +5,8 @@ import Typography from '@mui/material/Typography';
 import logo_svg from '@public/logo.svg';
 import { selectedChildStopState, selectedParentStopState, selectedStopFriendlyNameState } from '@state/serverDataState';
 import Image from 'next/image';
-import { ReactNode, useEffect } from 'react';
-import { useRecoilSnapshot, useRecoilValue } from 'recoil';
+import { ReactNode } from 'react';
+import { useRecoilValue } from 'recoil';
 import BackButton from './backButton';
 import BoardingPointSelector from './boardingPointSelector';
 import styles from './page.module.css';
@@ -27,9 +27,9 @@ export default function SideMenu({ children }: Props) {
 			<Box className={styles.page}>
 				<Box className={styles.sidebar}>
 					<BackButton />
-					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
-						{/* {friendly_name} */}
-					</Typography>
+					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}></Typography>
+					{/* TODO: inline css is bad */}
+
 					<Typography
 						variant="h5"
 						component={'h2'}

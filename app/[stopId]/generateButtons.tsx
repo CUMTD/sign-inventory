@@ -13,7 +13,6 @@ export default function GenerateButtons() {
 	const [selectedChildStop, setSelectedChildStop] = useRecoilState(selectedChildStopState);
 
 	// set the selected child stop atom on button click
-
 	const click = useCallback(
 		(id: string) => {
 			if (isDataModified) {

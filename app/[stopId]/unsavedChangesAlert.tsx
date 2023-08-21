@@ -1,7 +1,12 @@
 import { Alert, AlertTitle, Box, Button, CircularProgress, Grow, LinearProgress, Zoom } from '@mui/material';
 import styles from './page.module.css';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { initialDataState, isDataModifiedSelector, modifiedDataState } from '@state/serverDataState';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import {
+	initialDataState,
+	isDataModifiedSelector,
+	isUpdatedTodayState,
+	modifiedDataState,
+} from '@state/serverDataState';
 import { useEffect } from 'react';
 import { putParentStop } from '@helpers/fetchDataHelpers';
 import React from 'react';
@@ -12,6 +17,7 @@ export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
 	const [intialData, setInitialData] = useRecoilState(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
+	const setIsUpdatedToday = useSetRecoilState(isUpdatedTodayState);
 
 	const [loading, setLoading] = React.useState(false);
 
@@ -41,6 +47,7 @@ export default function UnsavedChangesAlert() {
 						showSuccessfulSaveDialog();
 						console.log('saved changes');
 						setInitialData(modifiedData);
+						setIsUpdatedToday(true);
 					} else {
 						showErrorSaveDialog();
 						console.log('error saving changes');

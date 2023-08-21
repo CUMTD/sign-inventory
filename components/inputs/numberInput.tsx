@@ -2,7 +2,7 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
-import { ChangeEvent, ReactNode, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 
 interface CustomNumberInputProps {

@@ -65,6 +65,11 @@ export const modifiedDataState = atom<ChildStop | null>({
 	default: null,
 });
 
+export const isUpdatedTodayState = atom<boolean>({
+	key: 'isUpdatedTodayState',
+	default: false,
+});
+
 export const isDataModifiedSelector = selector<boolean>({
 	key: 'isDataModifiedSelector',
 	get: ({ get }) => {
@@ -79,4 +84,9 @@ export const isDataModifiedSelector = selector<boolean>({
 export const isDataModifiedState = atom<boolean>({
 	key: 'isDataModifiedState',
 	default: false,
+});
+
+export const stopImageState = atom<string | null>({
+	key: 'stopImageState',
+	default: null,
 });

@@ -1,5 +1,5 @@
 'use client';
-import { Box, Typography } from '@mui/material';
+import { Box } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
 import React from 'react';
@@ -33,6 +33,7 @@ export default function NavTabs() {
 	};
 
 	return (
+		// TODO: inline css is bad
 		<Box sx={{ width: '100%' }}>
 			<Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
 				<Tabs orientation="vertical" value={value} onChange={handleChange}>

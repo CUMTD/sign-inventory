@@ -15,6 +15,8 @@ const StopNotesTextInput = createTextInput(
 		notes: newValue,
 	}),
 );
+
+// TODO: inline css is bad
 export default function NotesPage() {
 	return (
 		<div style={{ marginBottom: '2em' }}>

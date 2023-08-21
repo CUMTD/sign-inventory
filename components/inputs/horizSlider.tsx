@@ -1,34 +1,9 @@
-import { Checkbox, Slider, Typography } from '@mui/material';
-import { ChangeEvent, ReactNode, useCallback, useState } from 'react';
+import { Slider, Typography } from '@mui/material';
+import { ReactNode } from 'react';
 import SliderDescription from './sliderDescription';
 import { ChildStop } from '@t/apiResponse';
 import { useRecoilState } from 'recoil';
 import { modifiedDataState } from '@state/serverDataState';
-
-// interface Props {
-// 	min: number;
-// 	max: number;
-// 	defaultValue: number;
-// 	description_set: string;
-// }
-
-// export default function HorizSlider({ min, max, defaultValue, description_set }: Props) {
-// 	const [value, setValue] = useState<number>(defaultValue);
-
-// 	const onInputChange = useCallback((event: Event) => {
-// 		const value = parseInt((event.target as HTMLInputElement).value);
-// 		setValue(value);
-// 	}, []);
-
-// 	return (
-// 		<>
-// 			<Typography variant="subtitle2">
-// 				{defaultValue} : <SliderDescription value={defaultValue} description_set={description_set} />
-// 			</Typography>
-// 			<Slider value={defaultValue} min={min} max={max} marks valueLabelDisplay="off" onChange={onInputChange} />
-// 		</>
-// 	);
-// }
 
 interface CustomHorizSliderProps {
 	label: string;

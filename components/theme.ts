@@ -7,7 +7,6 @@ const theme = createTheme({
 	spacing: 20,
 
 	palette: {
-		// mode: 'dark',
 		primary: {
 			main: '#002f87',
 		},
@@ -39,11 +38,6 @@ const theme = createTheme({
 			},
 		},
 
-		MuiButtonBase: {
-			defaultProps: {
-				// disableRipple: true, // no more ripple on the whole application
-			},
-		},
 		MuiButtonGroup: {
 			styleOverrides: {
 				grouped: {

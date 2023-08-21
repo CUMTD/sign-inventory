@@ -1,7 +1,7 @@
 import { Checkbox, FormControlLabel } from '@mui/material';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
-import { ChangeEvent, ReactNode, useCallback } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 
 interface CustomCheckBoxProps {

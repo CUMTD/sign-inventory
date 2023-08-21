@@ -2,9 +2,6 @@
 
 import { createCheckbox } from '@components/inputs/checkbox';
 import styles from '../page.module.css';
-import { ChildStop } from '@t/apiResponse';
-import { useRecoilValue } from 'recoil';
-import { selectedChildStopSelector } from '@state/serverDataState';
 import { createHorizSlider } from '@components/inputs/horizSlider';
 
 const RampDeployableCheckbox = createCheckbox(

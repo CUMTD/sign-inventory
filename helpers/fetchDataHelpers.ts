@@ -15,7 +15,6 @@ export async function fetchChildStops(stopId: string) {
 
 	if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
-		// return notFound();
 	}
 
 	const stops = (await response.json()) as ChildStop[];
@@ -34,10 +33,7 @@ export async function putParentStop(child_stop: ChildStop) {
 		mode: 'cors',
 		body: JSON.stringify(child_stop),
 	});
-	// if (!response.ok) {
-	// 	return response.status;
-	// 	throw new Error(`HTTP error! status: ${response.status}`);
-	// }
+
 	return response.ok;
 }
 
@@ -47,10 +43,26 @@ export async function fetchStopPhoto(stopId: string) {
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		mode: 'cors',
 	});
+
+	if (response.status === 404) {
+		// no image exists
+		return null;
+	}
+
 	if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
-	const photo = (await response.url) as string;
-	console.log('photo: ', photo);
-	return photo;
+	const blob = await response.blob();
+
+	return new Promise<string | null>((resolve, reject) => {
+		const fileReader = new FileReader();
+		fileReader.onload = function () {
+			const result = this.result as string;
+			resolve(result);
+		};
+		fileReader.onerror = function () {
+			reject('Failed to decode image.');
+		};
+		fileReader.readAsDataURL(blob);
+	});
 }

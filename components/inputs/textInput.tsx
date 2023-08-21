@@ -8,13 +8,10 @@ import { useRecoilState } from 'recoil';
 interface Props {
 	label: string;
 	placeholder: string;
-	onChange: (value: string) => void;
 	defaultValue: string;
 }
 
-export default function TextInput({ label, placeholder, onChange, defaultValue }: Props) {
-	const [value, setValue] = useState<string>('');
-
+export default function TextInput({ label, placeholder, defaultValue }: Props) {
 	if (defaultValue === null) {
 		defaultValue = '';
 	}
@@ -32,7 +29,6 @@ export default function TextInput({ label, placeholder, onChange, defaultValue }
 				InputLabelProps={{
 					shrink: true,
 				}}
-				// onChange={onInputChange}
 				style={{ width: '100%' }}
 			/>
 		</>

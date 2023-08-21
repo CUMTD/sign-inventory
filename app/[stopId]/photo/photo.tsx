@@ -1,37 +1,35 @@
 'use client';
 
-import Image from 'next/image';
-import { Stack } from '@mui/material';
-import styles from '../page.module.css';
-import { useRecoilValue } from 'recoil';
-import { selectedStopIdSelector } from '@state/serverDataState';
-import { useState } from 'react';
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { selectedStopIdSelector, stopImageState } from '@state/serverDataState';
+import { useCallback, useEffect, useState } from 'react';
+import { fetchStopPhoto } from '@helpers/fetchDataHelpers';
+import Camera from '@components/inputs/camera';
 
 export default function PhotoPage() {
 	const fullStopId = useRecoilValue(selectedStopIdSelector);
-	const [hideImage, setHideImage] = useState(false);
+	const [stopImage, setStopImage] = useRecoilState(stopImageState);
 
-	return (
-		<>
-			<Stack spacing={3}>
-				<div className={styles.subSection}>
-					<div
-						style={{ position: 'relative', minHeight: '30em', minWidth: '50em', display: hideImage ? 'none' : 'block' }}
-					>
-						<Image
-							src={`${ENDPOINT}/child-stop/${fullStopId}`}
-							fill={true}
-							alt={`Image for ${fullStopId}`}
-							className={styles.image}
-							onError={() => setHideImage(true)}
-							onLoadingComplete={() => setHideImage(false)}
-						/>
-					</div>
-					<label>Upload a new photo:</label>
-					<input type="file" accept="image/jpeg" />
-				</div>
-			</Stack>
-		</>
+	const imageChangeCallback = useCallback(
+		(img: string | null) => {
+			setStopImage(img);
+		},
+		[setStopImage],
 	);
+
+	useEffect(() => {
+		async function updateImageFromServer() {
+			const image = await fetchStopPhoto(fullStopId);
+			console.log('fetched initial data', { image });
+			setStopImage(image);
+		}
+		updateImageFromServer();
+	}, [fullStopId, setStopImage]);
+
+	useEffect(() => {
+		console.count('stop image changed');
+		console.log('stop image', { stopImage });
+	}, [stopImage]);
+
+	return <Camera initialData={stopImage} photoCallback={imageChangeCallback} />;
 }

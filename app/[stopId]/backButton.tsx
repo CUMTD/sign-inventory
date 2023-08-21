@@ -11,6 +11,7 @@ export default function BackButton() {
 		router.push('/');
 	}
 
+	// TODO: inline css is bad
 	return (
 		<Button style={{ justifyContent: 'left' }} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
 			back to search

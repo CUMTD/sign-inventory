@@ -5,9 +5,6 @@ import { createNumberInput } from '@components/inputs/numberInput';
 import { createTextInput } from '@components/inputs/textInput';
 import { Typography } from '@mui/material';
 import styles from '../page.module.css';
-import { ChildStop } from '@t/apiResponse';
-import { useRecoilValue } from 'recoil';
-import { selectedChildStopSelector } from '@state/serverDataState';
 import { createFeetInches } from '@components/inputs/feetInches';
 
 const HasShelterCheckbox = createCheckbox(

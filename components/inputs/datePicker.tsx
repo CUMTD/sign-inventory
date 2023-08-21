@@ -1,17 +1,7 @@
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
-import { ChangeEvent, ReactNode, useCallback, useState } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
-
-// export default function DatePicker({ initDate }: Props) {
-// 	const [date, setDate] = useState<Date>(new Date(initDate));
-// 	const onDateChange = useCallback((event: ChangeEvent) => {
-// 		const date = (event.target as HTMLInputElement).value;
-// 		setDate(new Date(date));
-// 	}, []);
-
-// 	return <input type="date" defaultValue={date.toISOString().split('T')[0] ?? ''} onChange={onDateChange} />;
-// }
 
 interface CustomDatePickerProps {
 	label: string;
@@ -20,6 +10,7 @@ interface CustomDatePickerProps {
 type ValueSelectorFunction = (data: ChildStop) => Date;
 type UpdateFunction = (currentData: ChildStop, newValue: Date) => ChildStop;
 
+// TODO: add label to return
 export function createDatePicker(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
 	return function CustomDatePicker({ label }: CustomDatePickerProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
