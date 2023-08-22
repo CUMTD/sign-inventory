@@ -1,16 +1,16 @@
-import { Alert, AlertTitle, Box, Button, CircularProgress, Grow, LinearProgress, Zoom } from '@mui/material';
-import styles from './page.module.css';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+'use client';
+
+import { putParentStop } from '@helpers/fetchDataHelpers';
+import { Alert, AlertTitle, Button, Grow, LinearProgress } from '@mui/material';
 import {
 	initialDataState,
 	isDataModifiedSelector,
 	isUpdatedTodayState,
 	modifiedDataState,
 } from '@state/serverDataState';
-import { useEffect } from 'react';
-import { putParentStop } from '@helpers/fetchDataHelpers';
-import React from 'react';
-import { green } from '@mui/material/colors';
+import React, { useEffect } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import styles from './page.module.css';
 
 // handles the dialog that comes up when user has unsaved changes
 export default function UnsavedChangesAlert() {

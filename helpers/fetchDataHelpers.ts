@@ -1,12 +1,19 @@
 import { ChildStop } from '@t/apiResponse';
+import throwError from './throwError';
 
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
+const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ?? throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
+
+const defaultFetchConfig: RequestInit = {
+	headers: {
+		'Access-Control-Allow-Origin': '*'
+	},
+	mode: 'cors'
+}
 
 export async function fetchChildStops(stopId: string) {
-	const response = await fetch(`${ENDPOINT}/siblings/${stopId}`, {
+	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/siblings`, {
+		...defaultFetchConfig,
 		method: 'GET',
-		headers: { 'Access-Control-Allow-Origin': '*' },
-		mode: 'cors',
 		next: {
 			tags: ['child-stops'],
 		},
@@ -23,25 +30,23 @@ export async function fetchChildStops(stopId: string) {
 
 export async function putParentStop(child_stop: ChildStop) {
 	// TODO: wire up to param after testing
-
+	const { id } = child_stop;
 	const body = JSON.stringify(child_stop);
 	console.log(child_stop);
 
-	const response = await fetch(`${ENDPOINT}/stop-point/TEST-1`, {
+	const response = await fetch(`/api/${id}`, {
+		...defaultFetchConfig,
 		method: 'PUT',
-		headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json' },
-		mode: 'cors',
-		body: JSON.stringify(child_stop),
+		body
 	});
 
 	return response.ok;
 }
 
 export async function fetchStopPhoto(stopId: string) {
-	const response = await fetch(`${ENDPOINT}/child-stop/${stopId}`, {
-		method: 'GET',
-		headers: { 'Access-Control-Allow-Origin': '*' },
-		mode: 'cors',
+	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
+		...defaultFetchConfig,
+		method: 'GET'
 	});
 
 	if (response.status === 404) {
