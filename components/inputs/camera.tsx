@@ -30,6 +30,7 @@ const constraints: MediaStreamConstraints = {
 
 export default function Camera({ initialData, photoCallback }: CameraProps) {
 	const [data, setData] = useRecoilState(modifiedDataState);
+
 	const [initialImg, setinitialImg] = useState<boolean>(true);
 
 	const dataImage = useMemo(() => {
@@ -38,6 +39,7 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 		}
 
 		if (initialData.startsWith('data:image/jpeg;base64,')) {
+			console.log('hello');
 			return initialData;
 		}
 
@@ -114,6 +116,7 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 				if (context2d.current && videoRef.current && canvasRef.current) {
 					context2d.current.drawImage(videoRef.current, 0, 0, canvasRef.current.width, canvasRef.current.height);
 					const dataUri = canvasRef.current.toDataURL('image/jpeg');
+
 					photoCallback(dataUri);
 					setIsShooting(false);
 				} else {

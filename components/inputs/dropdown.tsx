@@ -20,13 +20,13 @@ export const development_types: { [name: string]: string } = {
 };
 
 export const pole_types: { [name: string]: string } = {
-	'Utility Pole': '01172fef5de04fc2bfa13fd31f04c83d',
-	'Other Pole': '100a1556752640c3b263353053341dd2',
-	'MTD Pole': '832cd03d62864fe58a5fc871070a1b2b',
-	'Unknown': '9601eb200ce1423a9ebeb7b4cc0ae6e6',
-	'Traffic Light': 'cd070ca005614c94bbfc73b6fe481b23',
-	'Street Light': 'ebf90fa1f7f942b4b4633919da2e65d0',
-	'Stop Sign': 'fb33193238684d97983d3886f2627ae8',
+	'01172fef5de04fc2bfa13fd31f04c83d': 'Utility Pole',
+	'100a1556752640c3b263353053341dd2': 'Other Pole',
+	'832cd03d62864fe58a5fc871070a1b2b': 'MTD Pole',
+	'9601eb200ce1423a9ebeb7b4cc0ae6e6': 'Unknown',
+	'cd070ca005614c94bbfc73b6fe481b23': 'Traffic Light',
+	'ebf90fa1f7f942b4b4633919da2e65d0': 'Street Light',
+	'fb33193238684d97983d3886f2627ae8': 'Stop Sign',
 };
 
 interface CustomDropDownProps {

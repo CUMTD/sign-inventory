@@ -66,9 +66,9 @@ const IsBrokenCheckbox = createCheckbox(
 const PoleTypeDropDown = createDropDown(
 	({ sign: { poleType } }) => {
 		if (poleType) {
-			return poleType.name;
+			return poleType.id;
 		} else {
-			return 'Unknown';
+			return '9601eb200ce1423a9ebeb7b4cc0ae6e6';
 		}
 	},
 	({ sign, ...childStop }, newValue) => ({
@@ -76,7 +76,7 @@ const PoleTypeDropDown = createDropDown(
 			...sign,
 			poleType: {
 				...sign.poleType,
-				name: newValue,
+				id: newValue,
 			},
 		},
 		...childStop,
