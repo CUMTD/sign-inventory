@@ -76,7 +76,6 @@ export const isDataModifiedSelector = selector<boolean>({
 		const initialData = get(initialDataState);
 		const modifiedData = get(modifiedDataState);
 
-		console.log('equal?: ', JSON.stringify(initialData) === JSON.stringify(modifiedData));
 		return JSON.stringify(initialData) !== JSON.stringify(modifiedData);
 	},
 });
