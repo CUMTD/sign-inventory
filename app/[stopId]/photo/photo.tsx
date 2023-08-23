@@ -20,16 +20,12 @@ export default function PhotoPage() {
 	useEffect(() => {
 		async function updateImageFromServer() {
 			const image = await fetchStopPhoto(fullStopId);
-			console.log('fetched initial data', { image });
 			setStopImage(image);
 		}
 		updateImageFromServer();
 	}, [fullStopId, setStopImage]);
 
-	useEffect(() => {
-		console.count('stop image changed');
-		console.log('stop image', { stopImage });
-	}, [stopImage]);
+	useEffect(() => {}, [stopImage]);
 
 	return <Camera initialData={stopImage} photoCallback={imageChangeCallback} />;
 }

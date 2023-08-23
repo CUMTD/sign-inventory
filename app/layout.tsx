@@ -20,12 +20,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 			createTheme({
 				...custom_theme,
 				palette: {
-					mode: prefersDarkMode ? 'dark' : 'light',
-					primary: prefersDarkMode ? { main: '#90caf9' } : { main: '#002f87' },
-					secondary: prefersDarkMode ? { main: '#f48fb1' } : { main: '#E91D2D' },
+					mode: 'dark',
+					primary: { main: '#90caf9' },
+					secondary: { main: '#f48fb1' },
 				},
 			}),
-		[prefersDarkMode],
+		[],
 	);
 
 	return (

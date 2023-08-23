@@ -1,9 +1,10 @@
-import throwError from "@helpers/throwError";
-import { NextApiRequest, NextApiResponse } from "next";
+import throwError from '@helpers/throwError';
+import { NextApiRequest, NextApiResponse } from 'next';
 import 'server only';
 
-
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ?? throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
+const ENDPOINT =
+	process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ??
+	throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
 const API_KEY = process.env.INVENTORY_API_KEY ?? throwError('Missing INVENTORY_API_KEY in env vars');
 
 const defaultFetchConfig: RequestInit = {
@@ -11,8 +12,8 @@ const defaultFetchConfig: RequestInit = {
 		'Access-Control-Allow-Origin': '*',
 		'X-ApiKey': API_KEY,
 	},
-	mode: 'cors'
-}
+	mode: 'cors',
+};
 
 export default async function handler({ method, body, query: { id } }: NextApiRequest, res: NextApiResponse) {
 	if (method !== 'PUT') {
@@ -25,7 +26,7 @@ export default async function handler({ method, body, query: { id } }: NextApiRe
 	const response = await fetch(url, {
 		...defaultFetchConfig,
 		method: 'PUT',
-		body
+		body,
 	});
 
 	if (!response.ok) {

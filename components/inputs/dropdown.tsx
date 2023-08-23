@@ -56,7 +56,6 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 				const newValue: string = selectionOptionsKeys[event.target.value as number];
 
 				const newChildStopData = updateFunction(data, newValue);
-				console.log('new data', newChildStopData);
 
 				setData(newChildStopData);
 			}
@@ -68,8 +67,6 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 		// console.log(data);
 
 		let value: string = valueSelector(data) ?? '727dc560279e469d97f7f79683935981';
-
-		console.log('the current value is ', value);
 
 		if (value === '8bc671cad47b4a359500b5b50d218077') {
 			value = 'e434fddfd2e54fff8c3b18a6db25c155';

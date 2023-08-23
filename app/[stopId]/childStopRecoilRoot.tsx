@@ -20,7 +20,6 @@ export default function ChildStopRecoilRoot({ stopId, childStops, children }: Pr
 	}
 	function initializeState({ set }: { set: SetRecoilState }) {
 		if (stopId !== undefined) {
-			console.log('stopId defined');
 			set(selectedParentStopState, stopId);
 		}
 		set(childStopsState, childStops);

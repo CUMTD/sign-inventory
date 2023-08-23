@@ -12,7 +12,7 @@ import { modifiedDataState } from '@state/serverDataState';
 
 interface CameraProps {
 	initialData: string | null;
-	photoCallback: (image: string) => void;
+	photoCallback: (content: string) => void;
 }
 
 const constraints: MediaStreamConstraints = {
@@ -39,7 +39,6 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 		}
 
 		if (initialData.startsWith('data:image/jpeg;base64,')) {
-			console.log('hello');
 			return initialData;
 		}
 
@@ -64,6 +63,8 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 
 	useEffect(() => {
 		setIsShooting(dataImage === null);
+
+		// FIX THIS TO CONTENT INSTEAD OF IMAGE
 		if (!initialImg) {
 			setData((currentData) => {
 				if (currentData === null) {
@@ -72,6 +73,7 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 
 				return {
 					...currentData,
+
 					image: dataImage,
 				};
 			});

@@ -1,14 +1,18 @@
 import { ChildStop } from '@t/apiResponse';
 import throwError from './throwError';
 
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ?? throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
+const ENDPOINT =
+	process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ??
+	throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
+
+const API_KEY = process.env.NEXT_PUBLIC_INVENTORY_API_KEY ?? throwError('Missing INVENTORY_API_KEY in env vars');
 
 const defaultFetchConfig: RequestInit = {
 	headers: {
-		'Access-Control-Allow-Origin': '*'
+		'Access-Control-Allow-Origin': '*',
 	},
-	mode: 'cors'
-}
+	mode: 'cors',
+};
 
 export async function fetchChildStops(stopId: string) {
 	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/siblings`, {
@@ -30,23 +34,40 @@ export async function fetchChildStops(stopId: string) {
 
 export async function putParentStop(child_stop: ChildStop) {
 	// TODO: wire up to param after testing
-	const { id } = child_stop;
-	const body = JSON.stringify(child_stop);
-	console.log(child_stop);
 
-	const response = await fetch(`/api/${id}`, {
-		...defaultFetchConfig,
+	const body = JSON.stringify(child_stop);
+
+	const response = await fetch(`${ENDPOINT}/stop-point/TEST-1`, {
 		method: 'PUT',
-		body
+		headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', 'X-ApiKey': API_KEY },
+		mode: 'cors',
+		body: JSON.stringify(child_stop),
 	});
 
 	return response.ok;
 }
 
+// export async function putParentStop(child_stop: ChildStop) {
+
+// 	// TODO: wire up to param after testing
+// 	const { id } = child_stop;
+// 	const body = JSON.stringify(child_stop);
+// 	console.log(child_stop);
+
+// 	const response = await fetch(`/api/TEST-1`, {
+// 		// const response = await fetch(`/api/${id}`, {
+// 		...defaultFetchConfig,
+// 		method: 'PUT',
+// 		body,
+// 	});
+
+// 	return response.ok;
+// }
+
 export async function fetchStopPhoto(stopId: string) {
 	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
 		...defaultFetchConfig,
-		method: 'GET'
+		method: 'GET',
 	});
 
 	if (response.status === 404) {
