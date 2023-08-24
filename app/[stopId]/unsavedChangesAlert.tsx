@@ -1,12 +1,13 @@
 'use client';
 
-import { putParentStop } from '@helpers/fetchDataHelpers';
+import { putParentStop, putStopPhoto } from '@helpers/fetchDataHelpers';
 import { Alert, AlertTitle, Button, Grow, LinearProgress } from '@mui/material';
 import {
 	initialDataState,
 	isDataModifiedSelector,
 	isUpdatedTodayState,
 	modifiedDataState,
+	selectedStopIdSelector,
 } from '@state/serverDataState';
 import React, { useEffect } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -18,6 +19,7 @@ export default function UnsavedChangesAlert() {
 	const [intialData, setInitialData] = useRecoilState(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
 	const setIsUpdatedToday = useSetRecoilState(isUpdatedTodayState);
+	const selectedStopId = useRecoilValue(selectedStopIdSelector);
 
 	const [loading, setLoading] = React.useState(false);
 
@@ -40,6 +42,10 @@ export default function UnsavedChangesAlert() {
 		if (modifiedData) {
 			try {
 				setLoading(true);
+				if (modifiedData.content) {
+					putStopPhoto(selectedStopId, modifiedData.content);
+					console.log(modifiedData.content);
+				}
 				putParentStop(modifiedData).then((res) => {
 					setLoading(false);
 

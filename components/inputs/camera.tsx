@@ -9,6 +9,7 @@ import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import { useRecoilState } from 'recoil';
 import { modifiedDataState } from '@state/serverDataState';
+import { ChildStop } from '@t/apiResponse';
 
 interface CameraProps {
 	initialData: string | null;
@@ -64,7 +65,6 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 	useEffect(() => {
 		setIsShooting(dataImage === null);
 
-		// FIX THIS TO CONTENT INSTEAD OF IMAGE
 		if (!initialImg) {
 			setData((currentData) => {
 				if (currentData === null) {
@@ -73,8 +73,7 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 
 				return {
 					...currentData,
-
-					image: dataImage,
+					content: dataImage ?? '',
 				};
 			});
 		}

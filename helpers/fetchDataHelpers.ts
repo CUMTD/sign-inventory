@@ -34,14 +34,16 @@ export async function fetchChildStops(stopId: string) {
 
 export async function putParentStop(child_stop: ChildStop) {
 	// TODO: wire up to param after testing
+	let utf8Encode = new TextEncoder();
 
-	const body = JSON.stringify(child_stop);
+	// const contentAsBytes = utf8Encode.encode(child_stop.content.split('data:image/jpeg;base64,')[1] ?? '');
+	const contentAsBytes = child_stop.content.split('data:image/jpeg;base64,')[1] ?? '';
 
 	const response = await fetch(`${ENDPOINT}/stop-point/TEST-1`, {
 		method: 'PUT',
 		headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', 'X-ApiKey': API_KEY },
 		mode: 'cors',
-		body: JSON.stringify(child_stop),
+		body: JSON.stringify({ ...child_stop, content: null }),
 	});
 
 	return response.ok;
@@ -91,4 +93,20 @@ export async function fetchStopPhoto(stopId: string) {
 		};
 		fileReader.readAsDataURL(blob);
 	});
+}
+
+export async function putStopPhoto(stopId: string, image: string | null) {
+	console.log(image?.split('data:image/jpeg;base64,')[1]);
+	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
+		...defaultFetchConfig,
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		method: 'PUT',
+		body: '"' + image?.split('data:image/jpeg;base64,')[1] + '"',
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
 }
