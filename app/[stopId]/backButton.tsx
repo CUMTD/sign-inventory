@@ -9,12 +9,12 @@ export default function BackButton() {
 	const router = useRouter();
 
 	function goBack() {
-		router.push('/');
+		router.back();
 	}
 
 	return (
 		<Button className={styles.backButton} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
-			back to search
+			back
 		</Button>
 	);
 }

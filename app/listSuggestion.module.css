@@ -1,0 +1,22 @@
+.suggestionLower {
+	opacity: 80%;
+	font-size: 85%;
+	letter-spacing: 0.1ch;
+	color: var(--text);
+	text-decoration: none !important;
+	text-transform: uppercase;
+	margin-left: auto;
+	float: right;
+}
+
+.link {
+	display: block;
+	font-weight: 600;
+	font-size: 160%;
+	text-decoration: none;
+	color: var(--palette-text-primary);
+}
+
+.link:visited {
+	color: gray !important;
+}
