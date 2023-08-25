@@ -1,10 +1,5 @@
-.titleAndSearchBar {
+.primarySearchInterface {
 	display: flex;
-	flex-direction: column;
-	gap: 1em;
-	flex-grow: 1;
-}
-
-.titleAndSearchBar > TextField {
-	width: 100%;
+	align-items: center;
+	gap: 2em;
 }

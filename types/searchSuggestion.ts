@@ -13,7 +13,7 @@ export interface Result {
 	boardingPoints: string[];
 }
 
-export default interface Suggestion {
+export default interface SearchSuggestion {
 	queryHighlight: Highlight[];
 	result: Result;
 	score: number;

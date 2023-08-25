@@ -1,4 +1,4 @@
-import { Result } from '@t/suggestion';
+import type { Result } from '@t/searchSuggestion';
 import { atom, selector } from 'recoil';
 
 export const queryState = atom<string>({

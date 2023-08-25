@@ -1,21 +1,23 @@
 'use client';
 
 import custom_theme from '@components/theme';
+import { createTheme, useMediaQuery } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
 import { ThemeProvider } from '@mui/material/styles';
-import './globals.css';
-import React from 'react';
-import { createTheme, useMediaQuery } from '@mui/material';
+import { ReactNode, useMemo } from 'react';
 
 export const metadata = {
 	title: 'Sign Inventory',
 	description: 'Internal MTD tool for managing sign inventory',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 	// dark mode configuration
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-	const theme = React.useMemo(
+
+
+	// TODO: Move to custom theme file
+	const theme = useMemo(
 		() =>
 			createTheme({
 				...custom_theme,
@@ -32,8 +34,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 		<html lang="en">
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
-
-				<body>{children}</body>
+				<body>
+					<main>
+						{children}
+					</main>
+				</body>
 			</ThemeProvider>
 		</html>
 	);

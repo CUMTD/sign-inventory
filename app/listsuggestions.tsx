@@ -3,14 +3,14 @@
 import { Card, CardContent } from '@mui/material';
 import { searchResultsState } from '@state/homepageState';
 import Link from 'next/link';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import styles from './listsuggestions.module.css';
-import { selectedStopFriendlyNameState } from '@state/serverDataState';
+import { useRecoilValue } from 'recoil';
+import styles from './listSuggestions.module.css';
 
 export default function ListSuggestions() {
 	const searchResults = useRecoilValue(searchResultsState);
 
-	// format the search suggestions nicely
+	//TODO: Remove inline CSS
+
 	return (
 		<div style={{ marginTop: '3em' }} className={styles.suggestionList}>
 			{searchResults.map(({ id, name, city }) => (

@@ -1,13 +1,15 @@
 /** @type {import('next').NextConfig} */
-const ENDPOINT = process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT;
+
+const hostname = process.env.IMAGE_DOMAIN ?? '';
+const port = process.env.IMAGE_PORT ?? '443';
 
 const nextConfig = {
 	images: {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: 'localhost',
-				port: '7135',
+				hostname,
+				port,
 				pathname: '/child-stop/**',
 			},
 		],

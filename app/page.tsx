@@ -5,10 +5,8 @@ import Search from './search';
 
 export default function Home() {
 	return (
-		<main>
-			<RecoilProvider>
-				<Search />
-			</RecoilProvider>
-		</main>
+		<RecoilProvider>
+			<Search />
+		</RecoilProvider>
 	);
 }

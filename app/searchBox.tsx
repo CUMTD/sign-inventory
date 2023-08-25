@@ -14,12 +14,14 @@ export default function SearchBox() {
 		setQuery(event.target.value);
 	}
 
+	//TODO: Cleanup rendering style with label
 	return (
 		<div className={styles.titleAndSearchBar}>
 			<Typography variant="h3" component="h1">
 				Sign Inventory
 			</Typography>
 			<TextField
+				label="Stop Name"
 				id="standard-basic"
 				variant="outlined"
 				InputProps={{

@@ -2,7 +2,7 @@
 
 import throwError from '@helpers/throwError';
 import { searchResultsState, trimmedQuerySelector } from "@state/homepageState";
-import Suggestion from '@t/suggestion';
+import SearchSuggestion from '@t/searchSuggestion';
 import { useCallback, useEffect } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 
@@ -19,10 +19,9 @@ export default function SearchUpdater() {
 		}
 
 		const response = await fetch(`${AUTOCOMPLETE_URL}${query}`);
-		const data = (await response.json()) as Suggestion[];
+		const data = (await response.json()) as SearchSuggestion[];
 		return data.map(({ result }) => result);
 	}, []);
-
 
 	useEffect(() => {
 		async function updateSearchResults() {
