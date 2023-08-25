@@ -1,6 +1,7 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import BackButton from './[stopId]/backButton';
+import styles from './not-found.module.css';
 export default function NotFoundPage() {
 	const pathname = usePathname();
 	return (
@@ -9,19 +10,8 @@ export default function NotFoundPage() {
 				<BackButton />
 			</div>
 
-			{/* TODO: inline css is bad */}
-			<div
-				style={{
-					display: 'flex',
-					flexDirection: 'column',
-
-					margin: 'auto',
-					padding: '1vh 0',
-					textAlign: 'center',
-					gap: '1em',
-				}}
-			>
-				<h1 style={{ fontSize: '700%', margin: 0 }}>404</h1>
+			<div className={styles.container}>
+				<h1 className={styles.header}>404</h1>
 				<h1>Page not Found</h1>
 				<code>{pathname}</code>
 				<a href={`mailto:developer@mtd.org?subject=Sign%20Inventory%20404%20Error%20accessing%20${pathname}`}>

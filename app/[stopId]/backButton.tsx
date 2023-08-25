@@ -3,6 +3,7 @@
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { Button } from '@mui/material';
 import { useRouter } from 'next/navigation';
+import styles from './backButton.module.css';
 
 export default function BackButton() {
 	const router = useRouter();
@@ -11,9 +12,8 @@ export default function BackButton() {
 		router.push('/');
 	}
 
-	// TODO: inline css is bad
 	return (
-		<Button style={{ justifyContent: 'left' }} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
+		<Button className={styles.backButton} size="large" startIcon={<ArrowBackIcon />} onClick={goBack}>
 			back to search
 		</Button>
 	);

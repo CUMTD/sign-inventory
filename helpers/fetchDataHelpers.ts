@@ -35,7 +35,7 @@ export async function getSiblings(stopId: string) {
 }
 
 // writes child stop to db
-// TODO: wire up to param after testing
+// TODO: wire up to child_stop param when ready to deploy
 
 export async function putParentStop(child_stop: ChildStop) {
 	const response = await fetch(`${ENDPOINT}/stop-point/TEST-1`, {
@@ -44,6 +44,7 @@ export async function putParentStop(child_stop: ChildStop) {
 		mode: 'cors',
 		body: JSON.stringify({ ...child_stop, content: null }),
 	});
+
 	return response.ok;
 }
 

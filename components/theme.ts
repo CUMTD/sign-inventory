@@ -7,11 +7,12 @@ const theme = createTheme({
 	spacing: 20,
 
 	palette: {
+		mode: 'dark',
 		primary: {
-			main: '#002f87',
+			main: '#90caf9',
 		},
 		secondary: {
-			main: '#E91D2D',
+			main: '#f48fb1',
 		},
 	},
 	typography: {

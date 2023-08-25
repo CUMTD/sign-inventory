@@ -27,7 +27,10 @@ export default function SideMenu({ children }: Props) {
 			<Box className={styles.page}>
 				<Box className={styles.sidebar}>
 					<BackButton />
-					<Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}></Typography>
+					{/* <Typography variant="h3" component={'h1'} sx={{ marginBottom: '1rem' }}>
+						Results
+					</Typography> */}
+
 					{/* TODO: inline css is bad */}
 
 					<Typography

@@ -40,3 +40,7 @@
 .suggestionList > *:last-child {
 	border-bottom: 0 !important;
 }
+
+.suggestionList {
+	margin-top: 3em;
+}

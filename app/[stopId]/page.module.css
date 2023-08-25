@@ -42,17 +42,16 @@
 }
 
 .saveButton {
-	color: white;
-	background-color: #0a7541;
+	background-color: #0a7541 !important;
 }
 .saveButton:hover {
-	color: white;
+	color: white !important;
 	background-color: #0a7541;
 }
 
 .discardButton {
 	background-color: transparent;
-	text-decoration: underline;
+	text-decoration: underline !important;
 }
 
 .footInchInput {
@@ -153,4 +152,10 @@
 
 .showDialog {
 	display: flex;
+}
+
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 4em;
 }

@@ -9,10 +9,8 @@ import styles from './listSuggestions.module.css';
 export default function ListSuggestions() {
 	const searchResults = useRecoilValue(searchResultsState);
 
-	//TODO: Remove inline CSS
-
 	return (
-		<div style={{ marginTop: '3em' }} className={styles.suggestionList}>
+		<div className={styles.suggestionList}>
 			{searchResults.map(({ id, name, city }) => (
 				<Card key={id}>
 					<CardContent>

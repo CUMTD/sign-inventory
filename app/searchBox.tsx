@@ -5,7 +5,7 @@ import { InputAdornment, TextField, Typography } from '@mui/material';
 import { queryState } from '@state/homepageState';
 import { ChangeEvent } from 'react';
 import { useSetRecoilState } from 'recoil';
-import styles from './search.module.css';
+import styles from './searchBox.module.css';
 
 export default function SearchBox() {
 	const setQuery = useSetRecoilState(queryState);
@@ -14,7 +14,6 @@ export default function SearchBox() {
 		setQuery(event.target.value);
 	}
 
-	//TODO: Cleanup rendering style with label
 	return (
 		<div className={styles.titleAndSearchBar}>
 			<Typography variant="h3" component="h1">

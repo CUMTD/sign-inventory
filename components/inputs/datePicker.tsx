@@ -10,7 +10,6 @@ interface CustomDatePickerProps {
 type ValueSelectorFunction = (data: ChildStop) => Date;
 type UpdateFunction = (currentData: ChildStop, newValue: Date) => ChildStop;
 
-// TODO: add label to return
 export function createDatePicker(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
 	return function CustomDatePicker({ label }: CustomDatePickerProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);

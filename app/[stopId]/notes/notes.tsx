@@ -1,6 +1,7 @@
 'use client';
 
 import { createTextInput } from '@components/inputs/textInput';
+import styles from './notes.module.css';
 
 const StopNotesTextInput = createTextInput(
 	({ notes }) => {
@@ -16,10 +17,9 @@ const StopNotesTextInput = createTextInput(
 	}),
 );
 
-// TODO: inline css is bad
 export default function NotesPage() {
 	return (
-		<div style={{ marginBottom: '2em' }}>
+		<div className={styles.notesContainer}>
 			<StopNotesTextInput label="Notes" placeholder="This is certainly a bus stop." />
 		</div>
 	);

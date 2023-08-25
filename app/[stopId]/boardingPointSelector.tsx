@@ -7,7 +7,7 @@ import styles from './page.module.css';
 
 export default function BoardingPointSelector() {
 	return (
-		// TODO: inline css is bad
+		// TODO: is this inline CSS bad practice?
 
 		<Box
 			sx={{
