@@ -2,7 +2,7 @@
 
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import ListSuggestions from './listuggestions';
+import ListSuggestions from './listSuggestions';
 import styles from './search.module.css';
 import SearchBox from './searchBox';
 import SearchUpdater from './searchUpdater';
