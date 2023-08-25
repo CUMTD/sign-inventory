@@ -1,9 +1,9 @@
 import { getSiblings } from '@helpers/fetchDataHelpers';
 import { ReactNode } from 'react';
+import 'server-only';
+import ChildStopRecoilRoot from './childStopRecoilRoot';
 import ServerDataStateSubscriber from './serverDataStateSubscriber';
 import SideMenu from './sideMenu';
-import ChildStopRecoilRoot from './childStopRecoilRoot';
-// import 'server-only';
 
 interface Props {
 	params: {
