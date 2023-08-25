@@ -42,27 +42,23 @@ export default function UnsavedChangesAlert() {
 		if (modifiedData) {
 			try {
 				setLoading(true);
-				if (modifiedData.content) {
+				if (modifiedData.content !== intialData?.content) {
 					putStopPhoto(selectedStopId, modifiedData.content);
-					console.log(modifiedData.content);
 				}
 				putParentStop(modifiedData).then((res) => {
 					setLoading(false);
 
 					if (res) {
 						showSuccessfulSaveDialog();
-						console.log('saved changes');
 						setInitialData(modifiedData);
 						setIsUpdatedToday(true);
 					} else {
 						showErrorSaveDialog();
-						console.log('error saving changes');
 					}
 				});
 			} catch (error) {
 				console.error(error);
 				showErrorSaveDialog();
-				console.log('error saving changes');
 			}
 		}
 	}

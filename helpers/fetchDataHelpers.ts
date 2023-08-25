@@ -5,7 +5,8 @@ const ENDPOINT =
 	process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ??
 	throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
 
-const API_KEY = process.env.NEXT_PUBLIC_INVENTORY_API_KEY ?? throwError('Missing INVENTORY_API_KEY in env vars');
+const API_KEY =
+	process.env.NEXT_PUBLIC_INVENTORY_API_KEY ?? throwError('Missing NEXT_PUBLIC_INVENTORY_API_KEY in env vars');
 
 const defaultFetchConfig: RequestInit = {
 	headers: {
@@ -14,7 +15,8 @@ const defaultFetchConfig: RequestInit = {
 	mode: 'cors',
 };
 
-export async function fetchChildStops(stopId: string) {
+// fetches all siblings of child stop
+export async function getSiblings(stopId: string) {
 	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/siblings`, {
 		...defaultFetchConfig,
 		method: 'GET',
@@ -32,41 +34,20 @@ export async function fetchChildStops(stopId: string) {
 	return stops;
 }
 
+// writes child stop to db
+// TODO: wire up to param after testing
+
 export async function putParentStop(child_stop: ChildStop) {
-	// TODO: wire up to param after testing
-	let utf8Encode = new TextEncoder();
-
-	// const contentAsBytes = utf8Encode.encode(child_stop.content.split('data:image/jpeg;base64,')[1] ?? '');
-	const contentAsBytes = child_stop.content.split('data:image/jpeg;base64,')[1] ?? '';
-
 	const response = await fetch(`${ENDPOINT}/stop-point/TEST-1`, {
 		method: 'PUT',
 		headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', 'X-ApiKey': API_KEY },
 		mode: 'cors',
 		body: JSON.stringify({ ...child_stop, content: null }),
 	});
-
 	return response.ok;
 }
 
-// export async function putParentStop(child_stop: ChildStop) {
-
-// 	// TODO: wire up to param after testing
-// 	const { id } = child_stop;
-// 	const body = JSON.stringify(child_stop);
-// 	console.log(child_stop);
-
-// 	const response = await fetch(`/api/TEST-1`, {
-// 		// const response = await fetch(`/api/${id}`, {
-// 		...defaultFetchConfig,
-// 		method: 'PUT',
-// 		body,
-// 	});
-
-// 	return response.ok;
-// }
-
-export async function fetchStopPhoto(stopId: string) {
+export async function getStopPhoto(stopId: string) {
 	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
 		...defaultFetchConfig,
 		method: 'GET',
@@ -96,7 +77,6 @@ export async function fetchStopPhoto(stopId: string) {
 }
 
 export async function putStopPhoto(stopId: string, image: string | null) {
-	console.log(image?.split('data:image/jpeg;base64,')[1]);
 	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
 		...defaultFetchConfig,
 		headers: {

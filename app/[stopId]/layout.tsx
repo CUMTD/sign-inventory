@@ -1,4 +1,4 @@
-import { fetchChildStops } from '@helpers/fetchDataHelpers';
+import { getSiblings } from '@helpers/fetchDataHelpers';
 import { ReactNode } from 'react';
 import ServerDataStateSubscriber from './serverDataStateSubscriber';
 import SideMenu from './sideMenu';
@@ -13,7 +13,7 @@ interface Props {
 }
 
 export default async function Layout({ params: { stopId }, children }: Props) {
-	const childStops = await fetchChildStops(stopId);
+	const childStops = await getSiblings(stopId);
 
 	return (
 		<>

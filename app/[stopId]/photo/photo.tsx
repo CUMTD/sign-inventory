@@ -3,7 +3,7 @@
 import { useRecoilState, useRecoilValue } from 'recoil';
 import { selectedStopIdSelector, stopImageState } from '@state/serverDataState';
 import { useCallback, useEffect, useState } from 'react';
-import { fetchStopPhoto } from '@helpers/fetchDataHelpers';
+import { getStopPhoto } from '@helpers/fetchDataHelpers';
 import Camera from '@components/inputs/camera';
 
 export default function PhotoPage() {
@@ -19,7 +19,7 @@ export default function PhotoPage() {
 
 	useEffect(() => {
 		async function updateImageFromServer() {
-			const image = await fetchStopPhoto(fullStopId);
+			const image = await getStopPhoto(fullStopId);
 			setStopImage(image);
 		}
 		updateImageFromServer();
