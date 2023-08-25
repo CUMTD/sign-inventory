@@ -1,5 +1,4 @@
 import { ChildStop } from '@t/apiResponse';
-import { assert } from 'console';
 import { atom, selector } from 'recoil';
 
 export const selectedTabState = atom<number>({
@@ -83,9 +82,4 @@ export const isDataModifiedSelector = selector<boolean>({
 export const isDataModifiedState = atom<boolean>({
 	key: 'isDataModifiedState',
 	default: false,
-});
-
-export const stopImageState = atom<string | null>({
-	key: 'stopImageState',
-	default: null,
 });

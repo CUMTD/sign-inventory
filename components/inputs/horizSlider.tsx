@@ -1,80 +1,45 @@
+import sliderDescriptions from '@consts/sliderDescriptions';
+import sliderMarks from '@consts/sliderMarks';
 import { Slider, Typography } from '@mui/material';
-import { ReactNode } from 'react';
-import SliderDescription from './sliderDescription';
-import { ChildStop } from '@t/apiResponse';
-import { useRecoilState } from 'recoil';
 import { modifiedDataState } from '@state/serverDataState';
+import { ChildStop } from '@t/apiResponse';
+import SliderSet from '@t/sliderSet';
+import { ReactNode, useEffect, useMemo } from 'react';
+import { useRecoilState } from 'recoil';
 
 interface CustomHorizSliderProps {
 	label: string;
-	min: number;
-	max: number;
-	description_set: string;
-}
-
-const ease_of_access_marks = [
-	{
-		value: 1,
-		label: 'Not Accessible',
-	},
-	{
-		value: 3,
-		label: 'Somewhat Accessible',
-	},
-	{
-		value: 5,
-		label: 'Easily Accessible',
-	},
-];
-
-const ease_of_boarding_marks = [
-	{
-		value: 1,
-		label: 'Difficult',
-	},
-	{
-		value: 3,
-		label: 'Reasonable',
-	},
-	{
-		value: 5,
-		label: 'Easy',
-	},
-];
-
-const tilt_angle_marks = [
-	{
-		value: 1,
-		label: 'Extremely tilted',
-	},
-	{
-		value: 3,
-		label: 'Moderately tilted',
-	},
-	{
-		value: 5,
-		label: 'Plumb (not tilted)',
-	},
-];
-
-function marks(description_set: string) {
-	if (description_set === 'ease_of_access') {
-		return ease_of_access_marks;
-	}
-	if (description_set === 'ease_of_boarding') {
-		return ease_of_boarding_marks;
-	}
-	if (description_set === 'tilt_angle') {
-		return tilt_angle_marks;
-	}
 }
 
 type ValueSelectorFunction = (data: ChildStop) => number;
 type UpdateFunction = (currentData: ChildStop, newValue: number) => ChildStop;
 
-export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
-	return function CustomHorizSlider({ label, min, max, description_set }: CustomHorizSliderProps): ReactNode {
+export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction, sliderSet: SliderSet) {
+	return function CustomHorizSlider({ label }: CustomHorizSliderProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
+		const descriptions = useMemo(() => sliderDescriptions[sliderSet], []);
+		const marks = useMemo(() => sliderMarks[sliderSet], []);
+		const min = useMemo(() => {
+			if (!data || valueSelector(data) === 0) {
+				return 0;
+			}
+			return 1;
+		}, [data]);
+		const max = useMemo(() => {
+			if (descriptions) {
+				return descriptions.length - 1;
+			}
+			return 0;
+		}, [descriptions]);
+
+		useEffect(() => {
+			console.log('data', {
+				descriptions,
+				marks,
+				max,
+				sliderSet
+			})
+		}, [descriptions, marks, max]);
 
 		function onChange(event: Event): void {
 			if (data !== null) {
@@ -89,6 +54,9 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 		}
 
 		const value = valueSelector(data);
+		const descriptionsText = descriptions ? descriptions[value] : '';
+
+		// TODO: remove inline style
 		return (
 			<>
 				<Typography variant="h6" component="h3">
@@ -98,13 +66,13 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 					value={value}
 					min={min}
 					max={max}
-					marks={marks(description_set)}
+					marks={marks}
 					valueLabelDisplay="off"
 					onChange={onChange}
 					sx={{ marginLeft: '3em' }}
 				/>
 				<Typography variant="subtitle2">
-					{value} : <SliderDescription value={value} description_set={description_set} />
+					{value} : {descriptionsText}
 				</Typography>
 			</>
 		);

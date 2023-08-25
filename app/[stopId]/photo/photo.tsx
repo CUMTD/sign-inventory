@@ -1,31 +1,30 @@
 'use client';
 
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { selectedStopIdSelector, stopImageState } from '@state/serverDataState';
-import { useCallback, useEffect, useState } from 'react';
-import { getStopPhoto } from '@helpers/fetchDataHelpers';
 import Camera from '@components/inputs/camera';
+import { modifiedDataState } from '@state/serverDataState';
+import { useCallback } from 'react';
+import { useRecoilState } from 'recoil';
 
 export default function PhotoPage() {
-	const fullStopId = useRecoilValue(selectedStopIdSelector);
-	const [stopImage, setStopImage] = useRecoilState(stopImageState);
+	const [currentData, setCurrentData] = useRecoilState(modifiedDataState);
 
 	const imageChangeCallback = useCallback(
 		(img: string | null) => {
-			setStopImage(img);
+			if (currentData) {
+				setCurrentData({
+					...currentData,
+					content: img ?? ''
+				});
+			}
 		},
-		[setStopImage],
+		[currentData, setCurrentData],
 	);
 
-	useEffect(() => {
-		async function updateImageFromServer() {
-			const image = await getStopPhoto(fullStopId);
-			setStopImage(image);
-		}
-		updateImageFromServer();
-	}, [fullStopId, setStopImage]);
+	if (currentData === null) {
+		return null;
+	}
 
-	useEffect(() => {}, [stopImage]);
+	const { content } = currentData;
 
-	return <Camera initialData={stopImage} photoCallback={imageChangeCallback} />;
+	return <Camera initialData={content} photoCallback={imageChangeCallback} />;
 }

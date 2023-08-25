@@ -2,38 +2,8 @@ import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
-import { ChangeEvent, ReactNode, useCallback, useEffect, useState } from 'react';
+import { ChangeEvent, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
-
-interface Props {
-	label: string;
-	placeholder: string;
-	defaultValue: string;
-}
-
-export default function TextInput({ label, placeholder, defaultValue }: Props) {
-	if (defaultValue === null) {
-		defaultValue = '';
-	}
-
-	return (
-		<>
-			<Typography variant="h6" component="h3">
-				{label}
-			</Typography>
-			<TextField
-				placeholder={placeholder}
-				multiline
-				rows={4}
-				value={defaultValue}
-				InputLabelProps={{
-					shrink: true,
-				}}
-				style={{ width: '100%' }}
-			/>
-		</>
-	);
-}
 
 interface CustomTextInputProps {
 	label: string;
@@ -44,11 +14,11 @@ type ValueSelectorFunction = (data: ChildStop) => string;
 type UpdateFunction = (currentData: ChildStop, newValue: string) => ChildStop;
 
 export function createTextInput(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction) {
-	return function CustomCheckbox({ label, placeholder }: CustomTextInputProps): ReactNode {
+	return function CustomTextInput({ label, placeholder }: CustomTextInputProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
 
 		function onChange(event: ChangeEvent<HTMLInputElement>): void {
-			if (data !== null) {
+			if (data) {
 				const newValue = event.target.value;
 				const newChildStopData = updateFunction(data, newValue);
 				setData(newChildStopData);
@@ -60,6 +30,8 @@ export function createTextInput(valueSelector: ValueSelectorFunction, updateFunc
 		}
 
 		const value = valueSelector(data);
+
+		//TODO: Remove Inline Styles
 		return (
 			<>
 				<Typography variant="h6" component="h3">

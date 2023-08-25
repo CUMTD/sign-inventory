@@ -1,9 +1,9 @@
 import { TextField, Typography } from '@mui/material';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
+import styles from 'app/[stopId]/page.module.css';
 import { ChangeEvent, ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
-import styles from 'app/[stopId]/page.module.css';
 
 interface CustomFeetInchesProps {
 	label: string;
@@ -32,7 +32,7 @@ export function createFeetInches(
 			}
 		}
 
-		function oninchesChange(event: ChangeEvent<HTMLInputElement>): void {
+		function onInchesChange(event: ChangeEvent<HTMLInputElement>): void {
 			if (data !== null) {
 				const newValue = event.target.valueAsNumber;
 				const newChildStopData = updateInchesFunction(data, newValue);
@@ -69,7 +69,7 @@ export function createFeetInches(
 						InputLabelProps={{
 							shrink: true,
 						}}
-						onChange={oninchesChange}
+						onChange={onInchesChange}
 					/>
 				</div>
 			</>

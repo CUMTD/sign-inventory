@@ -1,8 +1,9 @@
 'use client';
 
 import { createCheckbox } from '@components/inputs/checkbox';
-import styles from '../page.module.css';
 import { createHorizSlider } from '@components/inputs/horizSlider';
+import SliderSet from '@t/sliderSet';
+import styles from '../page.module.css';
 
 const RampDeployableCheckbox = createCheckbox(
 	({ accessibility: { rampDeployable } }) => rampDeployable,
@@ -57,6 +58,7 @@ const EaseOfAccessSlider = createHorizSlider(
 		},
 		...childStop,
 	}),
+	SliderSet.EaseOfAccess
 );
 
 const EaseOfBoardingSlider = createHorizSlider(
@@ -68,6 +70,7 @@ const EaseOfBoardingSlider = createHorizSlider(
 		},
 		...childStop,
 	}),
+	SliderSet.EaseOfBoarding
 );
 
 export default function AccessibilityPage() {
@@ -81,10 +84,10 @@ export default function AccessibilityPage() {
 					<SidewalkCheckbox label="Accessible from sidewalk" />
 				</div>
 				<div className={styles.subSection}>
-					<EaseOfAccessSlider min={1} max={5} description_set="ease_of_access" label={'Ease of Access'} />
+					<EaseOfAccessSlider label={'Ease of Access'} />
 				</div>
 				<div className={styles.subSection}>
-					<EaseOfBoardingSlider min={1} max={5} description_set="ease_of_boarding" label={'Ease of Boarding'} />
+					<EaseOfBoardingSlider label={'Ease of Boarding'} />
 				</div>
 			</div>
 		</>

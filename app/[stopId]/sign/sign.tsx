@@ -3,10 +3,11 @@
 import { createCheckbox } from '@components/inputs/checkbox';
 import { createDatePicker } from '@components/inputs/datePicker';
 import { createDropDown } from '@components/inputs/dropdown';
+import { createFeetInches } from '@components/inputs/feetInches';
 import { createHorizSlider } from '@components/inputs/horizSlider';
 import { Typography } from '@mui/material';
+import SliderSet from '@t/sliderSet';
 import styles from '../page.module.css';
-import { createFeetInches } from '@components/inputs/feetInches';
 
 const HasSignCheckbox = createCheckbox(
 	({ sign: { hasSign } }) => hasSign,
@@ -155,6 +156,7 @@ const TiltAngleSlider = createHorizSlider(
 		},
 		...childStop,
 	}),
+	SliderSet.TiltAngle
 );
 
 const SignReplacementDatePicker = createDatePicker(
@@ -183,7 +185,7 @@ export default function SignPage() {
 					<HeightToBottomOfSignFeetInches label="Height to Bottom of Sign" />
 					<DistanceFromCurbAtBase label="Distance from Curb at Base" />
 					<PoleTypeDropDown label="Pole Type" options="pole_types" />
-					<TiltAngleSlider label="Tilt Angle" min={1} max={5} description_set="tilt_angle" />
+					<TiltAngleSlider label="Tilt Angle" />
 				</div>
 				<div className={styles.subSection}>
 					<Typography variant="h4" component="h2">

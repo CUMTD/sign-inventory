@@ -1,15 +1,20 @@
-import { Select, MenuItem, Typography, SelectChangeEvent } from '@mui/material';
+import { MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
 import { ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 
+// TODO: Remove Hard Coded Values
+// create development type endpoint that fetches key values for dev types
+// call in layout or higher level server only page and find some way to pass it to this component (prop, recoil state)
 interface Props {
 	selection: number;
 	label: string;
 	options: string[];
 	onChange: (value: SelectChangeEvent<number>) => void;
 }
+
+// load these from api
 export const development_types: { [name: string]: string } = {
 	'03d55322f3e84d648a51dc1ff863ae9c': 'Other',
 	'18ee4035a14744bdb17a98fc680dfb49': 'Campus',
@@ -66,6 +71,7 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 
 		let value: string = valueSelector(data) ?? '727dc560279e469d97f7f79683935981';
 
+		// TODO: fix on db side
 		if (value === '8bc671cad47b4a359500b5b50d218077') {
 			value = 'e434fddfd2e54fff8c3b18a6db25c155';
 		}

@@ -1,15 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
 'use client';
 
-import { useEffect, useMemo, useRef, useState, MouseEvent, useLayoutEffect } from 'react';
 import assertUnreachable from '@helpers/assertUnreachable';
-import classes from './camera.module.css';
-import { Button, Stack } from '@mui/material';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import { useRecoilState } from 'recoil';
-import { modifiedDataState } from '@state/serverDataState';
-import { ChildStop } from '@t/apiResponse';
+import { Button, Stack } from '@mui/material';
+import { useLayoutEffect, useMemo, useRef, useState } from 'react';
+import classes from './camera.module.css';
 
 interface CameraProps {
 	initialData: string | null;
@@ -30,10 +27,6 @@ const constraints: MediaStreamConstraints = {
 };
 
 export default function Camera({ initialData, photoCallback }: CameraProps) {
-	const [data, setData] = useRecoilState(modifiedDataState);
-
-	const [initialImg, setinitialImg] = useState<boolean>(true);
-
 	const dataImage = useMemo(() => {
 		if (!initialData) {
 			return null;
@@ -48,7 +41,7 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 
 	const [isShooting, setIsShooting] = useState(dataImage === null);
 
-	const buttonWords: 'Capture' | 'Take New Photo' | 'Take Picture' = useMemo(() => {
+	const buttonWords = useMemo(() => {
 		if (isShooting) {
 			return 'Capture';
 		}
@@ -61,23 +54,6 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 	const canvasRef = useRef<HTMLCanvasElement>(null);
 	const videoRef = useRef<HTMLVideoElement>(null);
 	const context2d = useRef<CanvasRenderingContext2D>();
-
-	useEffect(() => {
-		setIsShooting(dataImage === null);
-
-		if (!initialImg) {
-			setData((currentData) => {
-				if (currentData === null) {
-					return null;
-				}
-
-				return {
-					...currentData,
-					content: dataImage ?? '',
-				};
-			});
-		}
-	}, [dataImage, initialImg, setData]);
 
 	useLayoutEffect(() => {
 		async function setupCamera() {
@@ -108,10 +84,7 @@ export default function Camera({ initialData, photoCallback }: CameraProps) {
 		setupCamera();
 	}, []);
 
-	function buttonClick(event: MouseEvent<HTMLButtonElement>) {
-		setinitialImg(false);
-		event.preventDefault();
-
+	function buttonClick() {
 		switch (buttonWords) {
 			case 'Capture':
 				if (context2d.current && videoRef.current && canvasRef.current) {
