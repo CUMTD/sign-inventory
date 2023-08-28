@@ -1,12 +1,12 @@
 import { ChildStop } from '@t/apiResponse';
+import 'server-only';
 import throwError from './throwError';
 
 const ENDPOINT =
-	process.env.NEXT_PUBLIC_INVENTORY_API_ENDPOINT ??
-	throwError('Missing NEXT_PUBLIC_INVENTORY_API_ENDPOINT in env vars');
+	process.env.INVENTORY_API_ENDPOINT ??
+	throwError('Missing INVENTORY_API_ENDPOINT in env vars');
 
-const API_KEY =
-	process.env.NEXT_PUBLIC_INVENTORY_API_KEY ?? throwError('Missing NEXT_PUBLIC_INVENTORY_API_KEY in env vars');
+const API_KEY = process.env.INVENTORY_API_KEY ?? throwError('Missing INVENTORY_API_KEY in env vars');
 
 const defaultFetchConfig: RequestInit = {
 	headers: {
