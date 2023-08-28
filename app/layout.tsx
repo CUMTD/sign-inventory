@@ -6,10 +6,10 @@ import { ThemeProvider } from '@mui/material/styles';
 import { SessionProvider } from 'next-auth/react';
 import { ReactNode } from 'react';
 
-export const metadata = {
-	title: 'Sign Inventory',
-	description: 'Internal MTD tool for managing sign inventory',
-};
+// export const metadata = {
+// 	title: 'Sign Inventory',
+// 	description: 'Internal MTD tool for managing sign inventory',
+// };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
