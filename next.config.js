@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 
-const hostname = process.env.IMAGE_DOMAIN ?? '';
-const port = process.env.IMAGE_PORT ?? '443';
+const hostname = process.env.NEXT_PUBLIC_IMAGE_DOMAIN ?? '';
+const port = process.env.NEXT_PUBLIC_IMAGE_PORT ?? '443';
 
 const nextConfig = {
 	images: {
@@ -10,7 +10,7 @@ const nextConfig = {
 				protocol: 'https',
 				hostname,
 				port,
-				pathname: '/child-stop/**',
+				pathname: '/stop-point/**',
 			},
 		],
 	},

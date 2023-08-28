@@ -32,7 +32,6 @@ export default function SearchBox() {
 				}}
 				type="search"
 				placeholder="Ex. Green and Orchard"
-				required
 				autoFocus
 				onChange={inputChange}
 			/>
