@@ -8,7 +8,7 @@ export const authOptions = {
 		AzureADProvider({
 			clientId: process.env.AZURE_AD_CLIENT_ID ?? throwError('missing env var AZURE_AD_CLIENT_ID'),
 			clientSecret: process.env.AZURE_AD_CLIENT_SECRET ?? throwError('missing env var AZURE_AD_CLIENT_SECRET'),
-			tenantId: process.env.AZURE_AD_TENANT_ID,
+			tenantId: process.env.AZURE_AD_TENANT_ID ?? throwError('missing env var AZURE_AD_TENANT_ID'),
 		}),
 	],
 };
