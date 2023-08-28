@@ -16,8 +16,12 @@ export default function NotFoundPage() {
 			</div>
 
 			<div className={styles.container}>
-				<Typography variant='h1' component='h1'>404</Typography>
-				<Typography variant="h2" component="h2">Page not Found</Typography>
+				<Typography variant="h1" component="h1">
+					404
+				</Typography>
+				<Typography variant="h2" component="h2">
+					Page not Found
+				</Typography>
 
 				<code>{pathname}</code>
 

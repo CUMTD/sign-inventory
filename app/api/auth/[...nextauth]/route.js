@@ -2,13 +2,14 @@ import throwError from '@helpers/throwError';
 import NextAuth from 'next-auth';
 import AzureADProvider from 'next-auth/providers/azure-ad';
 
-export const authOptions = {
+const authOptions = {
 	// Configure one or more authentication providers
 	providers: [
 		AzureADProvider({
-			clientId: process.env.AZURE_AD_CLIENT_ID ?? throwError('missing env var AZURE_AD_CLIENT_ID'),
-			clientSecret: process.env.AZURE_AD_CLIENT_SECRET ?? throwError('missing env var AZURE_AD_CLIENT_SECRET'),
-			tenantId: process.env.AZURE_AD_TENANT_ID,
+			clientId: process.env.NEXT_PUBLIC_AZURE_AD_CLIENT_ID ?? throwError('missing env var AZURE_AD_CLIENT_ID'),
+			clientSecret:
+				process.env.NEXT_PUBLIC_AZURE_AD_CLIENT_SECRET ?? throwError('missing env var AZURE_AD_CLIENT_SECRET'),
+			tenantId: process.env.NEXT_PUBLIC_AZURE_AD_TENANT_ID ?? throwError('missing env var AZURE_AD_TENANT_ID'),
 		}),
 	],
 };
