@@ -1,23 +1,14 @@
 import { ChildStop } from '@t/apiResponse';
-import 'server-only';
 import throwError from './throwError';
 
-const ENDPOINT =
-	process.env.INVENTORY_API_ENDPOINT ??
-	throwError('Missing INVENTORY_API_ENDPOINT in env vars');
-
-const API_KEY = process.env.INVENTORY_API_KEY ?? throwError('Missing INVENTORY_API_KEY in env vars');
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? throwError('Missing NEXT_PUBLIC_BASE_URL in env vars');
 
 const defaultFetchConfig: RequestInit = {
-	headers: {
-		'Access-Control-Allow-Origin': '*',
-	},
-	mode: 'cors',
 };
 
 // fetches all siblings of child stop
 export async function getSiblings(stopId: string) {
-	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/siblings`, {
+	const response = await fetch(`${BASE_URL}/api/stop-point/${stopId}/siblings`, {
 		...defaultFetchConfig,
 		method: 'GET',
 		next: {
@@ -38,18 +29,16 @@ export async function getSiblings(stopId: string) {
 // TODO: wire up to child_stop param when ready to deploy
 
 export async function putParentStop(child_stop: ChildStop) {
-	const response = await fetch(`${ENDPOINT}/stop-point/TEST-1`, {
+	const response = await fetch(`${BASE_URL}/api/stop-point/TEST-1`, {
 		method: 'PUT',
-		headers: { 'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json', 'X-ApiKey': API_KEY },
-		mode: 'cors',
-		body: JSON.stringify({ ...child_stop, content: null }),
+		body: JSON.stringify({ ...child_stop, content: null })
 	});
 
 	return response.ok;
 }
 
 export async function getStopPhoto(stopId: string) {
-	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
+	const response = await fetch(`${BASE_URL}/api/stop-point/${stopId}/image`, {
 		...defaultFetchConfig,
 		method: 'GET',
 	});
@@ -78,7 +67,7 @@ export async function getStopPhoto(stopId: string) {
 }
 
 export async function putStopPhoto(stopId: string, image: string | null) {
-	const response = await fetch(`${ENDPOINT}/stop-point/${stopId}/image`, {
+	const response = await fetch(`${BASE_URL}/api/stop-point/${stopId}/image`, {
 		...defaultFetchConfig,
 		headers: {
 			'Content-Type': 'application/json',
