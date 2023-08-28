@@ -12,6 +12,7 @@ const authOptions = {
 			tenantId: process.env.NEXT_PUBLIC_AZURE_AD_TENANT_ID ?? throwError('missing env var AZURE_AD_TENANT_ID'),
 		}),
 	],
+	secret: process.env.NEXT_PUBLIC_SECRET ?? throwError('missing env var NEXT_PUBLIC_AUTH_SECRET'),
 };
 
 const handler = NextAuth(authOptions);
