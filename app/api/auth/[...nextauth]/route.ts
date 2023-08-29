@@ -1,8 +1,9 @@
 import throwError from '@helpers/throwError';
+import type { AuthOptions } from 'next-auth';
 import NextAuth from 'next-auth';
 import AzureADProvider from 'next-auth/providers/azure-ad';
 
-const authOptions = {
+const authOptions: AuthOptions = {
 	// Configure one or more authentication providers
 	providers: [
 		AzureADProvider({
@@ -16,4 +17,8 @@ const authOptions = {
 
 const handler = NextAuth(authOptions);
 
-export { handler as GET, handler as POST };
+export {
+	handler as GET,
+	handler as POST
+};
+
