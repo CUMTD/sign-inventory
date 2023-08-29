@@ -4,7 +4,7 @@ import { Slider, Typography } from '@mui/material';
 import { modifiedDataState } from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
 import SliderSet from '@t/sliderSet';
-import { ReactNode, useEffect, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
 
 interface CustomHorizSliderProps {
@@ -32,14 +32,6 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 			return 0;
 		}, [descriptions]);
 
-		useEffect(() => {
-			console.log('data', {
-				descriptions,
-				marks,
-				max,
-				sliderSet
-			})
-		}, [descriptions, marks, max]);
 
 		function onChange(event: Event): void {
 			if (data !== null) {
