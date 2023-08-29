@@ -3,8 +3,7 @@ import throwError from './throwError';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? throwError('Missing NEXT_PUBLIC_BASE_URL in env vars');
 
-const defaultFetchConfig: RequestInit = {
-};
+const defaultFetchConfig: RequestInit = {};
 
 // fetches all siblings of child stop
 export async function getSiblings(stopId: string) {
@@ -31,7 +30,7 @@ export async function getSiblings(stopId: string) {
 export async function putParentStop(child_stop: ChildStop) {
 	const response = await fetch(`${BASE_URL}/api/stop-point/TEST-1`, {
 		method: 'PUT',
-		body: JSON.stringify({ ...child_stop, content: null })
+		body: JSON.stringify({ ...child_stop, content: null }),
 	});
 
 	return response.ok;
