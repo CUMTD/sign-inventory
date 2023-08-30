@@ -1,5 +1,5 @@
-import { ChildStop } from '@t/apiResponse';
 import throwError from './throwError';
+import { ChildStop } from '@t/apiResponse';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? throwError('Missing NEXT_PUBLIC_BASE_URL in env vars');
 
