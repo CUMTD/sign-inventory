@@ -178,6 +178,8 @@ export function SaveErrorAlert() {
 	);
 }
 
+// TODO: remove querySelector and use refs instead
+
 // blinks the save dialog when user tries to navigate away
 export function blinkWarnSaveDialog() {
 	const alert = document.querySelector(`.unsavedChangesAlert`);

@@ -8,10 +8,9 @@ import styles from './not-found.module.css';
 export default function NotFoundPage() {
 	const pathname = usePathname();
 
-	// TODO: Remove inline styles
 	return (
 		<>
-			<div style={{ padding: '3em 0 0 3em' }}>
+			<div className={styles.backButton}>
 				<BackButton />
 			</div>
 

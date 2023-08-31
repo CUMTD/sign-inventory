@@ -1,4 +1,4 @@
-<img src="public/bus_stop_sign.png" align="left" style="padding-right: 1em;" width="10%">
+<img src="public/bus_stop_sign.png" align="left" style="padding-right: 1em;" width="6%">
 
 # Sign Inventory
 

@@ -10,7 +10,8 @@
 }
 
 .link {
-	display: block;
+	display: flex;
+	flex-direction: row;
 	font-weight: 600;
 	font-size: 160%;
 	text-decoration: none;
