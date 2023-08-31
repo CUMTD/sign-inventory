@@ -2,10 +2,9 @@
 import { Box } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
+import { isBlinkWarningState, isDataModifiedSelector, selectedTabState } from '@state/serverDataState';
 import React from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
-import { isDataModifiedSelector, selectedTabState } from '@state/serverDataState';
-import { blinkWarnSaveDialog } from './unsavedChangesAlert';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 
 interface TabProps {
 	label: string;
@@ -23,10 +22,11 @@ export default function NavTabs() {
 	const [value, setValue] = useRecoilState(selectedTabState);
 
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
+	const setIsBlinkWarningState = useSetRecoilState(isBlinkWarningState);
 
 	const handleChange = (event: React.SyntheticEvent, newValue: number) => {
 		if (isDataModified) {
-			blinkWarnSaveDialog();
+			setIsBlinkWarningState(true);
 		} else {
 			setValue(newValue);
 		}

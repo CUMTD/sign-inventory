@@ -23,6 +23,7 @@
 			"@consts/*": ["./consts/*"],
 			"@helpers/*": ["./helpers/*"],
 			"@components/*": ["./components/*"],
+			"@hooks/*": ["./hooks/*"],
 			"@t/*": ["./types/*"],
 			"@data/*": ["./data/*"],
 			"@state/*": ["./state/*"],

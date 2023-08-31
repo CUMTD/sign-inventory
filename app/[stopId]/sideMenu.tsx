@@ -7,14 +7,13 @@ import { selectedChildStopState, selectedParentStopState } from '@state/serverDa
 import Image from 'next/image';
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
+import AuthBox from '../authBox';
 import BackButton from './backButton';
 import BoardingPointSelector from './boardingPointSelector';
 import BusyBox from './busyBox';
 import styles from './page.module.css';
 import Tabs from './tabs';
-import UnsavedChangesAlert, { SaveErrorAlert, SaveSuccessfulAlert } from './unsavedChangesAlert';
-import AuthBox from '../authBox';
-import { getSession } from 'next-auth/react';
+import UnsavedChangesAlert from './unsavedChangesAlert';
 
 interface Props {
 	children: ReactNode;
@@ -60,8 +59,6 @@ export default function SideMenu({ children }: Props) {
 					</div>
 					<Image src={logo_svg} className={styles.logo} alt="MTD" width={125} height={125} />
 					<UnsavedChangesAlert />
-					<SaveSuccessfulAlert />
-					<SaveErrorAlert />
 				</Box>
 				<div className={styles.busyBox}>
 					<BusyBox /> {children}
