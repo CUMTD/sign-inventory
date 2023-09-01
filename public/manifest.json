@@ -1,0 +1,9 @@
+{
+	"name": "Sign Inventory",
+	"short_name": "Sign Inventory",
+	"theme_color": "rgb(101,143,176)",
+	"background_color": "#000000",
+	"display": "fullscreen",
+	"orientation": "landscape",
+	"scope": "/"
+}
