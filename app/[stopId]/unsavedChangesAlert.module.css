@@ -8,33 +8,55 @@
 	padding: 1em;
 	margin: auto auto 2em auto;
 	border: 3px solid;
-	transition: bottom 0.5s ease-in-out;
+	transition: bottom 0.2s ease-in-out;
+	overflow: hidden;
+	/* display: none; */
 }
 
 .alert.show {
+	/* display: inherit; */
 	bottom: 0;
 }
 
 .alert.shake {
-	animation: shake 0.5s;
+	animation: shake 0.3s;
 }
 
 @keyframes shake {
 	0% {
-		outline: 5px solid #ed6c02;
+		border: 5px solid #ed6c02;
 	}
 	25% {
 		transform: translateX(-10px);
-		outline: 5px solid #ed6c02;
+		border: 5px solid #ed6c02;
 	}
 	50% {
-		outline: 5px solid #ed6c02;
+		border: 5px solid #ed6c02;
 	}
 	75% {
 		transform: translateX(10px);
-		outline: 5px solid #ed6c02;
+		border: 5px solid #ed6c02;
 	}
 	100% {
-		outline: 5px solid #ed6c02;
+		border: 5px solid #ed6c02;
 	}
+}
+
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	gap: 4em;
+}
+
+.saveButton {
+	background-color: #0a7541 !important;
+}
+.saveButton:hover {
+	color: white !important;
+	background-color: #0a7541;
+}
+
+.discardButton {
+	background-color: transparent;
+	text-decoration: underline !important;
 }

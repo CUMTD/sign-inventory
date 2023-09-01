@@ -1,0 +1,10 @@
+.childStopButtons > * {
+	width: 90%;
+	justify-content: left;
+}
+.childStopButtons {
+	margin: 1em 1em 1em 0em;
+}
+.selector > * {
+	width: 90%;
+}

@@ -6,6 +6,7 @@ import { ChildStop } from '@t/apiResponse';
 import SliderSet from '@t/sliderSet';
 import { ReactNode, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
+import styles from './horzSlider.module.css';
 
 interface CustomHorizSliderProps {
 	label: string;
@@ -14,7 +15,11 @@ interface CustomHorizSliderProps {
 type ValueSelectorFunction = (data: ChildStop) => number;
 type UpdateFunction = (currentData: ChildStop, newValue: number) => ChildStop;
 
-export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFunction: UpdateFunction, sliderSet: SliderSet) {
+export function createHorizSlider(
+	valueSelector: ValueSelectorFunction,
+	updateFunction: UpdateFunction,
+	sliderSet: SliderSet,
+) {
 	return function CustomHorizSlider({ label }: CustomHorizSliderProps): ReactNode {
 		const [data, setData] = useRecoilState(modifiedDataState);
 		const descriptions = useMemo(() => sliderDescriptions[sliderSet], []);
@@ -32,7 +37,6 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 			return 0;
 		}, [descriptions]);
 
-
 		function onChange(event: Event): void {
 			if (data !== null) {
 				const newValue = parseInt((event.target as HTMLInputElement).value);
@@ -48,7 +52,6 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 		const value = valueSelector(data);
 		const descriptionsText = descriptions ? descriptions[value] : '';
 
-		// TODO: remove inline style
 		return (
 			<>
 				<Typography variant="h6" component="h3">
@@ -61,7 +64,7 @@ export function createHorizSlider(valueSelector: ValueSelectorFunction, updateFu
 					marks={marks}
 					valueLabelDisplay="off"
 					onChange={onChange}
-					sx={{ marginLeft: '3em' }}
+					className={styles.slider}
 				/>
 				<Typography variant="subtitle2">
 					{value} : {descriptionsText}

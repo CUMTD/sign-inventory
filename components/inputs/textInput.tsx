@@ -31,7 +31,6 @@ export function createTextInput(valueSelector: ValueSelectorFunction, updateFunc
 
 		const value = valueSelector(data);
 
-		//TODO: Remove Inline Styles
 		return (
 			<>
 				<Typography variant="h6" component="h3">
@@ -46,7 +45,7 @@ export function createTextInput(valueSelector: ValueSelectorFunction, updateFunc
 						shrink: true,
 					}}
 					onChange={onChange}
-					style={{ width: '100%' }}
+					fullWidth
 				/>
 			</>
 		);

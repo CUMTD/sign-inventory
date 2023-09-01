@@ -55,22 +55,11 @@ function AlertBox({ variant, show, shake, loading, saveCallback, discardCallback
 				className={classes}
 				action={
 					<div className={styles.buttonContainer}>
-						<Button
-							className={`${styles.alertButton} ${styles.discardButton}`}
-							onClick={discardCallback}
-							id="discard"
-							color="inherit"
-						>
+						<Button className={` ${styles.discardButton}`} onClick={discardCallback} id="discard" color="inherit">
 							Discard
 						</Button>
 
-						{/* TODO: Move these styles into the right CSS File */}
-						<Button
-							className={`${styles.alertButton} ${styles.saveButton}`}
-							color="inherit"
-							variant="outlined"
-							onClick={saveCallback}
-						>
+						<Button className={` ${styles.saveButton}`} color="inherit" variant="outlined" onClick={saveCallback}>
 							Save Changes
 						</Button>
 					</div>
@@ -89,7 +78,7 @@ function AlertBox({ variant, show, shake, loading, saveCallback, discardCallback
 	return (
 		<Alert severity={severity} className={classes}>
 			<AlertTitle>
-				<strong>{title}</strong> - {variant}
+				<strong>{title}</strong>
 			</AlertTitle>
 			{text}
 		</Alert>
@@ -126,7 +115,13 @@ export default function UnsavedChangesAlert() {
 	}, [isDataModified]);
 
 	const stopShake = () => setIsBlinkWarning(false);
-	const hide = () => setShow(false);
+
+	const hide = () => {
+		setShow(false);
+		// need advice on this
+		setSuccess(false);
+		setError(false);
+	};
 
 	const hideTimeout = useMemo(() => (show && !isDataModified ? 5_000 : null), [isDataModified, show]);
 	const shakeTimeout = useMemo(() => (isBlinkWarning ? 500 : null), [isBlinkWarning]);
@@ -141,6 +136,7 @@ export default function UnsavedChangesAlert() {
 		if (error) {
 			return 'error';
 		}
+
 		return 'pendingChanges';
 	}, [success, error]);
 
@@ -176,6 +172,7 @@ export default function UnsavedChangesAlert() {
 				setSuccess(false);
 				setError(true);
 			}
+
 			setLoading(false);
 		}
 	}

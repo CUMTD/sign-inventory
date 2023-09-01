@@ -19,7 +19,6 @@ export const development_types: { [name: string]: string } = {
 	'03d55322f3e84d648a51dc1ff863ae9c': 'Other',
 	'18ee4035a14744bdb17a98fc680dfb49': 'Campus',
 	'727dc560279e469d97f7f79683935981': 'Unknown',
-	'8bc671cad47b4a359500b5b50d218077': 'Comercial',
 	'e434fddfd2e54fff8c3b18a6db25c155': 'Commercial',
 	'f8c640f8e1ba4bdfb5a48da767e4666b': 'Residential',
 };
@@ -70,11 +69,6 @@ export function createDropDown(valueSelector: ValueSelectorFunction, updateFunct
 		}
 
 		let value: string = valueSelector(data) ?? '727dc560279e469d97f7f79683935981';
-
-		// TODO: fix on db side
-		if (value === '8bc671cad47b4a359500b5b50d218077') {
-			value = 'e434fddfd2e54fff8c3b18a6db25c155';
-		}
 
 		return (
 			<DropDown

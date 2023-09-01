@@ -3,21 +3,11 @@
 import { ButtonGroup } from '@mui/material';
 import Box from '@mui/material/Box';
 import GenerateButtons from './generateButtons';
-import styles from './page.module.css';
+import styles from './boardingPointSelector.module.css';
 
 export default function BoardingPointSelector() {
 	return (
-		// TODO: is this inline CSS bad practice?
-
-		<Box
-			sx={{
-				'display': 'flex',
-				'& > *': {
-					width: '100%',
-					margin: `1em 1em 1em 0em`,
-				},
-			}}
-		>
+		<Box className={styles.selector}>
 			<ButtonGroup className={styles.childStopButtons} orientation="vertical">
 				<GenerateButtons />
 			</ButtonGroup>

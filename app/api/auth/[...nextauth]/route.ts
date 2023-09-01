@@ -12,13 +12,9 @@ const authOptions: AuthOptions = {
 			tenantId: process.env.AZURE_AD_TENANT_ID ?? throwError('missing env var AZURE_AD_TENANT_ID'),
 		}),
 	],
-	secret: process.env.SECRET ?? throwError('missing env var SECRET'),
+	secret: process.env.NEXTAUTH_SECRET ?? throwError('missing env var NEXTAUTH_SECRET'),
 };
 
 const handler = NextAuth(authOptions);
 
-export {
-	handler as GET,
-	handler as POST
-};
-
+export { handler as GET, handler as POST };
