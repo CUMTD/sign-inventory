@@ -83,3 +83,8 @@ export const isDataModifiedState = atom<boolean>({
 	key: 'isDataModifiedState',
 	default: false,
 });
+
+export const isBlinkWarningState = atom<boolean>({
+	key: 'isBlinkWarningState',
+	default: false
+});
