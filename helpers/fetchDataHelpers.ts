@@ -1,5 +1,5 @@
 import throwError from './throwError';
-import { ChildStop } from '@t/apiResponse';
+import { ChildStop, DevelopmentType } from '@t/apiResponse';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? throwError('Missing NEXT_PUBLIC_BASE_URL in env vars');
 
@@ -78,4 +78,18 @@ export async function putStopPhoto(stopId: string, image: string | null) {
 	if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
+}
+
+export async function getDevelopmentTypes() {
+	const response = await fetch(`${BASE_URL}/api/development-types`, {
+		...defaultFetchConfig,
+		method: 'GET',
+		cache: 'force-cache',
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	const developmentTypes = await response.json();
+	return developmentTypes as DevelopmentType[];
 }

@@ -1,6 +1,6 @@
 import { MenuItem, Select, SelectChangeEvent, Typography } from '@mui/material';
 import { modifiedDataState } from '@state/serverDataState';
-import { ChildStop } from '@t/apiResponse';
+import { ChildStop, DevelopmentType } from '@t/apiResponse';
 import { ReactNode } from 'react';
 import { useRecoilState } from 'recoil';
 

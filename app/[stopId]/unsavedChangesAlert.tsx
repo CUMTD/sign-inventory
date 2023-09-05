@@ -1,7 +1,7 @@
 'use client';
 
 import { putParentStop, putStopPhoto } from '@helpers/fetchDataHelpers';
-import { Alert, AlertTitle, Button, LinearProgress } from '@mui/material';
+import { Alert, AlertTitle, Button, LinearProgress, Snackbar } from '@mui/material';
 import {
 	initialDataState,
 	isBlinkWarningState,
@@ -107,14 +107,18 @@ export default function UnsavedChangesAlert() {
 	useEffect(() => {
 		if (!isDataModified) {
 			setShow(false);
+			setSuccess(false);
+			setError(false);
 		}
 	}, [isDataModified]);
 
 	const stopShake = () => setIsBlinkWarning(false);
 
+	// TODO: fix animation
 	const hide = () => {
+		console.log('Hiding alert');
 		setShow(false);
-		// need advice on this
+
 		setSuccess(false);
 		setError(false);
 	};
@@ -159,11 +163,14 @@ export default function UnsavedChangesAlert() {
 				setError(true);
 			}
 
+			// TODO: fix animation
 			if (response.ok) {
-				setInitialData((await response.json()) as ChildStop);
 				setSuccess(true);
 				setError(false);
-				// setInitialData(modifiedData);
+
+				const newChildStopData = (await response.json()) as ChildStop;
+				setModifiedData(newChildStopData);
+				setInitialData(newChildStopData);
 			} else {
 				setSuccess(false);
 				setError(true);

@@ -14,6 +14,7 @@ import BusyBox from './busyBox';
 import styles from './sideMenu.module.css';
 import Tabs from './tabs';
 import UnsavedChangesAlert from './unsavedChangesAlert';
+import { Alert, Snackbar } from '@mui/material';
 
 interface Props {
 	children: ReactNode;
@@ -37,6 +38,16 @@ export default function SideMenu({ children }: Props) {
 					</div>
 					<Image src={logo_svg} className={styles.logo} alt="MTD" width={125} height={125} />
 					<UnsavedChangesAlert />
+					{/* <Snackbar
+						sx={{ position: 'absolute' }}
+						open={true}
+						autoHideDuration={6000}
+						anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+					>
+						<Alert severity="success" sx={{ width: '100%' }}>
+							Save successful.
+						</Alert>
+					</Snackbar> */}
 				</Box>
 				<div className={styles.busyBox}>
 					<BusyBox /> {children}
