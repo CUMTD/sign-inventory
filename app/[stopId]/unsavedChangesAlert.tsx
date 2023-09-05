@@ -6,7 +6,6 @@ import {
 	initialDataState,
 	isBlinkWarningState,
 	isDataModifiedSelector,
-	isUpdatedTodayState,
 	modifiedDataState,
 	selectedStopIdSelector,
 } from '@state/serverDataState';
@@ -17,6 +16,7 @@ import clsx from 'clsx';
 import { useEffect, useMemo, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import styles from './unsavedChangesAlert.module.css';
+import { ChildStop } from '@t/apiResponse';
 
 interface AlertBoxProps {
 	variant: 'pendingChanges' | 'success' | 'error';
@@ -85,15 +85,11 @@ function AlertBox({ variant, show, shake, loading, saveCallback, discardCallback
 	);
 }
 
-// TODO : set updated today date to value returned from PUT request
-// also, set initial data to returned values from PUT request
-
 // handles the dialog that comes up when user has unsaved changes
 export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
 	const [initialData, setInitialData] = useRecoilState(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
-	const setIsUpdatedToday = useSetRecoilState(isUpdatedTodayState);
 	const selectedStopId = useRecoilValue(selectedStopIdSelector);
 	const [isBlinkWarning, setIsBlinkWarning] = useRecoilState(isBlinkWarningState);
 
@@ -154,7 +150,7 @@ export default function UnsavedChangesAlert() {
 				setError(true);
 			}
 
-			let response = false;
+			let response: Response = new Response();
 			try {
 				response = await putParentStop(modifiedData);
 			} catch (error) {
@@ -163,11 +159,11 @@ export default function UnsavedChangesAlert() {
 				setError(true);
 			}
 
-			if (response) {
+			if (response.ok) {
+				setInitialData((await response.json()) as ChildStop);
 				setSuccess(true);
 				setError(false);
-				setInitialData(modifiedData);
-				setIsUpdatedToday(true);
+				// setInitialData(modifiedData);
 			} else {
 				setSuccess(false);
 				setError(true);

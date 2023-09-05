@@ -64,11 +64,6 @@ export const modifiedDataState = atom<ChildStop | null>({
 	default: null,
 });
 
-export const isUpdatedTodayState = atom<boolean>({
-	key: 'isUpdatedTodayState',
-	default: false,
-});
-
 export const isDataModifiedSelector = selector<boolean>({
 	key: 'isDataModifiedSelector',
 	get: ({ get }) => {
@@ -86,5 +81,17 @@ export const isDataModifiedState = atom<boolean>({
 
 export const isBlinkWarningState = atom<boolean>({
 	key: 'isBlinkWarningState',
-	default: false
+	default: false,
+});
+
+export const lastUpdatedSelector = selector<string>({
+	key: 'lastUpdatedSelector',
+	get: ({ get }) => {
+		const initialData = get(initialDataState);
+		if (initialData === null) {
+			return 'N/A';
+		}
+		// return nicely formatted date
+		return new Date(initialData.lastUpdated).toLocaleString();
+	},
 });

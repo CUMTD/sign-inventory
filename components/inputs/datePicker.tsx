@@ -27,9 +27,6 @@ export function createDatePicker(valueSelector: ValueSelectorFunction, updateFun
 		}
 
 		let value = new Date(valueSelector(data)).toISOString().split('T')[0];
-
-		// TODO: Use MUI date picker
-		// https://mui.com/x/react-date-pickers/date-picker/
 		return <input type="date" value={value === '0001-01-01' ? '' : value} onChange={onChange} />;
 	};
 }

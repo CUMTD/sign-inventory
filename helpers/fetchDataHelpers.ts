@@ -33,7 +33,7 @@ export async function putParentStop(child_stop: ChildStop) {
 		body: JSON.stringify({ ...child_stop, content: null }),
 	});
 
-	return response.ok;
+	return response;
 }
 
 export async function getStopPhoto(stopId: string) {
