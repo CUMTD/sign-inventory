@@ -13,7 +13,7 @@ import BoardingPointSelector from './boardingPointSelector';
 import BusyBox from './busyBox';
 import styles from './sideMenu.module.css';
 import Tabs from './tabs';
-import UnsavedChangesAlert from './UnsavedChangesAlert';
+import UnsavedChangesAlert from './unsavedChangesAlert';
 import SaveConfirmationSnackbar from './saveConfirmationSnackbar';
 
 interface Props {
