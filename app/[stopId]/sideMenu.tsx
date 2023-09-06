@@ -3,17 +3,16 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import logo_svg from '@public/logo.svg';
-import { displaySnackbarState, selectedChildStopState, selectedParentStopState } from '@state/serverDataState';
+import { selectedChildStopState, selectedParentStopState } from '@state/serverDataState';
 import Image from 'next/image';
 import { ReactNode } from 'react';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilValue } from 'recoil';
 import AuthBox from '../authBox';
 import BackButton from './backButton';
 import BoardingPointSelector from './boardingPointSelector';
 import BusyBox from './busyBox';
 import styles from './sideMenu.module.css';
 import Tabs from './tabs';
-import { Alert, Snackbar } from '@mui/material';
 import UnsavedChangesAlert from './UnsavedChangesAlert';
 import SaveConfirmationSnackbar from './saveConfirmationSnackbar';
 

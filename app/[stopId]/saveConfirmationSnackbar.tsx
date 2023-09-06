@@ -1,9 +1,8 @@
-import { Alert, AlertTitle, IconButton, Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Snackbar } from '@mui/material';
 import { displaySnackbarState } from '@state/serverDataState';
 import { useRecoilState } from 'recoil';
 import styles from './saveConfirmationSnackbar.module.css';
 import React from 'react';
-import CloseIcon from '@mui/icons-material/Close';
 
 export default function SaveConfirmationSnackbar() {
 	const [snackbarState, setSnackbarState] = useRecoilState(displaySnackbarState);

@@ -1,7 +1,7 @@
 'use client';
 
 import { putParentStop, putStopPhoto } from '@helpers/fetchDataHelpers';
-import { Alert, AlertTitle, Button, LinearProgress, Snackbar } from '@mui/material';
+import { Alert, AlertTitle, Button, LinearProgress } from '@mui/material';
 import {
 	displaySnackbarState,
 	initialDataState,
@@ -69,7 +69,7 @@ export default function NewUnsavedChangesAlert() {
 
 	const setBothDataStates = useSetRecoilState(updateModifiedAndInitialDataState);
 
-	const [snackbarState, setSnackbarState] = useRecoilState(displaySnackbarState);
+	const setSnackbarState = useSetRecoilState(displaySnackbarState);
 
 	const [loading, setLoading] = useState(false);
 	const [show, setShow] = useState(false);
