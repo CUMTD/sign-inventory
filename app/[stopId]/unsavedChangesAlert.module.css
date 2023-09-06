@@ -9,11 +9,11 @@
 	margin: auto auto 2em auto;
 	border: 3px solid;
 	/* transition: bottom 0.2s ease-in-out; */
-	display: none;
+	display: none !important;
 }
 
 .alert.show {
-	display: inherit;
+	display: inherit !important;
 	bottom: 0;
 }
 
