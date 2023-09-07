@@ -12,5 +12,6 @@
 }
 
 .suggestionList {
-	margin-top: 3em;
+	/* todo this is hacky */
+	min-height: 200em !important;
 }

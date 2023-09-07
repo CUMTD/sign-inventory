@@ -15,7 +15,7 @@ export default function Search() {
 			<Container>
 				<Box>
 					<div className={styles.primarySearchInterface}>
-						<SignImage />
+						{/* <SignImage /> */}
 						<SearchBox />
 					</div>
 				</Box>

@@ -1,3 +1,6 @@
 :root {
 	font-size: 60%;
 }
+html {
+	scroll-behavior: smooth !important;
+}
