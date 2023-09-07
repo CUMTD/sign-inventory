@@ -18,6 +18,7 @@ export default function Home() {
 					alignItems: 'right',
 					gap: '1rem',
 					padding: '3rem 4rem',
+					zIndex: -1,
 				}}
 			>
 				<AuthBox />

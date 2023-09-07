@@ -17,8 +17,6 @@ export default function SearchBox() {
 	}
 	const textFieldRef = useRef<HTMLDivElement>(null);
 
-	// const focusScroll = typeof window !== 'undefined' && window.scrollTo(0, textFieldRef.current?.offsetTop || 0);
-
 	return (
 		<>
 			<div className={styles.titleAndSearchBar}>
