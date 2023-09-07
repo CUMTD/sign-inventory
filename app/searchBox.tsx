@@ -17,8 +17,8 @@ export default function SearchBox() {
 	}
 	const textFieldRef = useRef<HTMLDivElement>(null);
 
-	// const focusScroll = console.log(textFieldRef.current?.offsetTop);
-	const focusScroll = window.scrollTo(0, textFieldRef.current?.offsetTop || 0);
+	// const focusScroll = typeof window !== 'undefined' && window.scrollTo(0, textFieldRef.current?.offsetTop || 0);
+
 	return (
 		<>
 			<div className={styles.titleAndSearchBar}>
@@ -38,10 +38,10 @@ export default function SearchBox() {
 					}}
 					type="search"
 					placeholder="Ex. Green and Orchard"
-					autoFocus
 					onChange={inputChange}
 					ref={textFieldRef}
-					onInput={() => focusScroll}
+					onFocus={() => typeof window !== 'undefined' && window.scrollTo(0, textFieldRef.current?.offsetTop || 0)}
+					onBlur={() => typeof window !== 'undefined' && window.scrollTo(0, 0)}
 				/>
 			</div>
 		</>
