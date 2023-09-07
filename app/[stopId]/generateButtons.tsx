@@ -1,5 +1,10 @@
 import { Button } from '@mui/material';
-import { childStopsState, isBlinkWarningState, isDataModifiedSelector, selectedChildStopState } from '@state/serverDataState';
+import {
+	childStopsState,
+	isBlinkWarningState,
+	isDataModifiedSelector,
+	selectedChildStopState,
+} from '@state/serverDataState';
 import { ChildStop } from '@t/apiResponse';
 import { useCallback } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -34,10 +39,9 @@ export default function GenerateButtons() {
 					variant={parseInt(id.split(':')[1]) === selectedChildStop ? 'contained' : 'outlined'}
 					onClick={() => click(id)}
 				>
-					{name}
+					{`${name} — ${id}`}
 				</Button>
 			))}
 		</div>
 	);
 }
-
