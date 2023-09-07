@@ -3,3 +3,8 @@
 	align-items: center;
 	gap: 2em;
 }
+
+.primaryContainer {
+	padding: 60px;
+	margin-top: 60px;
+}

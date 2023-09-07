@@ -39,7 +39,8 @@ export default function GenerateButtons() {
 					variant={parseInt(id.split(':')[1]) === selectedChildStop ? 'contained' : 'outlined'}
 					onClick={() => click(id)}
 				>
-					{`${name} — ${id}`}
+					{/* {`${name} — ${id}`} */}
+					{name}
 				</Button>
 			))}
 		</div>

@@ -12,7 +12,7 @@ export default function Search() {
 	return (
 		<>
 			<SearchUpdater />
-			<Container>
+			<Container className={styles.primaryContainer}>
 				<Box>
 					<div className={styles.primarySearchInterface}>
 						{/* <SignImage /> */}

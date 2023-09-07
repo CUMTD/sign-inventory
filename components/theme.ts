@@ -30,15 +30,6 @@ const theme = createTheme({
 		},
 	},
 	components: {
-		MuiContainer: {
-			styleOverrides: {
-				root: {
-					padding: 60,
-					marginTop: 60,
-				},
-			},
-		},
-
 		MuiButtonGroup: {
 			styleOverrides: {
 				grouped: {

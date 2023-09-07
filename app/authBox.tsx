@@ -1,6 +1,8 @@
 import { Button, IconButton } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import LogoutIcon from '@mui/icons-material/Logout';
+import Image from 'next/image';
+
 export default function AuthBox() {
 	const { data: session } = useSession({ required: true });
 
@@ -14,7 +16,7 @@ export default function AuthBox() {
 						textTransform: 'uppercase',
 					}}
 				>
-					{session?.user?.name}
+					{session ? `${session?.user?.name}` : ''}
 				</p>
 
 				<IconButton color="error" size="small" onClick={() => signOut()}>

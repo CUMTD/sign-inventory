@@ -1,0 +1,14 @@
+.authBox {
+	display: flex;
+	flex-direction: row;
+	gap: 1em;
+	position: absolute;
+	top: 5px;
+	right: 0;
+	margin: auto;
+	padding-right: 1em;
+}
+
+.logo {
+	opacity: 40%;
+}
