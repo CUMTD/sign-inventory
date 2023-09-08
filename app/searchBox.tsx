@@ -39,7 +39,7 @@ export default function SearchBox() {
 					onChange={inputChange}
 					ref={textFieldRef}
 					onInput={() =>
-						typeof window !== 'undefined' && window.scrollTo(0, (textFieldRef.current?.offsetTop || 0) + 50)
+						typeof window !== 'undefined' && window.scrollTo(0, (textFieldRef.current?.offsetTop || 0) - 50)
 					}
 					onBlur={() => typeof window !== 'undefined' && window.scrollTo(0, 0)}
 				/>
