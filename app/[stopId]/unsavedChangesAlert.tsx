@@ -86,7 +86,6 @@ export default function UnsavedChangesAlert() {
 	const stopShake = () => setIsBlinkWarning(false);
 
 	const hide = () => {
-		console.log('Hiding alert');
 		setShow(false);
 	};
 

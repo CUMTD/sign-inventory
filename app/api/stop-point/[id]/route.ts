@@ -33,7 +33,6 @@ export async function GET(_: NextRequest, { params: { id } }: Params) {
 
 export async function PUT(req: Request, { params: { id } }: Params) {
 	const uri = `${ENDPOINT}/stop-point/${id}`;
-	// var bodyString: string = '';
 	const body = await req.json();
 
 	const requestInit: RequestInit = {
@@ -44,7 +43,6 @@ export async function PUT(req: Request, { params: { id } }: Params) {
 		},
 		body: JSON.stringify(body),
 	};
-	// console.log('requestInit', requestInit);
 
 	const response = await fetch(uri, requestInit);
 
