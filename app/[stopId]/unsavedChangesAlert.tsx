@@ -62,7 +62,7 @@ function AlertBox({ shake, show, loading, saveCallback, discardCallback }: Alert
 // handles the dialog that comes up when user has unsaved changes
 export default function UnsavedChangesAlert() {
 	const isDataModified = useRecoilValue(isDataModifiedSelector);
-	const [initialData, setInitialData] = useRecoilState(initialDataState);
+	const initialData = useRecoilValue(initialDataState);
 	const [modifiedData, setModifiedData] = useRecoilState(modifiedDataState);
 	const selectedStopId = useRecoilValue(selectedStopIdSelector);
 	const [isBlinkWarning, setIsBlinkWarning] = useRecoilState(isBlinkWarningState);
