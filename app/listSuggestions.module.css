@@ -12,6 +12,5 @@
 }
 
 .suggestionList {
-	/* todo this is hacky */
-	min-height: 200em !important;
+	min-height: 105vh !important;
 }
