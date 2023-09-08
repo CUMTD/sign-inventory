@@ -116,12 +116,9 @@ export const updateModifiedAndInitialDataState = selector<ModifiedAndIntial>({
 	},
 	set: ({ set }, newValue) => {
 		if (isModifiedAndIntial(newValue)) {
-			console.log('ModifiedAndIntial passed', newValue);
 			const { initial, modified } = newValue;
 			set(initialDataState, initial);
 			set(modifiedDataState, modified);
-		} else {
-			console.log('default value passed', newValue);
 		}
 	},
 });

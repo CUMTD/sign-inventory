@@ -117,7 +117,6 @@ export default function UnsavedChangesAlert() {
 				setSnackbarState({ open: true, state: 'error' });
 			}
 
-			// TODO: fix animation
 			if (response.ok) {
 				const newChildStopData = (await response.json()) as ChildStop;
 				setBothDataStates({
