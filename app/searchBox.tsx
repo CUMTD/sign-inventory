@@ -1,15 +1,13 @@
 'use client';
 
 import SearchIcon from '@mui/icons-material/Search';
-import { InputAdornment, Link, TextField, Typography } from '@mui/material';
+import { InputAdornment, TextField, Typography } from '@mui/material';
 import { queryState, searchResultsState } from '@state/homepageState';
-import { ChangeEvent, useEffect, useRef } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { ChangeEvent, useRef } from 'react';
+import { useSetRecoilState } from 'recoil';
 import styles from './searchBox.module.css';
 
 export default function SearchBox() {
-	const searchResults = useRecoilValue(searchResultsState);
-
 	const setQuery = useSetRecoilState(queryState);
 
 	function inputChange(event: ChangeEvent<HTMLInputElement>) {

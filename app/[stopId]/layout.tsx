@@ -4,7 +4,6 @@ import 'server-only';
 import ChildStopRecoilRoot from './childStopRecoilRoot';
 import ServerDataStateSubscriber from './serverDataStateSubscriber';
 import SideMenu from './sideMenu';
-import { AppBar } from '@mui/material';
 
 interface Props {
 	params: {

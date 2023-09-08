@@ -4,7 +4,6 @@ import { searchResultsState } from '@state/homepageState';
 import { useRecoilValue } from 'recoil';
 import ListSuggestion from './listSuggestion';
 import styles from './listSuggestions.module.css';
-import { useEffect, useRef } from 'react';
 
 export default function ListSuggestions() {
 	const searchResults = useRecoilValue(searchResultsState);

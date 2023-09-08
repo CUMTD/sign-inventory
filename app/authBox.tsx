@@ -1,7 +1,6 @@
-import { Button, IconButton } from '@mui/material';
+import { IconButton } from '@mui/material';
 import { signOut, useSession } from 'next-auth/react';
 import LogoutIcon from '@mui/icons-material/Logout';
-import Image from 'next/image';
 
 export default function AuthBox() {
 	const { data: session } = useSession({ required: true });

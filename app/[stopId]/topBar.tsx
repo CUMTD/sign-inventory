@@ -1,4 +1,4 @@
-import { AppBar, Container, Toolbar } from '@mui/material';
+import { AppBar, Toolbar } from '@mui/material';
 import logo_svg from '@public/logo.svg';
 import Image from 'next/image';
 import AuthBox from '../authBox';

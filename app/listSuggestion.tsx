@@ -1,10 +1,9 @@
 'use client';
 
-import { Card, CardContent } from '@mui/material';
+import { Card } from '@mui/material';
 import { Result } from '@t/searchSuggestion';
 import Link from 'next/link';
 import styles from './listSuggestion.module.css';
-import { useEffect, useRef } from 'react';
 
 interface Props {
 	result: Result;
