@@ -2,6 +2,9 @@
 
 # Sign Inventory
 
+[![CodeQL](https://github.com/CUMTD/sign-inventory/actions/workflows/codeql.yml/badge.svg)](https://github.com/CUMTD/sign-inventory/actions/workflows/codeql.yml)
+[![CI - Build](https://github.com/CUMTD/sign-inventory/actions/workflows/ci-build.yml/badge.svg)](https://github.com/CUMTD/sign-inventory/actions/workflows/ci-build.yml)
+
 This is an internal web app for auditing the condition of bus stop signs, shelters and amenities, for use by MTD's planning department. The app is built on top of NextJS, and communicates with a .NET EF Core API to read/write an SQL database. The application displays data points like sign condition, general notes, photos, accessibility features and more.
 
 ## Architecture Overview
