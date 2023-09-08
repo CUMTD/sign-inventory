@@ -5,7 +5,6 @@ import Typography from '@mui/material/Typography';
 import { selectedChildStopState, selectedParentStopState } from '@state/serverDataState';
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
-import AuthBox from '../authBox';
 import BackButton from './backButton';
 import BoardingPointSelector from './boardingPointSelector';
 import BusyBox from './busyBox';
