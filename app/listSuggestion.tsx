@@ -13,11 +13,12 @@ interface Props {
 export default function ListSuggestion({ result: { id, name, city } }: Props) {
 	return (
 		<Card key={id} role="listitem">
-			<CardContent>
-				<Link key={id} className={styles.link} href={`/${id}`}>
-					{name} <span className={styles.suggestionTown}>{city}</span>
-				</Link>
-			</CardContent>
+			<Link key={id} href={`/${id}`} className={styles.suggestion}>
+				<div className={styles.linkBox}>
+					<span className={styles.suggestionName}>{name}</span>
+					<span className={styles.suggestionTown}>{city}</span>
+				</div>
+			</Link>
 		</Card>
 	);
 }

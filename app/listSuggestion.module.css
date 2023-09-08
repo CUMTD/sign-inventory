@@ -6,18 +6,32 @@
 	text-decoration: none !important;
 	text-transform: uppercase;
 	margin-left: auto;
-	float: right;
+	/* float: right */
 }
 
-.link {
+.linkBox {
 	display: flex;
 	flex-direction: row;
-	font-weight: 600;
 	font-size: 160%;
-	text-decoration: none;
-	color: var(--palette-text-primary);
+	padding: 0.5em 0.8em;
+	font-weight: 600;
 }
 
-.link:visited {
+.suggestion {
+	text-decoration: none;
+	color: white;
+}
+
+.suggestion:visited > * {
+	text-decoration: none;
 	color: gray !important;
 }
+
+/* .link:not(:visited) > * {
+	color: var(--palette-text-primary);
+	color: white;
+}
+
+.link:visited > * {
+	color: gray !important;
+} */

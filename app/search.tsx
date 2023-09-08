@@ -12,17 +12,12 @@ export default function Search() {
 	return (
 		<>
 			<SearchUpdater />
-			<Container className={styles.primaryContainer}>
-				<Box>
-					<div className={styles.primarySearchInterface}>
-						{/* <SignImage /> */}
-						<SearchBox />
-					</div>
-				</Box>
-				<Box>
-					<ListSuggestions />
-				</Box>
-			</Container>
+			<div className={styles.primaryContainer}>
+				<div className={styles.primarySearchInterface}>
+					<SearchBox />
+				</div>
+				<ListSuggestions />
+			</div>
 		</>
 	);
 }
