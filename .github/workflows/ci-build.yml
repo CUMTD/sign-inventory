@@ -1,0 +1,55 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: CI - Build
+
+on:
+  pull_request:
+    branches: ['main']
+
+env:
+  NEXT_PUBLIC_AUTOCOMPLETE_URL: ${{ vars.NEXT_PUBLIC_AUTOCOMPLETE_URL }}
+  INVENTORY_API_ENDPOINT: ${{ vars.INVENTORY_API_ENDPOINT }}
+  INVENTORY_API_KEY: ${{ secrets.INVENTORY_API_KEY }}
+  NEXT_PUBLIC_IMAGE_DOMAIN: ${{ vars.NEXT_PUBLIC_IMAGE_DOMAIN }}
+  NEXT_PUBLIC_IMAGE_PORT: ${{ vars.NEXT_PUBLIC_IMAGE_PORT }}
+  NEXT_PUBLIC_BASE_URL: ${{ vars.NEXT_PUBLIC_BASE_URL }}
+  AZURE_AD_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_AUTOCOMPLETE_URL }}
+  AZURE_AD_CLIENT_SECRET: ${{ secrets.AZURE_AD_CLIENT_SECRET }}
+  AZURE_AD_TENANT_ID: ${{ secrets.AZURE_AD_TENANT_ID }}
+  NEXTAUTH_URL: ${{ vars.NEXT_PUBLIC_AUTOCOMPLETE_URL }}
+  NEXTAUTH_SECRET: ${{ secrets.NEXT_PUBLIC_AUTOCOMPLETE_URL }}
+
+jobs:
+  build:
+    name: 'Build'
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - name: Setup Cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**/*.[jt]s', '**/*.[jt]sx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('**/yarn.lock') }}-
+      - name: Install Yarn
+        run: npm install -g yarn@1.x
+      - name: Install Dependancies
+        run: yarn install
+      - name: Build
+        run: yarn build
