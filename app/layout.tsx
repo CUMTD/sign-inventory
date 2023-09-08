@@ -15,8 +15,8 @@ import './globals.css';
 export default function RootLayout({ children }: { children: ReactNode }) {
 	return (
 		<html lang="en">
-			<link rel="manifest" href="/manifest.json"></link>
 			<SessionProvider>
+				<link rel="manifest" href="/manifest.json"></link>
 				<ThemeProvider theme={custom_theme}>
 					<CssBaseline />
 					<body>

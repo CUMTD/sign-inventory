@@ -1,6 +1,5 @@
 .alert {
 	position: absolute;
-	/* bottom: -10em; */
 	right: 0;
 	left: 0;
 	z-index: 3;
@@ -8,7 +7,6 @@
 	padding: 1em;
 	margin: auto auto 2em auto;
 	border: 3px solid;
-	/* transition: bottom 0.2s ease-in-out; */
 	display: none !important;
 }
 
@@ -23,21 +21,23 @@
 
 @keyframes shake {
 	0% {
-		border: 5px solid #ed6c02;
+		border: 53pxpx solid #ed6c02;
 	}
 	25% {
 		transform: translateX(-10px);
-		border: 5px solid #ed6c02;
+		border: 3px solid #ed6c02;
 	}
 	50% {
-		border: 5px solid #ed6c02;
+		border: 3px solid #ed6c02;
 	}
 	75% {
 		transform: translateX(10px);
-		border: 5px solid #ed6c02;
+		border: 3px solid #ed6c02;
 	}
 	100% {
-		border: 5px solid #ed6c02;
+		/* return to center */
+		transform: translateX(0);
+		border: 3px solid #ed6c02;
 	}
 }
 

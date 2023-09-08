@@ -41,7 +41,6 @@ export async function PUT(req: Request, { params: { id } }: Params) {
 		},
 		body: JSON.stringify(body),
 	};
-	// console.log(JSON.stringify(body));
 	const response = await fetch(uri, requestInit);
 
 	if (!response.ok) {

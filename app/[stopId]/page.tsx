@@ -1,6 +1,6 @@
 'use client';
 
-import { AppBar, Container, Toolbar, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import { lastUpdatedSelector } from '@state/serverDataState';
 import { useRecoilValue } from 'recoil';
 
@@ -11,7 +11,7 @@ export default function DefaultTabItems() {
 	return (
 		<>
 			<Typography variant="subtitle1" component="h3" sx={{ marginBottom: '10vh' }}>
-				Last updated {lastUpdated}
+				{lastUpdated !== 'N/A' && `Last Updated ${lastUpdated}`}
 			</Typography>
 		</>
 	);

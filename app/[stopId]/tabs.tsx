@@ -2,24 +2,17 @@
 import { Box } from '@mui/material';
 import Tab from '@mui/material/Tab';
 import Tabs from '@mui/material/Tabs';
-import { isBlinkWarningState, isDataModifiedSelector, selectedTabState } from '@state/serverDataState';
+import { selectedTabState } from '@state/serverDataState';
 import React, { SyntheticEvent } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import styles from './tabs.module.css';
 
 export default function NavTabs() {
 	// handle the currently selected tab
 	const [value, setValue] = useRecoilState(selectedTabState);
 
-	const isDataModified = useRecoilValue(isDataModifiedSelector);
-	const setIsBlinkWarningState = useSetRecoilState(isBlinkWarningState);
-
 	const handleChange = (event: SyntheticEvent, newValue: number) => {
-		if (isDataModified) {
-			setIsBlinkWarningState(true);
-		} else {
-			setValue(newValue);
-		}
+		setValue(newValue);
 	};
 
 	return (
