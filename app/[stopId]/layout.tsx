@@ -15,7 +15,6 @@ interface Props {
 export default async function Layout({ params: { stopId }, children }: Props) {
 	const childStops = await getSiblings(stopId);
 	const developmentTypes = await getDevelopmentTypes();
-
 	const poleTypes = await getPoleTypes();
 
 	return (

@@ -5,7 +5,7 @@ const ENDPOINT = process.env.INVENTORY_API_ENDPOINT ?? throwError('Missing INVEN
 const KEY = process.env.INVENTORY_API_KEY ?? throwError('Missing INVENTORY_API_KEY in env vars');
 
 export async function GET(_: NextRequest) {
-	const uri = `${ENDPOINT}/development-types?v1`;
+	const uri = `${ENDPOINT}/development-types`;
 	const response = await fetch(uri, {
 		method: 'GET',
 		headers: {

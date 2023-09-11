@@ -15,7 +15,7 @@ export default function DevelopmentTypeDropdown({ developmentTypes }: Props) {
 		() =>
 			developmentTypes_copy
 				.sort(({ order: oA }, { order: oB }) => oA - oB)
-				.reduce<{ [key: string]: string }>((acc, { id, name, isDefault }) => {
+				.reduce<{ [key: string]: string }>((acc, { id, name }) => {
 					acc[id] = name;
 					return acc;
 				}, {}),
