@@ -2,6 +2,10 @@
 
 # Sign Inventory
 
+![GitHub deployments](https://img.shields.io/github/deployments/cumtd/sign-inventory/production?logo=vercel&label=Vercel&cacheSeconds=30&link=https%3A%2F%2Fvercel.com%2Fmtd%2Fsign-inventory%2Fdeployments)
+![GitHub last commit (branch)](https://img.shields.io/github/last-commit/cumtd/sign-inventory/main)
+[![CodeQL](https://github.com/CUMTD/sign-inventory/actions/workflows/codeql.yml/badge.svg)](https://github.com/CUMTD/sign-inventory/actions/workflows/codeql.yml)
+
 This is an internal web app for auditing the condition of bus stop signs, shelters and amenities, for use by MTD's planning department. The app is built on top of NextJS, and communicates with a .NET EF Core API to read/write an SQL database. The application displays data points like sign condition, general notes, photos, accessibility features and more.
 
 ## Architecture Overview
