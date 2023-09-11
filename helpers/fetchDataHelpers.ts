@@ -1,5 +1,5 @@
 import throwError from './throwError';
-import { ChildStop, DevelopmentType } from '@t/apiResponse';
+import { ChildStop, DevelopmentType, PoleType } from '@t/apiResponse';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL ?? throwError('Missing NEXT_PUBLIC_BASE_URL in env vars');
 
@@ -26,7 +26,6 @@ export async function getSiblings(stopId: string) {
 
 // writes child stop to db
 // TODO: wire up to child_stop param when ready to deploy
-
 export async function putParentStop(child_stop: ChildStop) {
 	const response = await fetch(`${BASE_URL}/api/stop-point/TEST-1`, {
 		method: 'PUT',
@@ -34,6 +33,47 @@ export async function putParentStop(child_stop: ChildStop) {
 	});
 
 	return response;
+}
+
+export async function getDevelopmentTypes() {
+	const response = await fetch(`${BASE_URL}/api/development-types`, {
+		...defaultFetchConfig,
+		method: 'GET',
+		headers: {
+			Accepts: 'application/json',
+		},
+		next: {
+			tags: ['dt'],
+		},
+		cache: 'force-cache',
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+
+	const dev_types = (await response.json()) as DevelopmentType[];
+	return dev_types;
+}
+
+export async function getPoleTypes() {
+	const response = await fetch(`${BASE_URL}/api/pole-types`, {
+		...defaultFetchConfig,
+		method: 'GET',
+		headers: {
+			Accepts: 'application/json',
+		},
+		next: {
+			tags: ['pt'],
+		},
+		cache: 'force-cache',
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	const pole_types = (await response.json()) as PoleType[];
+	return pole_types;
 }
 
 export async function getStopPhoto(stopId: string) {

@@ -2,12 +2,12 @@
 
 import { createCheckbox } from '@components/inputs/checkbox';
 import { createDatePicker } from '@components/inputs/datePicker';
-import { createDropDown } from '@components/inputs/dropdown';
 import { createFeetInches } from '@components/inputs/feetInches';
 import { createHorizSlider } from '@components/inputs/horizSlider';
 import { Typography } from '@mui/material';
 import SliderSet from '@t/sliderSet';
 import styles from '../page.module.css';
+import PoleTypeSelector from './poleTypeSelector';
 
 const HasSignCheckbox = createCheckbox(
 	({ sign: { hasSign } }) => hasSign,
@@ -59,26 +59,6 @@ const IsBrokenCheckbox = createCheckbox(
 		sign: {
 			...sign,
 			isBroken: newValue,
-		},
-		...childStop,
-	}),
-);
-
-const PoleTypeDropDown = createDropDown(
-	({ sign: { poleType } }) => {
-		if (poleType) {
-			return poleType.id;
-		} else {
-			return '9601eb200ce1423a9ebeb7b4cc0ae6e6';
-		}
-	},
-	({ sign, ...childStop }, newValue) => ({
-		sign: {
-			...sign,
-			poleType: {
-				...sign.poleType,
-				id: newValue,
-			},
 		},
 		...childStop,
 	}),
@@ -156,7 +136,7 @@ const TiltAngleSlider = createHorizSlider(
 		},
 		...childStop,
 	}),
-	SliderSet.TiltAngle
+	SliderSet.TiltAngle,
 );
 
 const SignReplacementDatePicker = createDatePicker(
@@ -184,7 +164,7 @@ export default function SignPage() {
 					</Typography>
 					<HeightToBottomOfSignFeetInches label="Height to Bottom of Sign" />
 					<DistanceFromCurbAtBase label="Distance from Curb at Base" />
-					<PoleTypeDropDown label="Pole Type" options="pole_types" />
+					<PoleTypeSelector />
 					<TiltAngleSlider label="Tilt Angle" />
 				</div>
 				<div className={styles.subSection}>

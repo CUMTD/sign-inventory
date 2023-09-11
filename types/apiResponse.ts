@@ -18,6 +18,7 @@ export interface DevelopmentType {
 	id: string;
 	name: string;
 	order: number;
+	isDefault: boolean;
 }
 
 export interface Amenity {
@@ -69,4 +70,5 @@ export interface PoleType {
 	id: string;
 	name: string;
 	order: number;
+	isDefault: boolean;
 }

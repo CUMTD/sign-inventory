@@ -1,4 +1,4 @@
-import { ChildStop } from '@t/apiResponse';
+import { ChildStop, DevelopmentType, PoleType } from '@t/apiResponse';
 import { DefaultValue, atom, selector } from 'recoil';
 import equal from 'fast-deep-equal';
 
@@ -134,4 +134,14 @@ export const displaySnackbarState = atom<SnackBarState>({
 		open: false,
 		state: 'error',
 	},
+});
+
+export const developmentTypesState = atom<DevelopmentType[]>({
+	key: 'developmentTypesState',
+	default: [],
+});
+
+export const poleTypesState = atom<PoleType[]>({
+	key: 'poleTypesState',
+	default: [],
 });

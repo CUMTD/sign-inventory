@@ -1,4 +1,4 @@
-import { getSiblings } from '@helpers/fetchDataHelpers';
+import { getDevelopmentTypes, getPoleTypes, getSiblings } from '@helpers/fetchDataHelpers';
 import { ReactNode } from 'react';
 import 'server-only';
 import ChildStopRecoilRoot from './childStopRecoilRoot';
@@ -14,10 +14,18 @@ interface Props {
 
 export default async function Layout({ params: { stopId }, children }: Props) {
 	const childStops = await getSiblings(stopId);
+	const developmentTypes = await getDevelopmentTypes();
+
+	const poleTypes = await getPoleTypes();
 
 	return (
 		<>
-			<ChildStopRecoilRoot stopId={stopId} childStops={childStops}>
+			<ChildStopRecoilRoot
+				stopId={stopId}
+				childStops={childStops}
+				developmentTypes={developmentTypes}
+				poleTypes={poleTypes}
+			>
 				<ServerDataStateSubscriber />
 				<SideMenu>{children}</SideMenu>
 			</ChildStopRecoilRoot>
