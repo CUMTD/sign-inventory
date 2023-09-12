@@ -12,7 +12,7 @@ export async function GET(_: NextRequest) {
 			'X-ApiKey': KEY,
 			'Accepts': 'application/json',
 		},
-		// cache: 'force-cache',
+		cache: 'force-cache',
 	});
 
 	if (!response.ok) {

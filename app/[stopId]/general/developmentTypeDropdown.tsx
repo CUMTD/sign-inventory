@@ -22,12 +22,10 @@ export default function DevelopmentTypeDropdown({ developmentTypes }: Props) {
 		[developmentTypes_copy],
 	);
 
-	console.log('developmentTypes_copy: ', developmentTypes_copy);
 	const defaultId = useMemo(
 		() => developmentTypes_copy.filter(({ isDefault }) => isDefault)[0].id,
 		[developmentTypes_copy],
 	);
-	console.log('defaultId: ', defaultId);
 
 	const DevelopmentTypeDropDown = useMemo(
 		() =>
