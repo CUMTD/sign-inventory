@@ -43,7 +43,7 @@ export async function getDevelopmentTypes() {
 		next: {
 			tags: ['dt'],
 		},
-		cache: 'force-cache',
+		// cache: 'force-cache',
 	});
 
 	if (!response.ok) {
@@ -64,7 +64,7 @@ export async function getPoleTypes() {
 		next: {
 			tags: ['pt'],
 		},
-		cache: 'force-cache',
+		// cache: 'force-cache',
 	});
 
 	if (!response.ok) {
