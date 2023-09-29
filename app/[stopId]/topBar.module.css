@@ -1,12 +1,13 @@
-.authBox {
+.toolbarButtonGroups {
 	display: flex;
 	flex-direction: row;
-	gap: 1em;
 	position: absolute;
 	top: 5px;
 	right: 0;
 	margin: auto;
-	padding-right: 1em;
+	margin-right: 1em;
+	padding-left: 1em;
+	gap: 2.5em;
 }
 
 .logo {

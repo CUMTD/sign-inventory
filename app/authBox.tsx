@@ -8,13 +8,13 @@ export default function AuthBox() {
 
 	if (session?.user) {
 		return (
-			<>
+			<div className={styles.container}>
 				<p className={styles.userName}>{session ? `${session?.user?.name}` : ''}</p>
 
 				<IconButton color="error" size="small" onClick={() => signOut()}>
 					<LogoutIcon />
 				</IconButton>
-			</>
+			</div>
 		);
 	} else {
 		return null;

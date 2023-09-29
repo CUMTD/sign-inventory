@@ -117,3 +117,16 @@ export async function putStopPhoto(stopId: string, image: string | null) {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
 }
+
+export async function getDownloadRedirect() {
+	const response = await fetch(`${BASE_URL}/api/download`, {
+		...defaultFetchConfig,
+		method: 'GET',
+	});
+
+	if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	console.log(response.json());
+	return response;
+}

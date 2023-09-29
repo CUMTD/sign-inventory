@@ -3,3 +3,9 @@
 	font-family: monospace;
 	text-transform: uppercase;
 }
+
+.container {
+	display: flex;
+	flex-direction: row;
+	gap: 0.5em;
+}
